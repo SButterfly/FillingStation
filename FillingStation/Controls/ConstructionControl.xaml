@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:FillingStation.Controls"
-             xmlns:converters="clr-namespace:FillingStation.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600"
              KeyDown="ConstructionControl_OnKeyDown" 
@@ -16,8 +15,13 @@
               <ColumnDefinition Width="*" MinWidth="{Binding Width, ElementName=borderField}"/>
               <ColumnDefinition Width="Auto"/>
           </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Style="{StaticResource VerticalMenu}">
+        <StackPanel Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource VerticalMenu}">
             <ToggleButton Tag="Road" Style="{StaticResource VerticalMenuButton}"
                           Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
                 <Image Source="..\Assets\Patterns\pt_road.png" Style="{DynamicResource ControlMenuImageStyle}" />
@@ -79,12 +83,12 @@
                       />
             </Border>
         </Grid>
-        <TextBlock x:Name="additionTextBlock" Grid.Column="1" VerticalAlignment="Bottom" Background="#FFF0F0F0" />
-        <controls:PropertyControl 
+        <TextBlock x:Name="additionTextBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFF0F0F0" />
+        <controls:PropertyControl Grid.RowSpan="2"
             x:Name="propertyControl"
             Grid.Column="2"/>
 
-        <Grid x:Name="disanabledGrid" Background="#4CAAAAAA" Grid.ColumnSpan="3"/>
-        <Grid x:Name="disanabledGrid2" Background="#81AAAAAA" Grid.Column="1"/>
+        <Grid x:Name="disanabledGrid" Background="#4CAAAAAA" Grid.ColumnSpan="3"  Grid.RowSpan="2"/>
+        <Grid x:Name="disanabledGrid2" Background="#81AAAAAA" Grid.Column="1" />
     </Grid>
 </UserControl>
