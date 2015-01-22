@@ -3,7 +3,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using FillingStation.Annotations;
 using FillingStation.Core.Patterns;
-using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
 
 namespace FillingStation.Core.Models
@@ -12,11 +11,6 @@ namespace FillingStation.Core.Models
     {
         private FSStateModel()
         {
-            LimitMoney = new CashBoxProperty().CashBoxLimit;
-            CurrentFuel92 = new TankProperty().TankLimit;
-            CurrentFuel95 = CurrentFuel92;
-            CurrentFuel98 = CurrentFuel92;
-            CurrentFuelDiesel = CurrentFuel92;
         }
 
         public FSStateModel(FSModel model)
