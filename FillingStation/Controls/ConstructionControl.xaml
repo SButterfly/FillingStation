@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="FillingStation.Controls.ConstructionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:FillingStation.Controls"
+             xmlns:converters="clr-namespace:FillingStation.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600"
+             KeyDown="ConstructionControl_OnKeyDown" 
+             MinHeight="{Binding Height, ElementName=root}"
+             MinWidth="{Binding Width, ElementName=borderField}">
+    <Grid x:Name="root" >
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*" MinWidth="{Binding Width, ElementName=borderField}"/>
+              <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Style="{StaticResource VerticalMenu}">
+            <ToggleButton Tag="Road" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_road.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="RoadTurn" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_road_turn.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="RoadT" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_road_t.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="Column" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_kol.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="RoadIn" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_road_in.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="RoadOut" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_road_out.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="Tank" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_rez.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="InfoTable" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_table.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+            <ToggleButton Tag="CashBox" Style="{StaticResource VerticalMenuButton}"
+                          Checked="MenuItem_OnChecked" Unchecked="MenuItem_OnUnchecked" >
+                <Image Source="..\Assets\Patterns\pt_cash_box.png" Style="{DynamicResource ControlMenuImageStyle}" />
+            </ToggleButton>
+        </StackPanel>
+
+        <Grid 
+            x:Name="fieldroot"
+            Grid.Column="1"
+            Background="Gainsboro">
+
+            <Border x:Name="borderField"
+                BorderBrush="Black"
+                BorderThickness="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Grid x:Name="field"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Height="200" Width="400"
+                      Background="Green"
+                      MouseMove="field_OnMouseMove"
+                      MouseLeftButtonUp="field_MouseLeftButtonUp"
+                      MouseLeave="field_MouseLeave"
+                      MouseLeftButtonDown="field_MouseLeftButtonDown"
+                      MouseRightButtonDown="field_MouseRightButtonDown" MouseWheel="field_MouseWheel"
+                      />
+            </Border>
+        </Grid>
+        <TextBlock x:Name="additionTextBlock" Grid.Column="1" VerticalAlignment="Bottom" Background="#FFF0F0F0" />
+        <controls:PropertyControl 
+            x:Name="propertyControl"
+            Grid.Column="2"/>
+
+        <Grid x:Name="disanabledGrid" Background="#4CAAAAAA" Grid.ColumnSpan="3"/>
+        <Grid x:Name="disanabledGrid2" Background="#81AAAAAA" Grid.Column="1"/>
+    </Grid>
+</UserControl>

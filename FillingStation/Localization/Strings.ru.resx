@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Exception_positive_int" xml:space="preserve">
+    <value>must be positive integer</value>
+  </data>
+  <data name="Exception_pattern_place" xml:space="preserve">
+    <value>Невозможно поместить паттерн на координату </value>
+  </data>
+  <data name="Exception_point_is_not_on_path" xml:space="preserve">
+    <value>Точка не принадлежит пути</value>
+  </data>
+  <data name="Exception_segment_count" xml:space="preserve">
+    <value>Количество сегментов должно быть от 1 до 4х</value>
+  </data>
+  <data name="CashBox_path" xml:space="preserve">
+    <value>pt_cash_box.png</value>
+  </data>
+  <data name="Column_path" xml:space="preserve">
+    <value>pt_kol.png</value>
+  </data>
+  <data name="InfoTable_path" xml:space="preserve">
+    <value>pt_table.png</value>
+  </data>
+  <data name="RoadIn_path" xml:space="preserve">
+    <value>pt_road_in.png</value>
+  </data>
+  <data name="RoadOut_path" xml:space="preserve">
+    <value>pt_road_out.png</value>
+  </data>
+  <data name="Road_path" xml:space="preserve">
+    <value>pt_road.png</value>
+  </data>
+  <data name="RoadT_path" xml:space="preserve">
+    <value>pt_road_t.png</value>
+  </data>
+  <data name="RoadTurn_path" xml:space="preserve">
+    <value>pt_road_turn.png</value>
+  </data>
+  <data name="Tank_path" xml:space="preserve">
+    <value>pt_rez.png</value>
+  </data>
+  <data name="CashBox" xml:space="preserve">
+    <value>Касса</value>
+  </data>
+  <data name="CashBox_limit" xml:space="preserve">
+    <value>Лимит кассы:</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Универсальная колонка</value>
+  </data>
+  <data name="InfoTable" xml:space="preserve">
+    <value>Информационное табло</value>
+  </data>
+  <data name="RoadIn" xml:space="preserve">
+    <value>Въезд</value>
+  </data>
+  <data name="RoadOut" xml:space="preserve">
+    <value>Выезд</value>
+  </data>
+  <data name="Road" xml:space="preserve">
+    <value>Дорога</value>
+  </data>
+  <data name="RoadT" xml:space="preserve">
+    <value>Перекресток</value>
+  </data>
+  <data name="RoadTurn" xml:space="preserve">
+    <value>Поворот</value>
+  </data>
+  <data name="Tank" xml:space="preserve">
+    <value>Резервуар</value>
+  </data>
+  <data name="Tank_limit" xml:space="preserve">
+    <value>Лимит резервуара:</value>
+  </data>
+  <data name="Fuel_a92" xml:space="preserve">
+    <value>АИ - 92</value>
+  </data>
+  <data name="Fuel_a95" xml:space="preserve">
+    <value>АИ - 95</value>
+  </data>
+  <data name="Fuel_a98" xml:space="preserve">
+    <value>АИ - 98</value>
+  </data>
+  <data name="Fuel_diesel" xml:space="preserve">
+    <value>Дизельное топливо</value>
+  </data>
+  <data name="Exception_fuel" xml:space="preserve">
+    <value>Argumet is not fuel type</value>
+  </data>
+  <data name="Casher" xml:space="preserve">
+    <value>Инкассатор</value>
+  </data>
+  <data name="Casher_path" xml:space="preserve">
+    <value>Vehicles/vh_casher.png</value>
+  </data>
+  <data name="Tanker" xml:space="preserve">
+    <value>Дозаправщик</value>
+  </data>
+  <data name="Tanker_path" xml:space="preserve">
+    <value>Vehicles/vh_tanker.png</value>
+  </data>
+  <data name="Exception_missingClass" xml:space="preserve">
+    <value>Невоможно сгенерировать тип заданного объекта</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Заправочная станция</value>
+  </data>
+  <data name="Filter_model" xml:space="preserve">
+    <value>Модели</value>
+  </data>
+  <data name="Filter_all" xml:space="preserve">
+    <value>Все файлы</value>
+  </data>
+  <data name="Exception_notRotaion" xml:space="preserve">
+    <value>Парамерт не является поворотом</value>
+  </data>
+  <data name="Exeption_DeterminRange" xml:space="preserve">
+    <value>Минимальное значение параметра детерминированного потока - 2
+Максимальное значение параметра детерминированного потока - 100
+</value>
+  </data>
+  <data name="Exeption_Normal" xml:space="preserve">
+    <value>Неверное значение параметра dx нормального закона распределения при заданном mx</value>
+  </data>
+  <data name="Exception_NormalRange" xml:space="preserve">
+    <value>Минимальное значение параметра mx нормального закона распределения - 2
+Максимальное значение параметра mx нормального закона распределения - 100</value>
+  </data>
+  <data name="Exception_UniformRange" xml:space="preserve">
+    <value>Минимальное значение нижней границы равномерного закона распределения - 2
+Максимальное значение верхней границы равномерного закона распределения - 100</value>
+  </data>
+  <data name="PropertyName" xml:space="preserve">
+    <value>Название: </value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="Exception_WidthRangeFormat" xml:space="preserve">
+    <value>Ширина поля должна варьироваться от {0} до {1}.
+Высота поля должна варьироваться от {2} до {3}.</value>
+  </data>
+  <data name="Exception_FSModelRangeFormat" xml:space="preserve">
+    <value>Ширина поля должна варьироваться от {0} до {1}.
+Высота поля должна варьироваться от {2} до {3}.</value>
+  </data>
+  <data name="Exception_properyFormat" xml:space="preserve">
+    <value>Ошибка в параметре: "{0}".
+Проверьте корректность ввода.</value>
+  </data>
+  <data name="Exception_DB" xml:space="preserve">
+    <value>Ошибка при работе с БД!</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>пользовательская машина</value>
+  </data>
+  <data name="Car_path" xml:space="preserve">
+    <value>Vehicles/Cars/vh_car_5.png</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Car_tankVolume" type="System.Decimal, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="Car_carSize" type="System.Int16, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Car_fuel" type="System.Int16, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="Exception_DB_singleDelete" xml:space="preserve">
+    <value>Нельзя удалить единственную запись!</value>
+  </data>
+  <data name="Exception_HtmlNotFoundFormat" xml:space="preserve">
+    <value>Ошибка при открытии страницы:
+Файл {0} не существует.</value>
+  </data>
+  <data name="ModelTime" xml:space="preserve">
+    <value>Модельное время: </value>
+  </data>
+  <data name="Cash_state" xml:space="preserve">
+    <value>Касса: {0} р</value>
+  </data>
+  <data name="Tank_a92_state" xml:space="preserve">
+    <value>Резервуар (А92): {0} л</value>
+  </data>
+  <data name="Tank_a95_state" xml:space="preserve">
+    <value>Резервуар (А95): {0} л</value>
+  </data>
+  <data name="Tank_a98_state" xml:space="preserve">
+    <value>Резервуар (А98): {0} л</value>
+  </data>
+  <data name="Tank_diesel_state" xml:space="preserve">
+    <value>Резервуар (Diesel): {0} л</value>
+  </data>
+  <data name="Exception_SimulationSpeed" xml:space="preserve">
+    <value>Скорость моделирования задана неверно. </value>
+  </data>
+  <data name="Exception_SimulationSpeedRange" xml:space="preserve">
+    <value>Скорость моделирования должна быть задана строго больше {0} и меньше {1}</value>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>Система моделирования работы АЗС</value>
+  </data>
+  <data name="Filename_notSaved" xml:space="preserve">
+    <value>Безымянный</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>О разработчиках</value>
+  </data>
+  <data name="SaveProject" xml:space="preserve">
+    <value>Проект не сохранен. Сохранить?</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
+  <data name="ExceptionMessage_Title" xml:space="preserve">
+    <value>Произошла ошибка</value>
+  </data>
+  <data name="Exception_readFS" xml:space="preserve">
+    <value>Ошибка при загрузке топологии. </value>
+  </data>
+  <data name="Construction_placeOnCell" xml:space="preserve">
+    <value>Выберите подходящую клетку. &lt;ESC&gt; для выхода из режима.</value>
+  </data>
+  <data name="Construction_placeOnNewCell" xml:space="preserve">
+    <value>Переместите на новую клетку.</value>
+  </data>
+  <data name="Exception_Generator" xml:space="preserve">
+    <value>Ошибка при создании потока:</value>
+  </data>
+  <data name="Exception_GeneratorNotChoosen" xml:space="preserve">
+    <value>Поток не выбран</value>
+  </data>
+  <data name="Exception_FSModelCorrectnessFormat" xml:space="preserve">
+    <value>В топологии должен присутствовать ровно {0} шаблон(а) «{1}».</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_TankRange" xml:space="preserve">
+    <value>Параметры объема резервуара должны быть заданы в пределах от 10000 до 20000.</value>
+  </data>
+  <data name="Exception_FSIsIncorrect" xml:space="preserve">
+    <value>Данная топология АЗС некорректна. Возможно, не все дороги связаны</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_RoadInOut" xml:space="preserve">
+    <value>Шаблон «Въезд» должен располагаться раньше шаблона «Выезд».</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_PatternMainRoadFormat" xml:space="preserve">
+    <value>«{0}» не соединен с главной дорогой.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_CashRangeFormat" xml:space="preserve">
+    <value>У шаблона «Касса» параметр лимита должен быть задан в пределах от 500 000 до 1 500 000.</value>
+  </data>
+  <data name="Tank_fuel_field" xml:space="preserve">
+    <value>Тип топлива: </value>
+  </data>
+  <data name="Exception_ExponentialRange" xml:space="preserve">
+    <value>Минимальное значение параметра Y показательного закона распределения - 0.01
+Максимальное значение параметра Y показательного закона распределения - 0.5</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модель:</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Изображение:</value>
+  </data>
+  <data name="TankVolume" xml:space="preserve">
+    <value>Объем бака:</value>
+  </data>
+  <data name="CarSizeType" xml:space="preserve">
+    <value>Тип автомобиля:</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Тип топлива:</value>
+  </data>
+  <data name="NextRecord" xml:space="preserve">
+    <value>Следующая запись</value>
+  </data>
+  <data name="PreviousRecord" xml:space="preserve">
+    <value>Предыдущая запись</value>
+  </data>
+  <data name="SaveRecord" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="AddRecord" xml:space="preserve">
+    <value>Вставить запись</value>
+  </data>
+  <data name="DeleteRecord" xml:space="preserve">
+    <value>Удалить запись</value>
+  </data>
+  <data name="CarsTitle" xml:space="preserve">
+    <value>Автомобили</value>
+  </data>
+  <data name="FSSettingsTitle" xml:space="preserve">
+    <value>Создание АЗС</value>
+  </data>
+  <data name="FieldSettings" xml:space="preserve">
+    <value>Настройки поля</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="FuelTitle" xml:space="preserve">
+    <value>Топливо</value>
+  </data>
+  <data name="PricePerLiter" xml:space="preserve">
+    <value>Цена за литр</value>
+  </data>
+  <data name="SimulationTitle" xml:space="preserve">
+    <value>Моделирование</value>
+  </data>
+  <data name="Manually" xml:space="preserve">
+    <value>Пользовательская</value>
+  </data>
+  <data name="FSState" xml:space="preserve">
+    <value>Состояние АЗС</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Сохранить как</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Simulation" xml:space="preserve">
+    <value>Моделирование</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="Cars" xml:space="preserve">
+    <value>Автомобили</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Топливо</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="CarStreamSettingsTitle" xml:space="preserve">
+    <value>Настройкa потока автомобилей</value>
+  </data>
+  <data name="Determin" xml:space="preserve">
+    <value>Детерминированный</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Нормальный</value>
+  </data>
+  <data name="Exponential" xml:space="preserve">
+    <value>Показательный</value>
+  </data>
+  <data name="Uniform" xml:space="preserve">
+    <value>Равномерный</value>
+  </data>
+  <data name="Determin_dt" xml:space="preserve">
+    <value>ΔT (сек):</value>
+  </data>
+  <data name="Normal_mx" xml:space="preserve">
+    <value>mx (сек):</value>
+  </data>
+  <data name="Normal_dx" xml:space="preserve">
+    <value>dx (сек^2):</value>
+  </data>
+  <data name="Normal_y" xml:space="preserve">
+    <value>y (1/сек):</value>
+  </data>
+  <data name="Uniform_a" xml:space="preserve">
+    <value>a (сек):</value>
+  </data>
+  <data name="Uniform_b" xml:space="preserve">
+    <value>b (сек):</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название: </value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>Повернуть:</value>
+  </data>
+  <data name="Exception_cashNearRoad" xml:space="preserve">
+    <value>Касса должна находиться рядом с дорогой.</value>
+  </data>
+  <data name="Tank_fuel_critical" xml:space="preserve">
+    <value>Критический уровень топлива:</value>
+  </data>
+  <data name="Tank_fuel_low" xml:space="preserve">
+    <value>Низкий уровень топлива:</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_TankLimitRangeFormat" xml:space="preserve">
+    <value>Лимит {0} резервуара должен быть от {1} до {2}.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_LowTankLimitFormat" xml:space="preserve">
+    <value>Низкий уровень {0} резервуара должен быть от {1} до лимита.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_CriticalTankLimitFormat" xml:space="preserve">
+    <value>Критический уровень {0} резервуара должен быть от {1} до низкого.</value>
+  </data>
+  <data name="FSStatistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="AVG_CarCount" xml:space="preserve">
+    <value>Среднее количество машин на АЗС: {0}</value>
+  </data>
+  <data name="AVG_CarToFSFormat" xml:space="preserve">
+    <value>Процент машин, заехавших на АЗС: {0} %</value>
+  </data>
+  <data name="AVG_CarTimeFormat" xml:space="preserve">
+    <value>Среднее время машины на АЗС: {0} сек</value>
+  </data>
+  <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
+    <value>Среднее время заправки: {0} $</value>
+  </data>
+  <data name="AVG_CarFillingCashFormat" xml:space="preserve">
+    <value>Средний размер чека: {0} $</value>
+  </data>
+  <data name="AVG_CarFillingTankFormat" xml:space="preserve">
+    <value>Средний объем заправляемого топлива: {0} l</value>
+  </data>
+  <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
+    <value>Среднее время между прибытиями:</value>
+  </data>
+  <data name="AVG_CarTank92Format" xml:space="preserve">
+    <value>- дозаправщика (A92): {0} sec</value>
+  </data>
+  <data name="AVG_CarTank95Format" xml:space="preserve">
+    <value>- дозаправщика (A95): {0} sec</value>
+  </data>
+  <data name="AVG_CarTank98Format" xml:space="preserve">
+    <value>- дозаправщика (A98: {0} sec</value>
+  </data>
+  <data name="AVG_CarTankDieselFormat" xml:space="preserve">
+    <value>- дозаправщика (Diesel): {0} sec</value>
+  </data>
+  <data name="AVG_CarCasherFormat" xml:space="preserve">
+    <value>- инкассация: {0} sec</value>
+  </data>
+</root>

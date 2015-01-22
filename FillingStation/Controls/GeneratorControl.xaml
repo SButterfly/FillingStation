@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="FillingStation.Controls.GeneratorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Localization="clr-namespace:FillingStation.Localization"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Margin="10">
+        <TextBlock Text="{x:Static Localization:Strings.CarStreamSettingsTitle}" TextAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+        <ComboBox x:Name="genarationComboBox" SelectedIndex="0" Margin="0,10" >
+            <ComboBoxItem Content="{x:Static Localization:Strings.Determin}"/>
+            <ComboBoxItem Content="{x:Static Localization:Strings.Normal}"/>
+            <ComboBoxItem Content="{x:Static Localization:Strings.Exponential}"/>
+            <ComboBoxItem Content="{x:Static Localization:Strings.Uniform}"/>
+        </ComboBox>
+        
+        <StackPanel x:Name="determGenerator" Margin="10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Static Localization:Strings.Determin_dt}" Margin="5,0" Grid.Column="0" HorizontalAlignment="Right"/>
+                <TextBox x:Name="dtTextBox" Width="100" Text="2" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel x:Name="normalGenerator" Margin="10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{x:Static Localization:Strings.Normal_mx}" Margin="5,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"/>
+                <TextBox x:Name="mxTextBox" Width="100" Text="2" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Static Localization:Strings.Normal_dx}" Margin="5,0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"/>
+                <TextBox x:Name="dxTextBox" Width="100" Text="1" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel x:Name="exponentialGenerator" Margin="10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Static Localization:Strings.Normal_y}" Margin="5,0" Grid.Column="0" HorizontalAlignment="Right"/>
+                <TextBox x:Name="yTextBox" Width="100" Text="0.25" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel x:Name="uniformGenerator" Margin="10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{x:Static Localization:Strings.Uniform_a}" Margin="5,0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" />
+                <TextBox x:Name="aTextBox" Width="100" Text="2" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" />
+                <TextBlock Text="{x:Static Localization:Strings.Uniform_b}" Margin="5,0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" />
+                <TextBox x:Name="bTextBox" Width="100" Text="3" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" />
+            </Grid>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

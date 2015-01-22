@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="FillingStation.Controls.PropertyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Localization="clr-namespace:FillingStation.Localization"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="150"
+             MinWidth="200">
+    <UserControl.Resources>
+        <Image x:Key="LeftTurnImage" Source="../Assets/Icons/ic_rotate_left.png" Height="20" Width="20"/>
+        <Image x:Key="RightTurnImage" Source="../Assets/Icons/ic_rotate_right.png" Height="20" Width="20"/>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical" Margin="10">
+        <TextBlock Text="{x:Static Localization:Strings.SettingsTitle}" TextAlignment="Center" FontSize="20"/>
+        <StackPanel x:Name="namePanel" Margin="0,5">
+            <TextBlock x:Name="nameTextBlock" Text="{x:Static Localization:Strings.Name}"/>
+        </StackPanel>
+        <StackPanel x:Name="turnPanel" Margin="0,5" Orientation="Vertical">
+            <TextBlock x:Name="turnTextBlock" Text="{x:Static Localization:Strings.Turn}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="leftRotationButton" Content="{StaticResource LeftTurnImage}" Padding="3" Margin="5 5"/>
+                <Button x:Name="rightRotationButton" Content="{StaticResource RightTurnImage}"  Padding="3" Margin="5 5"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="root">
+            
+        </StackPanel>
+    </StackPanel>
+</UserControl>

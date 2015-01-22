@@ -1,0 +1,29 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:assets="clr-namespace:FillingStation.Assets"
+    xmlns:Localization="clr-namespace:FillingStation.Localization"
+    x:Class="FillingStation.Views.FuelDBView"
+        Title="{x:Static Localization:Strings.FuelTitle}" Height="304" Width="247" ResizeMode="NoResize" Loaded="Window_Loaded" Icon="/FillingStation;component/Assets/logo.ico">
+    <Window.Resources>
+        <assets:FillingStation_DBDataSet x:Key="fillingStation_DBDataSet"/>
+        <CollectionViewSource x:Key="fuel_TypeViewSource" Source="{Binding Fuel_Type, Source={StaticResource fillingStation_DBDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource fuel_TypeViewSource}">
+
+        <DataGrid x:Name="fuel_TypeDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="20,20,31,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="187" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="fuel_type_nameColumn" Width="85" Header="{x:Static Localization:Strings.FuelType}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding fuel_type_name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="priceColumn" Width="SizeToHeader" Header="{x:Static Localization:Strings.PricePerLiter}" Binding="{Binding price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="saveButton" Content="{x:Static Localization:Strings.SaveRecord}" Margin="33,224,45,0" Click="saveButton_Click" Height="25" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Exception_positive_int" xml:space="preserve">
+    <value>must be positive integer</value>
+  </data>
+  <data name="Exception_pattern_place" xml:space="preserve">
+    <value>Could't place pattern at this point.</value>
+  </data>
+  <data name="Exception_point_is_not_on_path" xml:space="preserve">
+    <value>Path doesn't contain this point</value>
+  </data>
+  <data name="Exception_segment_count" xml:space="preserve">
+    <value>Segment count must be from 1 to 4</value>
+  </data>
+  <data name="CashBox_path" xml:space="preserve">
+    <value>pt_cash_box.png</value>
+  </data>
+  <data name="Column_path" xml:space="preserve">
+    <value>pt_kol.png</value>
+  </data>
+  <data name="InfoTable_path" xml:space="preserve">
+    <value>pt_table.png</value>
+  </data>
+  <data name="RoadIn_path" xml:space="preserve">
+    <value>pt_road_in.png</value>
+  </data>
+  <data name="RoadOut_path" xml:space="preserve">
+    <value>pt_road_out.png</value>
+  </data>
+  <data name="Road_path" xml:space="preserve">
+    <value>pt_road.png</value>
+  </data>
+  <data name="RoadT_path" xml:space="preserve">
+    <value>pt_road_t.png</value>
+  </data>
+  <data name="RoadTurn_path" xml:space="preserve">
+    <value>pt_road_turn.png</value>
+  </data>
+  <data name="Tank_path" xml:space="preserve">
+    <value>pt_rez.png</value>
+  </data>
+  <data name="CashBox" xml:space="preserve">
+    <value>Cash box</value>
+  </data>
+  <data name="CashBox_limit" xml:space="preserve">
+    <value>Cash box's limit</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="InfoTable" xml:space="preserve">
+    <value>Info table</value>
+  </data>
+  <data name="RoadIn" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="RoadOut" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Road" xml:space="preserve">
+    <value>Road</value>
+  </data>
+  <data name="RoadT" xml:space="preserve">
+    <value>Intersection</value>
+  </data>
+  <data name="RoadTurn" xml:space="preserve">
+    <value>Turn</value>
+  </data>
+  <data name="Tank" xml:space="preserve">
+    <value>Tank</value>
+  </data>
+  <data name="Tank_limit" xml:space="preserve">
+    <value>Tank's limit: </value>
+  </data>
+  <data name="Fuel_a92" xml:space="preserve">
+    <value>A - 92</value>
+  </data>
+  <data name="Fuel_a95" xml:space="preserve">
+    <value>A - 95</value>
+  </data>
+  <data name="Fuel_a98" xml:space="preserve">
+    <value>A - 98</value>
+  </data>
+  <data name="Fuel_diesel" xml:space="preserve">
+    <value>Diesel</value>
+  </data>
+  <data name="Exception_fuel" xml:space="preserve">
+    <value>Argumet is not fuel type</value>
+  </data>
+  <data name="Casher" xml:space="preserve">
+    <value>Casher</value>
+  </data>
+  <data name="Casher_path" xml:space="preserve">
+    <value>Vehicles/vh_casher.png</value>
+  </data>
+  <data name="Tanker" xml:space="preserve">
+    <value>Tanker</value>
+  </data>
+  <data name="Tanker_path" xml:space="preserve">
+    <value>Vehicles/vh_tanker.png</value>
+  </data>
+  <data name="Exception_missingClass" xml:space="preserve">
+    <value>Could't create class of type.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Filling station</value>
+  </data>
+  <data name="Filter_model" xml:space="preserve">
+    <value>FS model</value>
+  </data>
+  <data name="Filter_all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Exception_notRotaion" xml:space="preserve">
+    <value>This are no rotation property</value>
+  </data>
+  <data name="Exeption_DeterminRange" xml:space="preserve">
+    <value>Determin range must be from 2 to 100</value>
+  </data>
+  <data name="Exeption_Normal" xml:space="preserve">
+    <value>There couldn't be such dx and mx.</value>
+  </data>
+  <data name="Exception_NormalRange" xml:space="preserve">
+    <value>mx must be from 2 to 100</value>
+  </data>
+  <data name="Exception_UniformRange" xml:space="preserve">
+    <value>Uniform range must be from 2 to 100</value>
+  </data>
+  <data name="PropertyName" xml:space="preserve">
+    <value>Name: </value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Exception_WidthRangeFormat" xml:space="preserve">
+    <value>Field's width must be from {0} to {1}.
+Field's height must be from {2} to {3}.</value>
+  </data>
+  <data name="Exception_FSModelRangeFormat" xml:space="preserve">
+    <value>Field's width must be from {0} to {1}.
+Field's height must be from {2} to {3}.</value>
+  </data>
+  <data name="Exception_properyFormat" xml:space="preserve">
+    <value>Mistake at: "{0}".</value>
+  </data>
+  <data name="Exception_DB" xml:space="preserve">
+    <value>An error proced in database!</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>User car</value>
+  </data>
+  <data name="Car_path" xml:space="preserve">
+    <value>Vehicles/Cars/vh_car_5.png</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Car_tankVolume" type="System.Decimal, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="Car_carSize" type="System.Int16, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Car_fuel" type="System.Int16, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="Exception_DB_singleDelete" xml:space="preserve">
+    <value>There must be more than 1 record</value>
+  </data>
+  <data name="Exception_HtmlNotFoundFormat" xml:space="preserve">
+    <value>There are no {0} files.</value>
+  </data>
+  <data name="ModelTime" xml:space="preserve">
+    <value>Simulation time: </value>
+  </data>
+  <data name="Cash_state" xml:space="preserve">
+    <value>Cash box: {0} $</value>
+  </data>
+  <data name="Tank_a92_state" xml:space="preserve">
+    <value>Tank (A92): {0} l</value>
+  </data>
+  <data name="Tank_a95_state" xml:space="preserve">
+    <value>Tank (A95): {0} l</value>
+  </data>
+  <data name="Tank_a98_state" xml:space="preserve">
+    <value>Tank (A98): {0} l</value>
+  </data>
+  <data name="Tank_diesel_state" xml:space="preserve">
+    <value>Tank (Diesel): {0} l</value>
+  </data>
+  <data name="Exception_SimulationSpeed" xml:space="preserve">
+    <value>Simulation speed isn't write correctly.</value>
+  </data>
+  <data name="Exception_SimulationSpeedRange" xml:space="preserve">
+    <value>Simulation speed must be more than {0} and no more than {1}.</value>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>Filling station simulation</value>
+  </data>
+  <data name="Filename_notSaved" xml:space="preserve">
+    <value>Noname</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="SaveProject" xml:space="preserve">
+    <value>Project isn't saved. Save it?</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="ExceptionMessage_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Exception_readFS" xml:space="preserve">
+    <value>An error at loadin filling station</value>
+  </data>
+  <data name="Construction_placeOnCell" xml:space="preserve">
+    <value>Choose cell. &lt;ESC&gt; to cancel</value>
+  </data>
+  <data name="Construction_placeOnNewCell" xml:space="preserve">
+    <value>Replace to another cell.</value>
+  </data>
+  <data name="Exception_Generator" xml:space="preserve">
+    <value>There is an error on creating car stream:</value>
+  </data>
+  <data name="Exception_GeneratorNotChoosen" xml:space="preserve">
+    <value>You should choose some stream before continue</value>
+  </data>
+  <data name="Exception_FSModelCorrectnessFormat" xml:space="preserve">
+    <value>There must be exactly {0} «{1}».</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_TankRange" xml:space="preserve">
+    <value>Tank's limit must be from 10 000 to 20 000.</value>
+    <comment>Tank's limit must be from 10 000 to 20 000.</comment>
+  </data>
+  <data name="Exception_FSIsIncorrect" xml:space="preserve">
+    <value>Filling station is incorrect. May be not all roads are connected.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_RoadInOut" xml:space="preserve">
+    <value>Enter pattern must be before Exit pattern.</value>
+    <comment>Enter pattern must be before Exit pattern.</comment>
+  </data>
+  <data name="Exception_FSModelCorrectness_PatternMainRoadFormat" xml:space="preserve">
+    <value>«{0}» does not connected to main road.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_CashRangeFormat" xml:space="preserve">
+    <value>Cash box's limit must be from 500 000 to 1 500 000.</value>
+    <comment>Cash box's limit must be from 500 000 to 1 500 000.</comment>
+  </data>
+  <data name="Tank_fuel_field" xml:space="preserve">
+    <value>Fuel type: </value>
+  </data>
+  <data name="Exception_ExponentialRange" xml:space="preserve">
+    <value>Y must be from 0.001 to 0.5</value>
+    <comment>Y must be from 0.001 to 0.5</comment>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model: </value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image:</value>
+  </data>
+  <data name="TankVolume" xml:space="preserve">
+    <value>Tank's volume</value>
+  </data>
+  <data name="CarSizeType" xml:space="preserve">
+    <value>Car:</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Fuel type:</value>
+  </data>
+  <data name="NextRecord" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PreviousRecord" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="SaveRecord" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddRecord" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="DeleteRecord" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CarsTitle" xml:space="preserve">
+    <value>Cars</value>
+  </data>
+  <data name="FSSettingsTitle" xml:space="preserve">
+    <value>Filling station</value>
+  </data>
+  <data name="FieldSettings" xml:space="preserve">
+    <value>Field's settings</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FuelTitle" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="PricePerLiter" xml:space="preserve">
+    <value>Liter price</value>
+  </data>
+  <data name="SimulationTitle" xml:space="preserve">
+    <value>Simulation</value>
+  </data>
+  <data name="Manually" xml:space="preserve">
+    <value>Manually</value>
+  </data>
+  <data name="FSState" xml:space="preserve">
+    <value>Filling station's state</value>
+  </data>
+  <data name="FSStatistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Simulation" xml:space="preserve">
+    <value>Simulation</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Cars" xml:space="preserve">
+    <value>Cars</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="CarStreamSettingsTitle" xml:space="preserve">
+    <value>Car stream</value>
+  </data>
+  <data name="Determin" xml:space="preserve">
+    <value>Determin</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Exponential" xml:space="preserve">
+    <value>Exponential</value>
+  </data>
+  <data name="Uniform" xml:space="preserve">
+    <value>Uniform</value>
+  </data>
+  <data name="Determin_dt" xml:space="preserve">
+    <value>ΔT (sec):</value>
+  </data>
+  <data name="Normal_mx" xml:space="preserve">
+    <value>mx (sec):</value>
+  </data>
+  <data name="Normal_dx" xml:space="preserve">
+    <value>dx (sec^2):</value>
+  </data>
+  <data name="Normal_y" xml:space="preserve">
+    <value>y (1/sec):</value>
+  </data>
+  <data name="Uniform_a" xml:space="preserve">
+    <value>a (sec):</value>
+  </data>
+  <data name="Uniform_b" xml:space="preserve">
+    <value>b (sec):</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name: </value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>Turn: </value>
+  </data>
+  <data name="Exception_cashNearRoad" xml:space="preserve">
+    <value>Cash box must be near road.</value>
+  </data>
+  <data name="Tank_fuel_critical" xml:space="preserve">
+    <value>Critical fuel level:</value>
+  </data>
+  <data name="Tank_fuel_low" xml:space="preserve">
+    <value>Low fuel level:</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_TankLimitRangeFormat" xml:space="preserve">
+    <value>{0}'s tank limit must be from {1} to {2}.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_LowTankLimitFormat" xml:space="preserve">
+    <value>{0}'s low tank limit must be from {1} to limit.</value>
+  </data>
+  <data name="Exception_FSModelCorrectness_CriticalTankLimitFormat" xml:space="preserve">
+    <value>{0}'s tank limit must be from {1} to critical</value>
+  </data>
+  <data name="AVG_CarCount" xml:space="preserve">
+    <value>AVG count of cars: {0}</value>
+  </data>
+  <data name="AVG_CarToFSFormat" xml:space="preserve">
+    <value>Amount of cars, goint to FS: {0} %</value>
+  </data>
+  <data name="AVG_CarTimeFormat" xml:space="preserve">
+    <value>AVG car's time: {0} sec</value>
+  </data>
+  <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
+    <value>AVG car's filling time: {0} sec</value>
+  </data>
+  <data name="AVG_CarFillingCashFormat" xml:space="preserve">
+    <value>AVG car's filling cash: {0} $</value>
+  </data>
+  <data name="AVG_CarFillingTankFormat" xml:space="preserve">
+    <value>AVG car's filling tank: {0} l</value>
+  </data>
+  <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
+    <value>AVG arriving time of:</value>
+  </data>
+  <data name="AVG_CarTank92Format" xml:space="preserve">
+    <value>- tanker (A92): {0} sec</value>
+  </data>
+  <data name="AVG_CarTank95Format" xml:space="preserve">
+    <value>- tanker (A95): {0} sec</value>
+  </data>
+  <data name="AVG_CarTank98Format" xml:space="preserve">
+    <value>- tanker (A98: {0} sec</value>
+  </data>
+  <data name="AVG_CarTankDieselFormat" xml:space="preserve">
+    <value>- tanker (Diesel): {0} sec</value>
+  </data>
+  <data name="AVG_CarCasherFormat" xml:space="preserve">
+    <value>- casher: {0} sec</value>
+  </data>
+</root>

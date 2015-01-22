@@ -1,0 +1,189 @@
+/* CSS Document RESET*/
+ 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: none;
+}
+ 
+fieldset,img,input,textarea  { 
+  border: 0;
+  outline: none;
+}
+ 
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,ul {
+  list-style: none;
+}
+caption,th {
+  text-align: left;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+h2.MEN{
+text-align:left;
+font-size:22px;
+font-family: Arial, trebuchet, sans-serif;
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+q:before,q:after {
+  content: '';
+}
+
+abbr,acronym { 
+  border: 0;
+}
+ 
+article, aside, footer, header, nav {
+display: block;
+}
+
+/* End of RESET*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap {
+  padding: 0;
+  height: auto !important;
+  height: 100%;
+  min-height: 100%; 
+  margin: 0 auto -60px;  
+} 
+
+.empty_inner {
+  height: 60px;
+}
+   
+body {
+  background-color: #f1f1f1;
+}
+   
+td#left_side {
+  width: 15%;     
+}
+
+td#right_side {
+  width: 15%;  
+}
+
+table#credits {
+  width:100%;
+  padding-top:30px;
+}
+
+table#credits td {
+  padding: 10px;
+  text-align: center;
+}
+
+table#credits h2 {
+  font-family: segoe ui, Arial, sans-serif;
+  font-size: 16pt;
+  font-weight: 500;
+  color: #1C1C1C;
+}
+
+table#credits h3 {
+  font-family: segoe ui, Arial, sans-serif;
+  font-size: 13pt;
+  color: #1C1C1C;
+}
+
+img.photo {
+  margin-top:10px;
+  vertical-align: bottom;
+  height: 200px;
+  border: 2px solid #505050;
+}
+
+table#footer {
+  position:relative;
+  height: 60px;
+  background-color: #505050;
+}
+
+table#footer p {
+  margin-right: 30px;
+  text-align: right;
+  color: #D6D3CA;
+  font-size: 13pt;
+  font-family: Verdana;
+}
+
+h1{
+text-align:center;
+font-size:32px;
+font-family: Arial, trebuchet, sans-serif;
+}
+
+h2{
+text-align:center;
+font-size:22px;
+font-family: Arial, trebuchet, sans-serif;
+margin-top: 3px;
+margin-bottom: 6px;
+}
+
+.MT{
+font-size:14px;
+font-family: Arial, trebuchet, sans-serif;
+text-align:justify;
+margin-bottom: 5px;
+}
+
+.SPRND{ 
+list-style-type:circle;
+}
+
+.SPSQ{ 
+list-style-type:square;
+margin-left: 30px;
+}
+
+.SPM{ 
+margin-left: 60px;
+}
+
+.UI{
+font-size:12px;
+font-family: Arial, trebuchet, sans-serif;
+text-align:center;
+margin-bottom: 5px;
+}
+
+a:link {
+font-size:9px;
+    color: #000000;
+   }
+a:visited {
+font-size:9px;
+    color: #000000;
+   }
+   
+   
+a.GS:link {
+font-size:14px;
+    color: #000000;
+   }
+a.GS:visited {
+font-size:14px;
+    color: #000000;
+   }   

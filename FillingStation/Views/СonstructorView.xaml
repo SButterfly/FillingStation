@@ -1,0 +1,73 @@
+﻿<Window x:Class="FillingStation.Views.СonstructorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:FillingStation.Controls"
+        xmlns:Localization="clr-namespace:FillingStation.Localization"
+        Title="{Binding PageTitle}"
+        KeyDown="СonstructorView_OnKeyDown"
+        MinWidth="600" MinHeight="350"
+        Width="1200" Height="600"
+        Icon="/FillingStation;component/Assets/logo.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" MinHeight="{Binding Height, ElementName=constructionControl}"/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top" Grid.Row="0">
+            <MenuItem Header="{x:Static Localization:Strings.File}">
+                <MenuItem Header="{x:Static Localization:Strings.Create}" Click="CreateProject"/>
+                <MenuItem Header="{x:Static Localization:Strings.Open}" Click="LoadProject"/>
+                <MenuItem Header="{x:Static Localization:Strings.Save}" Click="SaveProject" IsEnabled="{Binding IsProjectOpened}"/>
+                <MenuItem Header="{x:Static Localization:Strings.SaveAs}" Click="SaveAsProject" IsEnabled="{Binding IsProjectOpened}"/>
+                <MenuItem Header="{x:Static Localization:Strings.Close}" Click="CloseProject" IsEnabled="{Binding IsProjectOpened}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static Localization:Strings.Simulation}" Click="OpenSimulationView" IsEnabled="{Binding IsProjectOpened}"/>
+            <MenuItem Header="{x:Static Localization:Strings.Data}">
+                <MenuItem Header="{x:Static Localization:Strings.Cars}" Click="OpenCarsDBView" />
+                <MenuItem Header="{x:Static Localization:Strings.Fuel}" Click="OpenFuelDBView"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static Localization:Strings.About}">
+                <MenuItem Header="{x:Static Localization:Strings.Help}" Click="OpenHelpView"/>
+                <MenuItem Header="{x:Static Localization:Strings.Credits}" Click="OpenCreditsView"/>
+            </MenuItem>
+        </Menu>
+        
+        <Menu Grid.Row="1" BorderBrush="Black" BorderThickness="0 1" Padding="5">
+            <MenuItem Click="CreateProject">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_create.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="LoadProject">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_open.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="SaveProject" IsEnabled="{Binding IsProjectOpened}">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_save.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="SaveAsProject" IsEnabled="{Binding IsProjectOpened}">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_saveas.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{DynamicResource EmptyVerticalMenuItemStyle}" />
+            <MenuItem Click="OpenSimulationView" IsEnabled="{Binding IsProjectOpened}">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_launch.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{DynamicResource EmptyVerticalMenuItemStyle}" />
+            <MenuItem Click="OpenCarsDBView">
+                <MenuItem.Header>
+                    <Image Source="..\Assets\Icons\ic_database.png" Style="{DynamicResource AppMenuImageStyle}" />
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+
+        <controls:ConstructionControl x:Name="constructionControl" Grid.Row="2" FSModel="{Binding FSModel}"  IsEnabled="{Binding IsProjectOpened}" />
+    </Grid>
+</Window>
