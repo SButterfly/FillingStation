@@ -112,6 +112,7 @@ namespace FillingStation.Views
                     OnPropertyChanged("StartSimulationEnabled");
                     OnPropertyChanged("PauseSimulationEnabled");
                     OnPropertyChanged("StopSimulationEnabled");
+                    OnPropertyChanged("AdditionalText");
                 });
             }
         }

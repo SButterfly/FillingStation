@@ -63,7 +63,7 @@ namespace SimulationClassLibrary.Kernel
 
         public TimeSpan PassedTime
         {
-            get { return _gameTime == null ? new TimeSpan() : _gameTime.TotalGameTime; }
+            get { return _gameTime.TotalGameTime; }
         }
 
         public double Speed { get; set; }
@@ -87,7 +87,7 @@ namespace SimulationClassLibrary.Kernel
 
         private Timer _timer;
         private Stopwatch _stopwatch;
-        private GameTime _gameTime;
+        private GameTime _gameTime = new GameTime();
         private readonly EventArgs _emptyEventArgs = EventArgs.Empty;
 
         public bool IsStarted { get; private set; }
@@ -103,7 +103,6 @@ namespace SimulationClassLibrary.Kernel
             IsRunning = true;
             IsStoped = false;
 
-            _gameTime = new GameTime();
             _lastStopwatchTime = new TimeSpan();
             _stopwatch = new Stopwatch();
 
@@ -153,6 +152,8 @@ namespace SimulationClassLibrary.Kernel
             _timer = null;
             _stopwatch = null;
 
+            _gameTime = new GameTime();
+
             OnSizeChanged(this, EventArgs.Empty);
 
             var exiting = Exiting;
@@ -189,14 +190,17 @@ namespace SimulationClassLibrary.Kernel
 
         private void TimerTick(object sender, EventArgs e)
         {
-            UpdateGameTime();
-            Update(_gameTime);
+            if (!IsStoped)
+            {
+                UpdateGameTime();
+                Update(_gameTime);
 
-            var updateEvent = UpdateEvent;
-            if (updateEvent != null)
-                updateEvent(sender, e);
+                var updateEvent = UpdateEvent;
+                if (updateEvent != null)
+                    updateEvent(sender, e);
 
-            ParentControl.Invalidate();
+                ParentControl.Invalidate();
+            }
         }
 
         private void OnPaint(object sender, PaintEventArgs e)
