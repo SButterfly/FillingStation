@@ -523,6 +523,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Some roads are not available for vehicles. Probably, there are some loops on FS..
+        /// </summary>
+        public static string Exception_FSModelCorrectness_PatternsNotUsed {
+            get {
+                return ResourceManager.GetString("Exception_FSModelCorrectness_PatternsNotUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Enter pattern must be before Exit pattern..
         /// </summary>
         public static string Exception_FSModelCorrectness_RoadInOut {
@@ -971,15 +980,6 @@ namespace FillingStation.Localization {
         public static string ModelTime {
             get {
                 return ResourceManager.GetString("ModelTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Name: .
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

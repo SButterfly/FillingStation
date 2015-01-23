@@ -505,8 +505,8 @@ Field's height must be from {2} to {3}.</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Properties</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name: </value>
+  <data name="Exception_FSModelCorrectness_PatternsNotUsed" xml:space="preserve">
+    <value>Some roads are not available for vehicles. Probably, there are some loops on FS.</value>
   </data>
   <data name="Turn" xml:space="preserve">
     <value>Turn: </value>
