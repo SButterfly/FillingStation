@@ -18,6 +18,7 @@ namespace FillingStation.Controls
         public PropertyControl()
         {
             InitializeComponent();
+            Property = null;
         }
 
         #region Properties
@@ -177,6 +178,7 @@ namespace FillingStation.Controls
             stackPanel.Orientation = Orientation.Vertical;
 
             textBlock = new TextBlock();
+            textBlock.TextWrapping = TextWrapping.Wrap;
             textBox = new TextBox();
 
             stackPanel.Children.Add(textBlock);
@@ -192,6 +194,7 @@ namespace FillingStation.Controls
             stackPanel.Orientation = Orientation.Vertical;
 
             textBlock = new TextBlock();
+            textBlock.TextWrapping = TextWrapping.Wrap;
             comboBox = new ComboBox();
 
             stackPanel.Children.Add(textBlock);

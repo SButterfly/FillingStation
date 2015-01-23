@@ -13,7 +13,7 @@
           <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*" MinWidth="{Binding Width, ElementName=borderField}"/>
-              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="200"/>
           </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>

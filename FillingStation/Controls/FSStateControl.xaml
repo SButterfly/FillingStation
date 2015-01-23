@@ -19,12 +19,12 @@
 
         <TextBlock Grid.ColumnSpan="2" Text="{x:Static localization:Strings.FSState}" TextAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="1" Margin="0 5" Text="{Binding Path=CurrentMoney, ConverterParameter={x:Static localization:Strings.Cash_state}, Converter={converters:DoublePresenterConverter}}"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Margin="0 5" Text="{Binding Path=CurrentMoney, ConverterParameter={x:Static localization:Strings.Cash_state}, Converter={converters:DoublePresenterConverter}}" TextWrapping="Wrap"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Path=CurrentFuel92, ConverterParameter={x:Static localization:Strings.Tank_a92_state}, Converter={converters:DoublePresenterConverter}}"/>
-        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path=CurrentFuel95, ConverterParameter={x:Static localization:Strings.Tank_a95_state}, Converter={converters:DoublePresenterConverter}}"/>
-        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Path=CurrentFuel98, ConverterParameter={x:Static localization:Strings.Tank_a98_state}, Converter={converters:DoublePresenterConverter}}"/>
-        <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding Path=CurrentFuelDiesel, ConverterParameter={x:Static localization:Strings.Tank_diesel_state}, Converter={converters:DoublePresenterConverter}}"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Path=CurrentFuel92, ConverterParameter={x:Static localization:Strings.Tank_a92_state}, Converter={converters:DoublePresenterConverter}}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path=CurrentFuel95, ConverterParameter={x:Static localization:Strings.Tank_a95_state}, Converter={converters:DoublePresenterConverter}}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Path=CurrentFuel98, ConverterParameter={x:Static localization:Strings.Tank_a98_state}, Converter={converters:DoublePresenterConverter}}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding Path=CurrentFuelDiesel, ConverterParameter={x:Static localization:Strings.Tank_diesel_state}, Converter={converters:DoublePresenterConverter}}" TextWrapping="Wrap"/>
         
     </Grid>
 </UserControl>
