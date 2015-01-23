@@ -58,13 +58,12 @@ namespace FillingStation.Controls
                 if (value != null)
                 {
                     DrawModel(value);
+                    borderField.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    //HACK
-                    var height = FSModel == null ? 10 : FSModel.Height;
-                    var width = FSModel == null ? 20 : FSModel.Width;
-                    DrawModel(new FSModel(width, height));
+                    DrawModel(new FSModel(1, 1));
+                    borderField.Visibility = Visibility.Collapsed;
                 }
 
                 SelectedBinding = null;
