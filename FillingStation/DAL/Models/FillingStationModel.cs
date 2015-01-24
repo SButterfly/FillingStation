@@ -10,7 +10,6 @@ namespace FillingStation.DAL.Models
     {
         public FillingStationModel()
         {
-            
         }
 
         public FillingStationModel(int width, int height, IEnumerable<PatternModel> patterns)
@@ -32,7 +31,7 @@ namespace FillingStation.DAL.Models
         public FSModel CreateFSModel()
         {
             var model = new FSModel(Width, Height);
-            foreach (var pattern in Patterns)
+            foreach (var pattern in Patterns.Where(pattern => pattern != null))
             {
                model.Add(pattern.Pattern, new Point(pattern.X, pattern.Y));
             }

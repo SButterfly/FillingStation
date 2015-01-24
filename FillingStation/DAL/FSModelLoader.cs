@@ -12,16 +12,23 @@ namespace FillingStation.DAL
     {
         public void Save(FSModel model, string path)
         {
-            var jsonModel = new FillingStationModel(model.Width, model.Height,
+            try
+            {
+                var jsonModel = new FillingStationModel(model.Width, model.Height,
                 model.Patterns.Select(pattern => new PatternModel(model.Get(pattern).X, model.Get(pattern).Y, pattern)));
 
-            using (var fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
-            {
-                using (var writer = new StreamWriter(fileStream))
+                using (var fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    var str = JsonConvert.SerializeObject(jsonModel, new PatternJsonConverter());
-                    writer.Write(str);
+                    using (var writer = new StreamWriter(fileStream))
+                    {
+                        var str = JsonConvert.SerializeObject(jsonModel, new PatternJsonConverter());
+                        writer.Write(str);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(Strings.Exception_readFS + e.Message, e);
             }
         }
 
@@ -38,8 +45,6 @@ namespace FillingStation.DAL
                         return jsonModel.CreateFSModel();
                     }
                 }
-
-                
             }
             catch (Exception e)
             {

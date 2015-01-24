@@ -677,7 +677,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на An error at loadin filling station.
+        ///   Ищет локализованную строку, похожую на An error occurred while loading filling station.\n.
         /// </summary>
         public static string Exception_readFS {
             get {
@@ -728,6 +728,15 @@ namespace FillingStation.Localization {
         public static string Exception_WidthRangeFormat {
             get {
                 return ResourceManager.GetString("Exception_WidthRangeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на An error occurred while saving filling station.\n.
+        /// </summary>
+        public static string Exception_writeFS {
+            get {
+                return ResourceManager.GetString("Exception_writeFS", resourceCulture);
             }
         }
         

@@ -25,9 +25,13 @@ namespace FillingStation.DAL.Models
             JToken nameToken;
             JToken xToken;
             JToken yToken;
-            jObject.TryGetValue("name", out nameToken);
-            jObject.TryGetValue("x", out xToken);
-            jObject.TryGetValue("y", out yToken);
+            if (!jObject.TryGetValue("name", out nameToken) || 
+                !jObject.TryGetValue("x", out xToken) ||
+                !jObject.TryGetValue("y", out yToken))
+            {
+                Logger.WriteLine(this, "There are no name, x, and y properties at json file");
+                return null;
+            }
 
             string name = nameToken.Value<string>();
             int x = xToken.Value<int>();
@@ -35,7 +39,7 @@ namespace FillingStation.DAL.Models
 
             if (!_dictionary.ContainsValue(name))
             {
-                Logger.WriteLine(this, "There is no name or this name doesn't supported");
+                Logger.WriteLine(this, "This name doesn't supported: " + name);
                 return null;
             }
 
@@ -57,7 +61,7 @@ namespace FillingStation.DAL.Models
             }
             catch (Exception e)
             {
-                Logger.WriteLine(this, "An exeption was caught");
+                Logger.WriteLine(this, "An exeption was caught: " + e);
                 return null;
             }
         }
@@ -71,7 +75,7 @@ namespace FillingStation.DAL.Models
                 string name;
                 if (!_dictionary.TryGetValue(pattern.GetType(), out name))
                 {
-                    Logger.WriteLine(this, "There is no name or this name doesn't supported: " + pattern.GetType());
+                    Logger.WriteLine(this, "This name doesn't supported for patternType: {0}" + pattern.GetType());
                     return;
                 }
 

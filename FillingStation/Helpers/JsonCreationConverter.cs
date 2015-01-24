@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace FillingStation.DAL.Models
+namespace FillingStation.Helpers
 {
     /// <summary>Base Generic JSON Converter that can help quickly define converters for specific types by automatically
     /// generating the CanConvert, ReadJson, and WriteJson methods, requiring the implementer only to define a strongly typed Create method.</summary>
@@ -48,8 +48,11 @@ namespace FillingStation.DAL.Models
             jObjectReader.DateTimeZoneHandling = reader.DateTimeZoneHandling;
             jObjectReader.FloatParseHandling = reader.FloatParseHandling;
 
-            // Populate the object properties
-            serializer.Populate(jObjectReader, target);
+            if (target != null)
+            {
+                // Populate the object properties
+                serializer.Populate(jObjectReader, target);
+            }
 
             return target;
         }

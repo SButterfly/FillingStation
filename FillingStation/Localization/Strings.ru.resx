@@ -568,4 +568,7 @@
   <data name="AVG_CarCasherFormat" xml:space="preserve">
     <value>- инкассация: {0} sec</value>
   </data>
+  <data name="Exception_writeFS" xml:space="preserve">
+    <value>Произошла ошибка во время записи файла: \n</value>
+  </data>
 </root>
