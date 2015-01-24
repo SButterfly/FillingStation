@@ -39,7 +39,7 @@ All credits were students of IT degree.
 ### Todo's
 
  - Change Access DB to SQLite
- - Change file reading/writing from binary to json format
+ - Change file reading/writing from binary to json format - done
 
 [SSAU]:http://www.ssau.ru/english/
 [Microsoft Access Database Engine]:http://www.microsoft.com/en-us/download/details.aspx?id=13255
