@@ -62,7 +62,7 @@ namespace FillingStation.Controls
                 }
                 else
                 {
-                    DrawModel(new FSModel(1, 1));
+                    CleanField();
                     borderField.Visibility = Visibility.Collapsed;
                 }
 

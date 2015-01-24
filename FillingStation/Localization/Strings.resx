@@ -334,7 +334,10 @@ Field's height must be from {2} to {3}.</value>
     <value>Error</value>
   </data>
   <data name="Exception_readFS" xml:space="preserve">
-    <value>An error at loadin filling station</value>
+    <value>An error occurred while loading filling station.\n</value>
+  </data>
+  <data name="Exception_writeFS" xml:space="preserve">
+    <value>An error occurred while saving filling station.\n</value>
   </data>
   <data name="Construction_placeOnCell" xml:space="preserve">
     <value>Choose cell. &lt;ESC&gt; to cancel</value>

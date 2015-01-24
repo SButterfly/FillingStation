@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace FillingStation.Core.Patterns
 {
+    #warning This class is not for patterns palette
     public sealed class EnterPattern : BasePattern, IGameRoadPattern
     {
         public EnterPattern()
