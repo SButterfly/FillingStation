@@ -20,5 +20,15 @@ namespace FillingStation.Views
         {
             InitializeComponent();
         }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO implement
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -42,8 +42,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
                 
-            <Button Grid.Column="1" x:Name="saveButton" Content="Save" Padding="5,1" Margin="5 0"/>
-            <Button Grid.Column="2" x:Name="cancelButton" Content="Cancel" Padding="5,1" Margin="5 0"/>
+            <Button Grid.Column="1" x:Name="saveButton" Content="Save" Padding="5,1" Margin="5 0" Click="saveButton_Click"/>
+            <Button Grid.Column="2" x:Name="cancelButton" Content="Cancel" Padding="5,1" Margin="5 0" Click="cancelButton_Click"/>
         </Grid>
     </StackPanel>
 </Window>
