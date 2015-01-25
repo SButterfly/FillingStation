@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using FillingStation.DAL;
 using FillingStation.DAL.Models;
 using FillingStation.Helpers;
-using FillingStation.Localization;
 
 namespace FillingStation.Views
 {
@@ -24,33 +12,33 @@ namespace FillingStation.Views
         {
             InitializeComponent();
 
-            IList<FuelConsumptionModel> fuelData = new FuelModelAccessor().All();
+            var fuelData = new FuelModelAccessor().All();
 
-            foreach (FuelConsumptionModel model in fuelData)
+            foreach (var model in fuelData)
             {
                 if (model.Fuel == Fuel.A92)
                 {
-                    _92Percentage.Text = model.CarPercentage.ToString();
-                    _92Volume.Text = model.FillingVolume.ToString();
-                    _92Price.Text = model.Price.ToString();
+                    _92PercentageTextBox.Text = model.CarPercentage.ToString();
+                    _92VolumeTextBox.Text = model.FillingVolume.ToString();
+                    _92PriceTextBox.Text = model.Price.ToString();
                 }
                 if (model.Fuel == Fuel.A95)
                 {
-                    _95Percentage.Text = model.CarPercentage.ToString();
-                    _95Volume.Text = model.FillingVolume.ToString();
-                    _95Price.Text = model.Price.ToString();
+                    _95PercentageTextBox.Text = model.CarPercentage.ToString();
+                    _95VolumeTextBox.Text = model.FillingVolume.ToString();
+                    _95PriceTextBox.Text = model.Price.ToString();
                 }
                 if (model.Fuel == Fuel.A98)
                 {
-                    _98Percentage.Text = model.CarPercentage.ToString();
-                    _98Volume.Text = model.FillingVolume.ToString();
-                    _98Price.Text = model.Price.ToString();
+                    _98PercentageTextBox.Text = model.CarPercentage.ToString();
+                    _98VolumeTextBox.Text = model.FillingVolume.ToString();
+                    _98PriceTextBox.Text = model.Price.ToString();
                 }
                 if (model.Fuel == Fuel.Diesel)
                 {
-                    _DieselPercentage.Text = model.CarPercentage.ToString();
-                    _DieselVolume.Text = model.FillingVolume.ToString();
-                    _DieselPrice.Text = model.Price.ToString();
+                    _DieselPercentageTextBox.Text = model.CarPercentage.ToString();
+                    _DieselVolumeTextBox.Text = model.FillingVolume.ToString();
+                    _DieselPriceTextBox.Text = model.Price.ToString();
                 }
             }
         }
@@ -59,41 +47,37 @@ namespace FillingStation.Views
         {
             try
             {
-                int __92Percentage = int.Parse(_92Percentage.Text);
-                int __95Percentage = int.Parse(_95Percentage.Text);
-                int __98Percentage = int.Parse(_98Percentage.Text);
-                int __DieselPercentage = int.Parse(_DieselPercentage.Text);
-                double __92Volume = double.Parse(_92Volume.Text);
-                double __95Volume = double.Parse(_95Volume.Text);
-                double __98Volume = double.Parse(_98Volume.Text);
-                double __DieselVolume = double.Parse(_DieselVolume.Text);
-                double __92Price = double.Parse(_92Price.Text);
-                double __95Price = double.Parse(_95Price.Text);
-                double __98Price = double.Parse(_98Price.Text);
-                double __DieselPrice = double.Parse(_DieselPrice.Text);
+                int __92Percentage = int.Parse(_92PercentageTextBox.Text);
+                int __95Percentage = int.Parse(_95PercentageTextBox.Text);
+                int __98Percentage = int.Parse(_98PercentageTextBox.Text);
+                int __DieselPercentage = int.Parse(_DieselPercentageTextBox.Text);
+                double __92Volume = double.Parse(_92VolumeTextBox.Text);
+                double __95Volume = double.Parse(_95VolumeTextBox.Text);
+                double __98Volume = double.Parse(_98VolumeTextBox.Text);
+                double __DieselVolume = double.Parse(_DieselVolumeTextBox.Text);
+                double __92Price = double.Parse(_92PriceTextBox.Text);
+                double __95Price = double.Parse(_95PriceTextBox.Text);
+                double __98Price = double.Parse(_98PriceTextBox.Text);
+                double __DieselPrice = double.Parse(_DieselPriceTextBox.Text);
 
                 if (__92Percentage < 0 || __95Percentage < 0 || __98Percentage < 0 || __DieselPercentage < 0)
                 {
-                    MessageDialog.ShowException("Процент должен быть неотрицательным.");
-                    return;
+                   throw new Exception("Процент должен быть неотрицательным.");
                 }
-                if (!(__92Percentage + __95Percentage + __98Percentage + __DieselPercentage == 100))
+                if (__92Percentage + __95Percentage + __98Percentage + __DieselPercentage != 100)
                 {
-                    MessageDialog.ShowException("Доли автомобилей должны в сумме давать 100 %.");
-                    return;
+                    throw new Exception("Доли автомобилей должны в сумме давать 100 %.");
                 }
                 if (__92Price < 1 || __92Price > 1000 || __95Price < 1 || __95Price > 1000 || __98Price < 1 || __98Price > 1000 || __DieselPrice < 1 || __DieselPrice > 1000)
                 {
-                    MessageDialog.ShowException("Цена должна находиться в интервале [1; 1000].");
-                    return;
+                    throw new Exception("Цена должна находиться в интервале [1; 1000].");
                 }
                 if (__92Volume < 1 || __92Volume > 200 || __95Volume < 1 || __95Volume > 200 || __98Volume < 1 || __98Volume > 200 || __DieselVolume < 1 || __DieselVolume > 200)
                 {
-                    MessageDialog.ShowException("Объем заправляемого топлива должен находиться в интервале [1; 200].");
-                    return;
+                    throw new Exception("Объем заправляемого топлива должен находиться в интервале [1; 200].");
                 }
 
-                FuelModelAccessor accessor = new FuelModelAccessor();
+                var accessor = new FuelModelAccessor();
 
                 accessor.Save(new FuelConsumptionModel(Fuel.A92, __92Percentage, __92Volume, __92Price));
                 accessor.Save(new FuelConsumptionModel(Fuel.A95, __95Percentage, __95Volume, __95Price));
@@ -102,9 +86,9 @@ namespace FillingStation.Views
 
                 Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageDialog.ShowException("Ошибка ввода.");
+                MessageDialog.ShowException(ex);
             }         
         }
 
