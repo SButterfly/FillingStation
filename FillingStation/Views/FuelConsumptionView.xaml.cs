@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
 using FillingStation.DAL.Models;
 using FillingStation.Helpers;
+using FillingStation.Localization;
 
 namespace FillingStation.Views
 {
@@ -52,30 +54,44 @@ namespace FillingStation.Views
                 int __95Percentage = int.Parse(_95PercentageTextBox.Text);
                 int __98Percentage = int.Parse(_98PercentageTextBox.Text);
                 int __DieselPercentage = int.Parse(_DieselPercentageTextBox.Text);
-                double __92Volume = double.Parse(_92VolumeTextBox.Text);
-                double __95Volume = double.Parse(_95VolumeTextBox.Text);
-                double __98Volume = double.Parse(_98VolumeTextBox.Text);
-                double __DieselVolume = double.Parse(_DieselVolumeTextBox.Text);
-                double __92Price = double.Parse(_92PriceTextBox.Text);
-                double __95Price = double.Parse(_95PriceTextBox.Text);
-                double __98Price = double.Parse(_98PriceTextBox.Text);
-                double __DieselPrice = double.Parse(_DieselPriceTextBox.Text);
+                double __92Volume = double.Parse(_92VolumeTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __95Volume = double.Parse(_95VolumeTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __98Volume = double.Parse(_98VolumeTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __DieselVolume = double.Parse(_DieselVolumeTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __92Price = double.Parse(_92PriceTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __95Price = double.Parse(_95PriceTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __98Price = double.Parse(_98PriceTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+                double __DieselPrice = double.Parse(_DieselPriceTextBox.Text.Replace(",", "."), CultureInfo.InvariantCulture);
 
                 if (__92Percentage < 0 || __95Percentage < 0 || __98Percentage < 0 || __DieselPercentage < 0)
                 {
-                   throw new Exception("Процент должен быть неотрицательным.");
+                   throw new Exception(Strings.Exception_PercentageMustBeNonNegativeValue);
                 }
                 if (__92Percentage + __95Percentage + __98Percentage + __DieselPercentage != 100)
                 {
-                    throw new Exception("Доли автомобилей должны в сумме давать 100 %.");
+                    throw new Exception(Strings.Exception_SumPercentage);
                 }
-                if (__92Price < 1 || __92Price > 1000 || __95Price < 1 || __95Price > 1000 || __98Price < 1 || __98Price > 1000 || __DieselPrice < 1 || __DieselPrice > 1000)
+
+                const double minVolume = 0d;
+                const double maxVolume = 200;
+
+                if (__92Volume <= minVolume || __92Volume > maxVolume ||
+                    __95Volume <= minVolume || __95Volume > maxVolume ||
+                    __98Volume <= minVolume || __98Volume > maxVolume ||
+                    __DieselVolume <= minVolume || __DieselVolume > maxVolume)
                 {
-                    throw new Exception("Цена должна находиться в интервале [1; 1000].");
+                    throw new Exception(string.Format(Strings.Exception_FillingVolumeFormat, minVolume, maxVolume));
                 }
-                if (__92Volume < 1 || __92Volume > 200 || __95Volume < 1 || __95Volume > 200 || __98Volume < 1 || __98Volume > 200 || __DieselVolume < 1 || __DieselVolume > 200)
+
+                const double minPrice = 0d;
+                const double maxPrice = 1000d;
+
+                if (__92Price <= minPrice || __92Price > maxPrice ||
+                    __95Price <= minPrice || __95Price > maxPrice ||
+                    __98Price <= minPrice || __98Price > maxPrice ||
+                    __DieselPrice <= minPrice || __DieselPrice > maxPrice)
                 {
-                    throw new Exception("Объем заправляемого топлива должен находиться в интервале [1; 200].");
+                    throw new Exception(string.Format(Strings.Exception_FuelPriceFormat, minPrice, maxPrice));
                 }
 
                 var accessor = new FuelModelAccessor();

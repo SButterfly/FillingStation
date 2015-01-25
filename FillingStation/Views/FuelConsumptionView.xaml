@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:localization="clr-namespace:FillingStation.Localization"
         ResizeMode="NoResize"
-        Title="Настройка расхода топлива" Height="220" Width="500"
+        Title="{x:Static localization:Strings.FuelConsumptionSettingsTitle}" Height="220" Width="540"
         Icon="/FillingStation;component/Assets/logo.ico">
     <StackPanel>
         <Grid Margin="5 5">
@@ -21,9 +21,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="Доля автомобилей" Margin="5" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Grid.Row="0" Text="Объем заправки" Margin="5" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="3" Grid.Row="0" Text="Цена за литр" Margin="5" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Static localization:Strings.CarPercentage}" Margin="5" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="{x:Static localization:Strings.FillingVolume}" Margin="5" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="{x:Static localization:Strings.PricePerLitter}" Margin="5" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="{x:Static localization:Strings.Fuel_a92}" HorizontalAlignment="Right" Margin="5"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static localization:Strings.Fuel_a95}" HorizontalAlignment="Right" Margin="5"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="{x:Static localization:Strings.Fuel_a98}" HorizontalAlignment="Right" Margin="5"/>
@@ -49,9 +49,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-                
-            <Button Grid.Column="1" x:Name="saveButton" Content="Save" Padding="5,1" Margin="5 0" Click="saveButton_Click"/>
-            <Button Grid.Column="2" x:Name="cancelButton" Content="Cancel" Padding="5,1" Margin="5 0" Click="cancelButton_Click"/>
+
+            <Button Grid.Column="1" x:Name="saveButton" Content="{x:Static localization:Strings.Save}" Padding="5,1" Margin="5 0" Click="saveButton_Click"/>
+            <Button Grid.Column="2" x:Name="cancelButton" Content="{x:Static localization:Strings.Cancel}" Padding="5,1" Margin="5 0" Click="cancelButton_Click"/>
         </Grid>
     </StackPanel>
 </Window>

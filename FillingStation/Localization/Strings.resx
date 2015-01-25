@@ -571,4 +571,28 @@ Field's height must be from {2} to {3}.</value>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="FuelConsumptionSettingsTitle" xml:space="preserve">
+    <value>Fuel consumption settings</value>
+  </data>
+  <data name="CarPercentage" xml:space="preserve">
+    <value>Car percentage, %</value>
+  </data>
+  <data name="FillingVolume" xml:space="preserve">
+    <value>Filling volume, l</value>
+  </data>
+  <data name="PricePerLitter" xml:space="preserve">
+    <value>Price per litter, $</value>
+  </data>
+  <data name="Exception_SumPercentage" xml:space="preserve">
+    <value>Sum of all percentages must equals 100%</value>
+  </data>
+  <data name="Exception_FuelPriceFormat" xml:space="preserve">
+    <value>Price must be from {0} to {1}.</value>
+  </data>
+  <data name="Exception_FillingVolumeFormat" xml:space="preserve">
+    <value>Filling tank volume must be from {0} to {1}.</value>
+  </data>
+  <data name="Exception_PercentageMustBeNonNegativeValue" xml:space="preserve">
+    <value>Percent couldn't be less than 0.</value>
+  </data>
 </root>

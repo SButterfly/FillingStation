@@ -253,6 +253,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Car percentage, %.
+        /// </summary>
+        public static string CarPercentage {
+            get {
+                return ResourceManager.GetString("CarPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Cars.
         /// </summary>
         public static string Cars {
@@ -478,6 +487,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Filling tank volume must be from {0} to {1}..
+        /// </summary>
+        public static string Exception_FillingVolumeFormat {
+            get {
+                return ResourceManager.GetString("Exception_FillingVolumeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Filling station is incorrect. May be not all roads are connected..
         /// </summary>
         public static string Exception_FSIsIncorrect {
@@ -587,6 +605,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Price must be from {0} to {1}..
+        /// </summary>
+        public static string Exception_FuelPriceFormat {
+            get {
+                return ResourceManager.GetString("Exception_FuelPriceFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на There is an error on creating car stream:.
         /// </summary>
         public static string Exception_Generator {
@@ -650,6 +677,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Percent couldn&apos;t be less than 0..
+        /// </summary>
+        public static string Exception_PercentageMustBeNonNegativeValue {
+            get {
+                return ResourceManager.GetString("Exception_PercentageMustBeNonNegativeValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Path doesn&apos;t contain this point.
         /// </summary>
         public static string Exception_point_is_not_on_path {
@@ -709,6 +745,15 @@ namespace FillingStation.Localization {
         public static string Exception_SimulationSpeedRange {
             get {
                 return ResourceManager.GetString("Exception_SimulationSpeedRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sum of all percentages must equals 100%.
+        /// </summary>
+        public static string Exception_SumPercentage {
+            get {
+                return ResourceManager.GetString("Exception_SumPercentage", resourceCulture);
             }
         }
         
@@ -813,6 +858,15 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Filling volume, l.
+        /// </summary>
+        public static string FillingVolume {
+            get {
+                return ResourceManager.GetString("FillingVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All.
         /// </summary>
         public static string Filter_all {
@@ -899,6 +953,15 @@ namespace FillingStation.Localization {
         public static string Fuel_diesel {
             get {
                 return ResourceManager.GetString("Fuel_diesel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Fuel consumption settings.
+        /// </summary>
+        public static string FuelConsumptionSettingsTitle {
+            get {
+                return ResourceManager.GetString("FuelConsumptionSettingsTitle", resourceCulture);
             }
         }
         
@@ -1061,6 +1124,15 @@ namespace FillingStation.Localization {
         public static string PricePerLiter {
             get {
                 return ResourceManager.GetString("PricePerLiter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Price per litter, $.
+        /// </summary>
+        public static string PricePerLitter {
+            get {
+                return ResourceManager.GetString("PricePerLitter", resourceCulture);
             }
         }
         

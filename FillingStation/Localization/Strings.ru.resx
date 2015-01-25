@@ -574,4 +574,28 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="FuelConsumptionSettingsTitle" xml:space="preserve">
+    <value>Настройка расхода топлива</value>
+  </data>
+  <data name="CarPercentage" xml:space="preserve">
+    <value>Доля автомобилей, %</value>
+  </data>
+  <data name="FillingVolume" xml:space="preserve">
+    <value>Объем заправки, л</value>
+  </data>
+  <data name="PricePerLitter" xml:space="preserve">
+    <value>Цена за литр, руб</value>
+  </data>
+  <data name="Exception_SumPercentage" xml:space="preserve">
+    <value>Доли автомобилей должны в сумме давать 100%.</value>
+  </data>
+  <data name="Exception_FuelPriceFormat" xml:space="preserve">
+    <value>Цена должна находиться в интервале ({0}; {1}].</value>
+  </data>
+  <data name="Exception_FillingVolumeFormat" xml:space="preserve">
+    <value>Объем заправляемого топлива должен находиться в интервале ({0}; {1}].</value>
+  </data>
+  <data name="Exception_PercentageMustBeNonNegativeValue" xml:space="preserve">
+    <value>Процент должен быть неотрицательным.</value>
+  </data>
 </root>
