@@ -7,6 +7,7 @@ using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
 using FillingStation.DAL.Models;
 using FillingStation.Extensions;
+using FillingStation.Helpers;
 using Microsoft.Xna.Framework;
 
 namespace FillingStation.Core.SimulationServices
@@ -75,7 +76,7 @@ namespace FillingStation.Core.SimulationServices
                 }
             }
 
-            rand = new Random();
+            rand = Randomizer.GetInstance().Random;
 
             _dt = new TimeSpan((long)generator.Next());
             _lastCarSend = new TimeSpan(0);
