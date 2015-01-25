@@ -188,6 +188,7 @@
     <Compile Include="Core\Models\FSStatisticsModel.cs" />
     <Compile Include="Core\Patterns\IGameRoadPattern.cs" />
     <Compile Include="DAL\Models\FillingStationModel.cs" />
+    <Compile Include="DAL\Models\FuelConsumptionModel.cs" />
     <Compile Include="Helpers\JsonCreationConverter.cs" />
     <Compile Include="DAL\Models\PatternJsonConverter.cs" />
     <Compile Include="DAL\Models\PatternModel.cs" />
