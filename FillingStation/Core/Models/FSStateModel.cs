@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using FillingStation.Annotations;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 
 namespace FillingStation.Core.Models
 {

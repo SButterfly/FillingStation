@@ -5,6 +5,7 @@ using FillingStation.Core.Generators;
 using FillingStation.Core.Models;
 using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
+using FillingStation.DAL.Models;
 using FillingStation.Extensions;
 using Microsoft.Xna.Framework;
 

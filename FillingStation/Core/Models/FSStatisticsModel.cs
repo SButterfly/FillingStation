@@ -8,6 +8,7 @@ using FillingStation.Core.Patterns;
 using FillingStation.Core.SimulationServices;
 using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
+using FillingStation.DAL.Models;
 using FillingStation.Helpers;
 
 namespace FillingStation.Core.Models
@@ -285,10 +286,10 @@ namespace FillingStation.Core.Models
             {
                 _fuelToPrice = new Dictionary<Fuel, double>(4);
 
-                var allFuelTypes = new FuelTypeAccessor().All();
+                var allFuelTypes = new FuelModelAccessor().All();
                 foreach (var fuelType in allFuelTypes)
                 {
-                    _fuelToPrice.Add(fuelType.Fuel, fuelType.PricePerLiter);
+                    _fuelToPrice.Add(fuelType.Fuel, fuelType.Price);
                 }
             }
 

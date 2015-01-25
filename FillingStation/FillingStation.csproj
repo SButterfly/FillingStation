@@ -255,7 +255,7 @@
     <Compile Include="Core\Vehicles\VehicleFactory.cs" />
     <Compile Include="DAL\FSModelLoader.cs" />
     <Compile Include="DAL\CarTypeAccessor.cs" />
-    <Compile Include="DAL\FuelTypeAccessor.cs" />
+    <Compile Include="DAL\FuelModelAccessor.cs" />
     <Compile Include="DAL\FSModelAccessor.cs" />
     <Compile Include="Core\Models\FileModel.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FillingStation.Core.Vehicles;
-
-namespace FillingStation.DAL.Models
+﻿namespace FillingStation.DAL.Models
 {
-    class FuelConsumptionModel
+    public enum Fuel { A92 = 1, A95 = 2, A98 = 3, Diesel = 4 };
+
+    public class FuelConsumptionModel
     {
-        public Fuel fuelType { get; set; }
-        public int carPercentage { get; set; }
-        public double fillingVolume { get; set; }
-        public double price { get; set; }
+        public Fuel Fuel { get; set; }
+        public int CarPercentage { get; set; }
+        public double FillingVolume { get; set; }
+        public double Price { get; set; }
     }
 }

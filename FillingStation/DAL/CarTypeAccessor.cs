@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.OleDb;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 
 namespace FillingStation.DAL
 {
