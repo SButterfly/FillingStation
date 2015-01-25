@@ -29,10 +29,18 @@
             <TextBlock Grid.Column="0" Grid.Row="3" Text="{x:Static Localization:Strings.Fuel_a98}" HorizontalAlignment="Right" Margin="5"/>
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static Localization:Strings.Fuel_diesel}" HorizontalAlignment="Right" Margin="5"/>
 
-            <TextBox Grid.Column="1" Grid.Row="1" x:Name="_92" Margin="5" />
-            <TextBox Grid.Column="2" Grid.Row="2" x:Name="_95" Margin="5" />
-            <TextBox Grid.Column="3" Grid.Row="3" x:Name="_98" Margin="5" />
-            <TextBox Grid.Column="3" Grid.Row="4" x:Name="_d" Margin="5" />
+            <TextBox Grid.Column="1" Grid.Row="1" x:Name="_92Percentage" Margin="5" />
+            <TextBox Grid.Column="1" Grid.Row="2" x:Name="_95Percentage" Margin="5" />
+            <TextBox Grid.Column="1" Grid.Row="3" x:Name="_98Percentage" Margin="5" />
+            <TextBox Grid.Column="1" Grid.Row="4" x:Name="_DieselPercentage" Margin="5" />
+            <TextBox Grid.Column="2" Grid.Row="1" x:Name="_92Volume" Margin="5" />
+            <TextBox Grid.Column="2" Grid.Row="2" x:Name="_95Volume" Margin="5" />
+            <TextBox Grid.Column="2" Grid.Row="3" x:Name="_98Volume" Margin="5" />
+            <TextBox Grid.Column="2" Grid.Row="4" x:Name="_DieselVolume" Margin="5" />
+            <TextBox Grid.Column="3" Grid.Row="1" x:Name="_92Price" Margin="5" />
+            <TextBox Grid.Column="3" Grid.Row="2" x:Name="_95Price" Margin="5" />
+            <TextBox Grid.Column="3" Grid.Row="3" x:Name="_98Price" Margin="5" />
+            <TextBox Grid.Column="3" Grid.Row="4" x:Name="_DieselPrice" Margin="5" />
 
         </Grid>
         <Grid Margin="5 5">
