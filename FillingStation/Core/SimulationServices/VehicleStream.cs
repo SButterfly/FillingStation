@@ -16,7 +16,13 @@ namespace FillingStation.Core.SimulationServices
         private readonly IGenerator _generator;
         private readonly FSStateModel _stateModel;
 
-        private readonly List<CarType> _carTypes;
+        private List<CarType> _car92Types;
+        private List<CarType> _car95Types;
+        private List<CarType> _car98Types;
+        private List<CarType> _carDieselTypes;
+        private int[] _carProbabilityDensity;
+
+        private Random rand;
 
         private TimeSpan _dt;
         private TimeSpan _lastCarSend;
@@ -26,7 +32,50 @@ namespace FillingStation.Core.SimulationServices
             _generator = generator;
             _stateModel = stateModel;
 
-            _carTypes = new CarTypeAccessor().All();
+            List<CarType> _carTypes = new CarTypeAccessor().All();
+            _car92Types = new List<CarType>();
+            _car95Types = new List<CarType>();
+            _car98Types = new List<CarType>();
+            _carDieselTypes = new List<CarType>();
+            foreach (CarType carType in _carTypes)
+            {
+                if (carType.Fuel == Fuel.A92)
+                {
+                    _car92Types.Add(carType); 
+                }
+                if (carType.Fuel == Fuel.A95)
+                {
+                    _car95Types.Add(carType);
+                }
+                if (carType.Fuel == Fuel.A98)
+                {
+                    _car98Types.Add(carType);
+                }
+                if (carType.Fuel == Fuel.Diesel)
+                {
+                    _carDieselTypes.Add(carType);
+                }
+            }
+
+            _carProbabilityDensity = new int[3];
+            IList<FuelConsumptionModel> fuelData = new FuelModelAccessor().All();
+            foreach (FuelConsumptionModel model in fuelData)
+            {
+                if (model.Fuel == Fuel.A92)
+                {
+                    _carProbabilityDensity[0] = model.CarPercentage;
+                }
+                if (model.Fuel == Fuel.A95)
+                {
+                    _carProbabilityDensity[1] = _carProbabilityDensity[0] + model.CarPercentage;
+                }
+                if (model.Fuel == Fuel.A98)
+                {
+                    _carProbabilityDensity[2] = _carProbabilityDensity[1] + model.CarPercentage;
+                }
+            }
+
+            rand = new Random();
 
             _dt = new TimeSpan((long)generator.Next());
             _lastCarSend = new TimeSpan(0);
@@ -67,13 +116,28 @@ namespace FillingStation.Core.SimulationServices
             }
 
             var deltaTime = gameTime.TotalGameTime - _lastCarSend;
-
             if (_dt <= deltaTime)
             {
                 long count = deltaTime.Ticks / _dt.Ticks;
                 for (long i = 0; i < count; i++)
                 {
-                    resultList.Add(_carTypes.Random());
+                    int temp = rand.Next(1, 101);
+                    if (temp > 0 && temp <= _carProbabilityDensity[0])
+                    {
+                        resultList.Add(_car92Types.Random());
+                    }
+                    if (temp > _carProbabilityDensity[0] && temp <= _carProbabilityDensity[1])
+                    {
+                        resultList.Add(_car95Types.Random());
+                    }
+                    if (temp > _carProbabilityDensity[1] && temp <= _carProbabilityDensity[2])
+                    {
+                        resultList.Add(_car98Types.Random());
+                    }
+                    if (temp > _carProbabilityDensity[2] && temp <= 100)
+                    {
+                        resultList.Add(_carDieselTypes.Random());
+                    }
                 }
                 _lastCarSend = gameTime.TotalGameTime;
                 _dt = new TimeSpan((long)_generator.Next());
