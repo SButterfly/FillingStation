@@ -31,24 +31,24 @@ namespace FillingStation.Core.SimulationServices
             FSModel = model;
             _stateModel = stateModel;
 
-            var allFuelTypes = new FuelModelAccessor().All();
-            foreach (var fuelType in allFuelTypes)
+            IList<FuelConsumptionModel> fuelData = new FuelModelAccessor().All();
+            foreach (FuelConsumptionModel consumptionModel in fuelData)
             {
-                if (fuelType.Fuel == Fuel.A92)
+                if (consumptionModel.Fuel == Fuel.A92)
                 {
-                    Fuel92Price = fuelType.Price;
+                    Fuel92Price = consumptionModel.Price;
                 }
-                if (fuelType.Fuel == Fuel.A95)
+                if (consumptionModel.Fuel == Fuel.A95)
                 {
-                    Fuel95Price = fuelType.Price;
+                    Fuel95Price = consumptionModel.Price;
                 }
-                if (fuelType.Fuel == Fuel.A98)
+                if (consumptionModel.Fuel == Fuel.A98)
                 {
-                    Fuel98Price = fuelType.Price;
+                    Fuel98Price = consumptionModel.Price;
                 }
-                if (fuelType.Fuel == Fuel.Diesel)
+                if (consumptionModel.Fuel == Fuel.Diesel)
                 {
-                    FuelDieselPrice = fuelType.Price;
+                    FuelDieselPrice = consumptionModel.Price;
                 }
             }
             _canFill92 = true;
