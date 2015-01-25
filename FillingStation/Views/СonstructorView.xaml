@@ -27,9 +27,9 @@
                 <MenuItem Header="{x:Static Localization:Strings.Cars}" Click="OpenCarsDBView" />
                 <MenuItem Header="{x:Static Localization:Strings.Fuel}" Click="OpenFuelDBView"/>
             </MenuItem>
-            <MenuItem Header="{x:Static Localization:Strings.About}">
-                <MenuItem Header="{x:Static Localization:Strings.Help}" Click="OpenHelpView"/>
-                <MenuItem Header="{x:Static Localization:Strings.Credits}" Click="OpenCreditsView"/>
+            <MenuItem Header="{x:Static Localization:Strings.Help}">
+                <MenuItem Header="{x:Static Localization:Strings.Credits}" Click="OpenCreditsView" />
+                <MenuItem Header="{x:Static Localization:Strings.About}" Click="OpenAboutView"/>
             </MenuItem>
         </Menu>
         

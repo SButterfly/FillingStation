@@ -1,6 +1,6 @@
 /* CSS Document RESET*/
  
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+body,div,dl,dt,dd,ol,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
   margin: 0;
   padding: 0;
 }
@@ -20,9 +20,9 @@ address,caption,cite,code,dfn,em,strong,th,var {
   font-style: normal;
   font-weight: normal;
 }
-ol,ul {
+/*ol,ul {
   list-style: none;
-}
+}*/
 caption,th {
   text-align: left;
 }
@@ -128,6 +128,14 @@ table#footer p {
   font-family: Verdana;
 }
 
+.middle {
+    width: 700px;
+
+    position: fixed;
+    left: 50%;
+    margin-left: -350px;
+}
+
 h1{
 text-align:center;
 font-size:32px;
@@ -170,20 +178,19 @@ margin-bottom: 5px;
 }
 
 a:link {
-font-size:9px;
+font-size:16px;
     color: #000000;
    }
 a:visited {
-font-size:9px;
+font-size:16px;
     color: #000000;
-   }
-   
+   }   
    
 a.GS:link {
-font-size:14px;
+font-size:16px;
     color: #000000;
    }
 a.GS:visited {
-font-size:14px;
+font-size:16px;
     color: #000000;
    }   

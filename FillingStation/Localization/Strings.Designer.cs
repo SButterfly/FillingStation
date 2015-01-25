@@ -806,9 +806,9 @@ namespace FillingStation.Localization {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Noname.
         /// </summary>
-        public static string Filename_notSaved {
+        public static string Filename_noname {
             get {
-                return ResourceManager.GetString("Filename_notSaved", resourceCulture);
+                return ResourceManager.GetString("Filename_noname", resourceCulture);
             }
         }
         
@@ -1065,7 +1065,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Filling station simulation.
+        ///   Ищет локализованную строку, похожую на Filling Station simulation program.
         /// </summary>
         public static string ProgramName {
             get {

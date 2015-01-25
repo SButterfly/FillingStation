@@ -17,8 +17,9 @@ namespace FillingStation.Views
     {
         public СonstructorView()
         {
-            //TODO remove
+#if DEBUG
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
+#endif
 
             InitializeComponent();
             DataContext = this;
@@ -95,7 +96,7 @@ namespace FillingStation.Views
                     return Strings.ProgramName;
                 }
 
-                return "[" + (FSFileModel.Path ?? Strings.Filename_notSaved) + (!IsProjectSaved ? "*" : "") + "]";
+                return "[" + (FSFileModel.Path ?? Strings.Filename_noname) + (!IsProjectSaved ? "*" : "") + "]";
             }
         }
 
@@ -146,11 +147,11 @@ namespace FillingStation.Views
             }
         }
 
-        private void OpenHelpView(object sender, EventArgs args)
+        private void OpenCreditsView(object sender, EventArgs args)
         {
             try
             {
-                var view = new HtmlView(Strings.Help, "Assets\\help.html");
+                var view = new HtmlView(Strings.Credits, "Assets\\credits.html");
                 OpenView(view);
             }
             catch (Exception e)
@@ -159,11 +160,11 @@ namespace FillingStation.Views
             }
         }
 
-        private void OpenCreditsView(object sender, EventArgs args)
+        private void OpenAboutView(object sender, EventArgs args)
         {
             try
             {
-                var view = new HtmlView(Strings.Help, "Assets\\credits.html");
+                var view = new HtmlView(Strings.About, "Assets\\about.html");
                 OpenView(view);
             }
             catch (Exception e)
