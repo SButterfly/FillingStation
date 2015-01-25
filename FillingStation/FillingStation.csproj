@@ -132,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FuelConsumptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FuelDBView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +280,9 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Helpers\PatternToImageBinding.cs" />
+    <Compile Include="Views\FuelConsumptionView.xaml.cs">
+      <DependentUpon>FuelConsumptionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FuelDBView.xaml.cs">
       <DependentUpon>FuelDBView.xaml</DependentUpon>
     </Compile>

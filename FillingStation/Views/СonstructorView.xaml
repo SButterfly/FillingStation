@@ -24,7 +24,7 @@
             </MenuItem>
             <MenuItem Header="{x:Static Localization:Strings.Simulation}" Click="OpenSimulationView" IsEnabled="{Binding IsProjectOpened}"/>
             <MenuItem Header="{x:Static Localization:Strings.Data}">
-                <MenuItem Header="{x:Static Localization:Strings.Cars}" Click="OpenCarsDBView" />
+                <MenuItem Header="{x:Static Localization:Strings.Cars}" Click="OpenFuelConsumptionView" />
                 <MenuItem Header="{x:Static Localization:Strings.Fuel}" Click="OpenFuelDBView"/>
             </MenuItem>
             <MenuItem Header="{x:Static Localization:Strings.Help}">
@@ -61,7 +61,7 @@
                 </MenuItem.Header>
             </MenuItem>
             <MenuItem Style="{DynamicResource EmptyVerticalMenuItemStyle}" />
-            <MenuItem Click="OpenCarsDBView">
+            <MenuItem Click="OpenFuelConsumptionView">
                 <MenuItem.Header>
                     <Image Source="..\Assets\Icons\ic_database.png" Style="{DynamicResource AppMenuImageStyle}" />
                 </MenuItem.Header>
