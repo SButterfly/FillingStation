@@ -134,19 +134,6 @@ namespace FillingStation.Views
             }
         }
 
-        private void OpenFuelDBView(object sender, EventArgs args)
-        {
-            try
-            {
-                var view = new FuelDBView();
-                OpenView(view);
-            }
-            catch (Exception e)
-            {
-                MessageDialog.ShowException(e);
-            }
-        }
-
         private void OpenCreditsView(object sender, EventArgs args)
         {
             try

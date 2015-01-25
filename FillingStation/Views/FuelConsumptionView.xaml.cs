@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
 using FillingStation.DAL.Models;
 using FillingStation.Helpers;

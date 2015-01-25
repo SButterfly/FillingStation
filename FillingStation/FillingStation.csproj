@@ -136,14 +136,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FuelDBView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CarsDBView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\FSModelSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,11 +253,6 @@
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\RotationExtensions.cs" />
     <Compile Include="Extensions\Vector2Extensions.cs" />
-    <Compile Include="Assets\FillingStation_DBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
@@ -287,12 +274,6 @@
     </Compile>
     <Compile Include="Views\FuelConsumptionView.xaml.cs">
       <DependentUpon>FuelConsumptionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FuelDBView.xaml.cs">
-      <DependentUpon>FuelDBView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CarsDBView.xaml.cs">
-      <DependentUpon>CarsDBView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FSModelSettings.xaml.cs">
       <DependentUpon>FSModelSettings.xaml</DependentUpon>
@@ -330,17 +311,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Assets\FillingStation_DBDataSet.xsc">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FillingStation_DBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xss">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
@@ -365,7 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\ic_create.png" />
-    <Resource Include="Assets\Icons\ic_database.png" />
     <Resource Include="Assets\Icons\ic_launch.png" />
     <Resource Include="Assets\Icons\ic_open.png" />
     <Resource Include="Assets\Icons\ic_save.png" />
@@ -474,11 +443,6 @@
   <ItemGroup>
     <Resource Include="Assets\Icons\ic_pause.png" />
     <Resource Include="Assets\Icons\ic_stop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\FillingStation_DB.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimulationKernel\SimulationKernel.csproj">

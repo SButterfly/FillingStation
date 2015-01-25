@@ -568,4 +568,7 @@ Field's height must be from {2} to {3}.</value>
   <data name="AVG_CarCasherFormat" xml:space="preserve">
     <value>- casher: {0} sec</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

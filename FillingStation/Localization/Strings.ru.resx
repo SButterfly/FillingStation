@@ -571,4 +571,7 @@
   <data name="Exception_writeFS" xml:space="preserve">
     <value>Произошла ошибка во время записи файла: \n</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
 </root>

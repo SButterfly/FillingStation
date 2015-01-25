@@ -1,7 +1,6 @@
-﻿using FillingStation.DAL.Models;
-
-namespace FillingStation.Core.Vehicles
+﻿namespace FillingStation.Core.Vehicles
 {
+    public enum Fuel { A92 = 1, A95 = 2, A98 = 3, Diesel = 4 };
     public enum CarSize { Passenger = 1, Truck = 2 };
     
     public class CarType : BaseVehicleType

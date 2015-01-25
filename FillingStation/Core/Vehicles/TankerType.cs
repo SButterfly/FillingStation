@@ -1,5 +1,4 @@
-﻿using FillingStation.DAL.Models;
-using FillingStation.Localization;
+﻿using FillingStation.Localization;
 
 namespace FillingStation.Core.Vehicles
 {
