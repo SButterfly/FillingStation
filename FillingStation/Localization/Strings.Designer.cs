@@ -106,7 +106,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG car&apos;s filling cash: {0} $.
+        ///   Ищет локализованную строку, похожую на AVG filling check: {0} $.
         /// </summary>
         public static string AVG_CarFillingCashFormat {
             get {
@@ -115,7 +115,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG car&apos;s filling tank: {0} l.
+        ///   Ищет локализованную строку, похожую на AVG filling tank: {0} l.
         /// </summary>
         public static string AVG_CarFillingTankFormat {
             get {
@@ -124,7 +124,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG car&apos;s filling time: {0} sec.
+        ///   Ищет локализованную строку, похожую на AVG filling time: {0} sec.
         /// </summary>
         public static string AVG_CarFillingTimeFormat {
             get {
@@ -133,7 +133,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG arriving time of:.
+        ///   Ищет локализованную строку, похожую на AVG inter-arrival time of:.
         /// </summary>
         public static string AVG_CarServiceCarWaiting {
             get {
@@ -178,7 +178,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG car&apos;s time: {0} sec.
+        ///   Ищет локализованную строку, похожую на AVG service time: {0} sec.
         /// </summary>
         public static string AVG_CarTimeFormat {
             get {
@@ -187,7 +187,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Amount of cars, goint to FS: {0} %.
+        ///   Ищет локализованную строку, похожую на Percentage of cars which entered FS: {0} %.
         /// </summary>
         public static string AVG_CarToFSFormat {
             get {
@@ -325,7 +325,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Casher.
+        ///   Ищет локализованную строку, похожую на Collector.
         /// </summary>
         public static string Casher {
             get {
@@ -424,7 +424,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Determin.
+        ///   Ищет локализованную строку, похожую на Deterministic.
         /// </summary>
         public static string Determin {
             get {
@@ -840,7 +840,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Filling station&apos;s state.
+        ///   Ищет локализованную строку, похожую на State.
         /// </summary>
         public static string FSState {
             get {
@@ -948,7 +948,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Info table.
+        ///   Ищет локализованную строку, похожую на Information board.
         /// </summary>
         public static string InfoTable {
             get {
@@ -1137,7 +1137,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Intersection.
+        ///   Ищет локализованную строку, похожую на Сrossroad.
         /// </summary>
         public static string RoadT {
             get {

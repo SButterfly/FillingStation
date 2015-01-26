@@ -166,7 +166,7 @@
     <value>Column</value>
   </data>
   <data name="InfoTable" xml:space="preserve">
-    <value>Info table</value>
+    <value>Information board</value>
   </data>
   <data name="RoadIn" xml:space="preserve">
     <value>Enter</value>
@@ -178,7 +178,7 @@
     <value>Road</value>
   </data>
   <data name="RoadT" xml:space="preserve">
-    <value>Intersection</value>
+    <value>Сrossroad</value>
   </data>
   <data name="RoadTurn" xml:space="preserve">
     <value>Turn</value>
@@ -205,7 +205,7 @@
     <value>Argumet is not fuel type</value>
   </data>
   <data name="Casher" xml:space="preserve">
-    <value>Casher</value>
+    <value>Collector</value>
   </data>
   <data name="Casher_path" xml:space="preserve">
     <value>Vehicles/vh_casher.png</value>
@@ -437,7 +437,7 @@ Field's height must be from {2} to {3}.</value>
     <value>Manually</value>
   </data>
   <data name="FSState" xml:space="preserve">
-    <value>Filling station's state</value>
+    <value>State</value>
   </data>
   <data name="FSStatistics" xml:space="preserve">
     <value>Statistics</value>
@@ -476,7 +476,7 @@ Field's height must be from {2} to {3}.</value>
     <value>Car stream</value>
   </data>
   <data name="Determin" xml:space="preserve">
-    <value>Determin</value>
+    <value>Deterministic</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
@@ -536,22 +536,22 @@ Field's height must be from {2} to {3}.</value>
     <value>AVG count of cars: {0}</value>
   </data>
   <data name="AVG_CarToFSFormat" xml:space="preserve">
-    <value>Amount of cars, goint to FS: {0} %</value>
+    <value>Percentage of cars which entered FS: {0} %</value>
   </data>
   <data name="AVG_CarTimeFormat" xml:space="preserve">
-    <value>AVG car's time: {0} sec</value>
+    <value>AVG service time: {0} sec</value>
   </data>
   <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
-    <value>AVG car's filling time: {0} sec</value>
+    <value>AVG filling time: {0} sec</value>
   </data>
   <data name="AVG_CarFillingCashFormat" xml:space="preserve">
-    <value>AVG car's filling cash: {0} $</value>
+    <value>AVG filling check: {0} $</value>
   </data>
   <data name="AVG_CarFillingTankFormat" xml:space="preserve">
-    <value>AVG car's filling tank: {0} l</value>
+    <value>AVG filling tank: {0} l</value>
   </data>
   <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
-    <value>AVG arriving time of:</value>
+    <value>AVG inter-arrival time of:</value>
   </data>
   <data name="AVG_CarTank92Format" xml:space="preserve">
     <value>- tanker (A92): {0} sec</value>
