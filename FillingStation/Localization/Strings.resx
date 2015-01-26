@@ -545,7 +545,7 @@ Field's height must be from {2} to {3}.</value>
     <value>AVG filling check: {0} $</value>
   </data>
   <data name="AVG_CarFillingTankFormat" xml:space="preserve">
-    <value>AVG filling tank: {0} l</value>
+    <value>AVG filling tank: {0} liters</value>
   </data>
   <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
     <value>AVG inter-arrival time of:</value>
@@ -563,7 +563,7 @@ Field's height must be from {2} to {3}.</value>
     <value>- tanker (Diesel): {0} sec</value>
   </data>
   <data name="AVG_CarCasherFormat" xml:space="preserve">
-    <value>- casher: {0} sec</value>
+    <value>- collector: {0} sec</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -575,10 +575,10 @@ Field's height must be from {2} to {3}.</value>
     <value>Car percentage, %</value>
   </data>
   <data name="FillingVolume" xml:space="preserve">
-    <value>Filling volume, l</value>
+    <value>Filling volume, liters</value>
   </data>
   <data name="PricePerLitter" xml:space="preserve">
-    <value>Price per litter, $</value>
+    <value>Price per liter, $</value>
   </data>
   <data name="Exception_SumPercentage" xml:space="preserve">
     <value>Sum of all percentages must equals 100%</value>

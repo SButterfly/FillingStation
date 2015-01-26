@@ -88,7 +88,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на - casher: {0} sec.
+        ///   Ищет локализованную строку, похожую на - collector: {0} sec.
         /// </summary>
         public static string AVG_CarCasherFormat {
             get {
@@ -115,7 +115,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG filling tank: {0} l.
+        ///   Ищет локализованную строку, похожую на AVG filling tank: {0} liters.
         /// </summary>
         public static string AVG_CarFillingTankFormat {
             get {
@@ -858,7 +858,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Filling volume, l.
+        ///   Ищет локализованную строку, похожую на Filling volume, liters.
         /// </summary>
         public static string FillingVolume {
             get {
@@ -1128,7 +1128,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Price per litter, $.
+        ///   Ищет локализованную строку, похожую на Price per liter, $.
         /// </summary>
         public static string PricePerLitter {
             get {
