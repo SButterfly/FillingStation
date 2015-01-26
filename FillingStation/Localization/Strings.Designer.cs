@@ -1416,15 +1416,6 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Vehicles/vh_tanker.png.
-        /// </summary>
-        public static string Tanker_path {
-            get {
-                return ResourceManager.GetString("Tanker_path", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Tank&apos;s volume.
         /// </summary>
         public static string TankVolume {

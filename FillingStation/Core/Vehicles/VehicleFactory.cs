@@ -15,7 +15,11 @@ namespace FillingStation.Core.Vehicles
 
         public static void Init(GraphicsManager graphicsManager, IEnumerable<string> imagePathes)
         {
-            foreach (var str in imagePathes.Concat(new string[] { "Vehicles/vh_tanker.png", "Vehicles/vh_casher.png" }))
+            foreach (var str in imagePathes.Concat(new string[] { "Vehicles/vh_tanker_1.png", 
+                "Vehicles/vh_tanker_2.png", 
+                "Vehicles/vh_tanker_3.png", 
+                "Vehicles/vh_tanker_4.png", 
+                "Vehicles/vh_casher.png" }))
             {
                 if (!_dictionary.ContainsKey(str))
                 {

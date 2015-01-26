@@ -213,9 +213,6 @@
   <data name="Tanker" xml:space="preserve">
     <value>Tanker</value>
   </data>
-  <data name="Tanker_path" xml:space="preserve">
-    <value>Vehicles/vh_tanker.png</value>
-  </data>
   <data name="Exception_missingClass" xml:space="preserve">
     <value>Could't create class of type.</value>
   </data>
