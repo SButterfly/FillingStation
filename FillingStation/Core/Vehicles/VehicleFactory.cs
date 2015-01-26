@@ -9,7 +9,7 @@ using SimulationClassLibrary.Kernel;
 
 namespace FillingStation.Core.Vehicles
 {
-    public static class FSVehicleFactory
+    public static class VehicleFactory
     {
         private static readonly Dictionary<string, Texture2D> _dictionary = new Dictionary<string, Texture2D>();
 

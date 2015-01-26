@@ -46,7 +46,7 @@ namespace FillingStation.Views
                 {
                     StopSimulation.Execute();
                 }
-                FSVehicleFactory.ClearResources();
+                VehicleFactory.ClearResources();
             };
         }
 
@@ -145,7 +145,7 @@ namespace FillingStation.Views
             VehicleStream vehicleStream = new VehicleStream(generator, stateControl.FSStateModel);
             VehicleAwaiter vehicleAwaiter = new VehicleAwaiter(_model, stateControl.FSStateModel);
 
-            FSVehicleFactory.Init(_game, new CarTypeAccessor().All().Select(carType => carType.ImagePath));
+            VehicleFactory.Init(_game, new CarTypeAccessor().All().Select(carType => carType.ImagePath));
 
             var cellWidth = Settings.Default.cellWidth;
             var cellHeight = Settings.Default.cellHeight;
