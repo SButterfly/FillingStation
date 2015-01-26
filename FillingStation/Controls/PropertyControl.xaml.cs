@@ -106,10 +106,11 @@ namespace FillingStation.Controls
 
                 if (args.PropertyName == intProperty.Name)
                 {
-                    var text = intProperty.GetValue(property).ToString();
-                    if (textBox.Text != text)
+                    int propertyValue = (int) intProperty.GetValue(property);
+                    int textBoxValue;
+                    if (!int.TryParse(textBox.Text, out textBoxValue) || textBoxValue != propertyValue)
                     {
-                        textBox.Text = text;
+                        textBox.Text = propertyValue.ToString();
                     }
                 }
             };
