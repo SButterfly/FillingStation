@@ -1,4 +1,5 @@
-﻿using FillingStation.Localization;
+﻿using System;
+using FillingStation.Localization;
 
 namespace FillingStation.Core.Vehicles
 {
@@ -23,10 +24,32 @@ namespace FillingStation.Core.Vehicles
         public TankerType(Fuel fuelType)
         {
             FuelType = fuelType;
-            ImagePath = Strings.Tanker_path;
+            ImagePath = GetTankerPath(fuelType);
             ModelName = Strings.Tanker;
         }
 
         public Fuel FuelType { get; private set; }
+
+        private static string GetTankerPath(Fuel fuel)
+        {
+            if (fuel == Fuel.A92)
+            {
+                return "Vehicles/vh_tanker_1.png";
+            }
+            if (fuel == Fuel.A95)
+            {
+                return "Vehicles/vh_tanker_2.png";
+            }
+            if (fuel == Fuel.A98)
+            {
+                return "Vehicles/vh_tanker_3.png";
+            }
+            if (fuel == Fuel.Diesel)
+            {
+                return "Vehicles/vh_tanker_4.png";
+            }
+
+            throw new ArgumentException();
+        }
     }
 }

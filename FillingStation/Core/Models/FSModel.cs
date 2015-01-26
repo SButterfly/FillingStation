@@ -8,6 +8,7 @@ using FillingStation.Core.Graph;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 using FillingStation.Extensions;
 using FillingStation.Helpers;
 using FillingStation.Localization;

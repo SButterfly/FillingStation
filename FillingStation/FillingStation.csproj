@@ -132,11 +132,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FuelDBView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CarsDBView.xaml">
+    <Page Include="Views\FuelConsumptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +184,7 @@
     <Compile Include="Core\Models\FSStatisticsModel.cs" />
     <Compile Include="Core\Patterns\IGameRoadPattern.cs" />
     <Compile Include="DAL\Models\FillingStationModel.cs" />
+    <Compile Include="DAL\Models\FuelConsumptionModel.cs" />
     <Compile Include="Helpers\JsonCreationConverter.cs" />
     <Compile Include="DAL\Models\PatternJsonConverter.cs" />
     <Compile Include="DAL\Models\PatternModel.cs" />
@@ -250,17 +247,12 @@
     <Compile Include="Core\Vehicles\VehicleFactory.cs" />
     <Compile Include="DAL\FSModelLoader.cs" />
     <Compile Include="DAL\CarTypeAccessor.cs" />
-    <Compile Include="DAL\FuelTypeAccessor.cs" />
+    <Compile Include="DAL\FuelModelAccessor.cs" />
     <Compile Include="DAL\FSModelAccessor.cs" />
     <Compile Include="Core\Models\FileModel.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\RotationExtensions.cs" />
     <Compile Include="Extensions\Vector2Extensions.cs" />
-    <Compile Include="Assets\FillingStation_DBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
@@ -275,11 +267,13 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Helpers\PatternToImageBinding.cs" />
-    <Compile Include="Views\FuelDBView.xaml.cs">
-      <DependentUpon>FuelDBView.xaml</DependentUpon>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Views\CarsDBView.xaml.cs">
-      <DependentUpon>CarsDBView.xaml</DependentUpon>
+    <Compile Include="Views\FuelConsumptionView.xaml.cs">
+      <DependentUpon>FuelConsumptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FSModelSettings.xaml.cs">
       <DependentUpon>FSModelSettings.xaml</DependentUpon>
@@ -304,11 +298,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Content Include="Assets\Vehicles\vh_tanker_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Vehicles\vh_tanker_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Vehicles\vh_tanker_4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Localization\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
@@ -320,23 +318,13 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Assets\FillingStation_DBDataSet.xsc">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FillingStation_DBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xss">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
     <Content Include="Assets\about.html">
@@ -356,7 +344,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\ic_create.png" />
-    <Resource Include="Assets\Icons\ic_database.png" />
     <Resource Include="Assets\Icons\ic_launch.png" />
     <Resource Include="Assets\Icons\ic_open.png" />
     <Resource Include="Assets\Icons\ic_save.png" />
@@ -422,15 +409,6 @@
     <Content Include="Assets\Vehicles\Cars\vh_car_12.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_13.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_14.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_15.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Vehicles\Cars\vh_car_2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -458,18 +436,13 @@
     <Content Include="Assets\Vehicles\vh_casher.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Vehicles\vh_tanker.png">
+    <Content Include="Assets\Vehicles\vh_tanker_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\ic_pause.png" />
     <Resource Include="Assets\Icons\ic_stop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\FillingStation_DB.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimulationKernel\SimulationKernel.csproj">

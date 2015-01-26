@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 using FillingStation.Helpers;
 using FillingStation.Localization;
 

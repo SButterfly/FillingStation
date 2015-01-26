@@ -23,10 +23,7 @@
                 <MenuItem Header="{x:Static Localization:Strings.Close}" Click="CloseProject" IsEnabled="{Binding IsProjectOpened}"/>
             </MenuItem>
             <MenuItem Header="{x:Static Localization:Strings.Simulation}" Click="OpenSimulationView" IsEnabled="{Binding IsProjectOpened}"/>
-            <MenuItem Header="{x:Static Localization:Strings.Data}">
-                <MenuItem Header="{x:Static Localization:Strings.Cars}" Click="OpenCarsDBView" />
-                <MenuItem Header="{x:Static Localization:Strings.Fuel}" Click="OpenFuelDBView"/>
-            </MenuItem>
+            <MenuItem Header="{x:Static Localization:Strings.Settings}" Click="OpenFuelConsumptionView" />
             <MenuItem Header="{x:Static Localization:Strings.Help}">
                 <MenuItem Header="{x:Static Localization:Strings.Credits}" Click="OpenCreditsView" />
                 <MenuItem Header="{x:Static Localization:Strings.About}" Click="OpenAboutView"/>
@@ -58,12 +55,6 @@
             <MenuItem Click="OpenSimulationView" IsEnabled="{Binding IsProjectOpened}">
                 <MenuItem.Header>
                     <Image Source="..\Assets\Icons\ic_launch.png" Style="{DynamicResource AppMenuImageStyle}" />
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem Style="{DynamicResource EmptyVerticalMenuItemStyle}" />
-            <MenuItem Click="OpenCarsDBView">
-                <MenuItem.Header>
-                    <Image Source="..\Assets\Icons\ic_database.png" Style="{DynamicResource AppMenuImageStyle}" />
                 </MenuItem.Header>
             </MenuItem>
         </Menu>
