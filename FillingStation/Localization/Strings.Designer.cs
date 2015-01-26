@@ -731,7 +731,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Simulation speed isn&apos;t write correctly..
+        ///   Ищет локализованную строку, похожую на Simulation speed wasn&apos;t write correctly..
         /// </summary>
         public static string Exception_SimulationSpeed {
             get {
@@ -1326,7 +1326,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Tank (A92): {0} l.
+        ///   Ищет локализованную строку, похожую на Tank (A92): {0} liters.
         /// </summary>
         public static string Tank_a92_state {
             get {
@@ -1335,7 +1335,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Tank (A95): {0} l.
+        ///   Ищет локализованную строку, похожую на Tank (A95): {0} liters.
         /// </summary>
         public static string Tank_a95_state {
             get {
@@ -1344,7 +1344,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Tank (A98): {0} l.
+        ///   Ищет локализованную строку, похожую на Tank (A98): {0} liters.
         /// </summary>
         public static string Tank_a98_state {
             get {
@@ -1353,7 +1353,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Tank (Diesel): {0} l.
+        ///   Ищет локализованную строку, похожую на Tank (Diesel): {0} liters.
         /// </summary>
         public static string Tank_diesel_state {
             get {

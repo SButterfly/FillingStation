@@ -292,19 +292,19 @@ Field's height must be from {2} to {3}.</value>
     <value>Cash box: {0} $</value>
   </data>
   <data name="Tank_a92_state" xml:space="preserve">
-    <value>Tank (A92): {0} l</value>
+    <value>Tank (A92): {0} liters</value>
   </data>
   <data name="Tank_a95_state" xml:space="preserve">
-    <value>Tank (A95): {0} l</value>
+    <value>Tank (A95): {0} liters</value>
   </data>
   <data name="Tank_a98_state" xml:space="preserve">
-    <value>Tank (A98): {0} l</value>
+    <value>Tank (A98): {0} liters</value>
   </data>
   <data name="Tank_diesel_state" xml:space="preserve">
-    <value>Tank (Diesel): {0} l</value>
+    <value>Tank (Diesel): {0} liters</value>
   </data>
   <data name="Exception_SimulationSpeed" xml:space="preserve">
-    <value>Simulation speed isn't write correctly.</value>
+    <value>Simulation speed wasn't write correctly.</value>
   </data>
   <data name="Exception_SimulationSpeedRange" xml:space="preserve">
     <value>Simulation speed must be more than {0} and no more than {1}.</value>
