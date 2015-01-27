@@ -298,6 +298,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Resource Include="Assets\Icons\ic_save.png" />
+    <Resource Include="Assets\Icons\ic_saveas.png" />
     <Content Include="Assets\Vehicles\vh_tanker_2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -346,8 +348,6 @@
     <Resource Include="Assets\Icons\ic_create.png" />
     <Resource Include="Assets\Icons\ic_launch.png" />
     <Resource Include="Assets\Icons\ic_open.png" />
-    <Resource Include="Assets\Icons\ic_save.png" />
-    <Resource Include="Assets\Icons\ic_saveas.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Patterns\pt_rez_a92.png" />
