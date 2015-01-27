@@ -536,7 +536,7 @@
     <value>Среднее время машины на АЗС: {0} сек</value>
   </data>
   <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
-    <value>Среднее время заправки: {0} руб</value>
+    <value>Среднее время заправки: {0} сек</value>
   </data>
   <data name="AVG_CarFillingCashFormat" xml:space="preserve">
     <value>Средний размер чека: {0} руб</value>
@@ -548,19 +548,19 @@
     <value>Среднее время между прибытиями:</value>
   </data>
   <data name="AVG_CarTank92Format" xml:space="preserve">
-    <value>- дозаправщика (A92): {0} сек</value>
+    <value>- дозаправщиков (A92): {0} сек</value>
   </data>
   <data name="AVG_CarTank95Format" xml:space="preserve">
-    <value>- дозаправщика (A95): {0} сек</value>
+    <value>- дозаправщиков (A95): {0} сек</value>
   </data>
   <data name="AVG_CarTank98Format" xml:space="preserve">
-    <value>- дозаправщика (A98: {0} сек</value>
+    <value>- дозаправщиков (A98): {0} сек</value>
   </data>
   <data name="AVG_CarTankDieselFormat" xml:space="preserve">
-    <value>- дозаправщика (ДТ): {0} сек</value>
+    <value>- дозаправщиков (ДТ): {0} сек</value>
   </data>
   <data name="AVG_CarCasherFormat" xml:space="preserve">
-    <value>- инкассация: {0} cек</value>
+    <value>- инкассаторов: {0} cек</value>
   </data>
   <data name="Exception_writeFS" xml:space="preserve">
     <value>Произошла ошибка во время записи файла: \n</value>
