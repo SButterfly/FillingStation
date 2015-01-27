@@ -17,7 +17,7 @@ Direct link to zip file: [https://dl.dropboxusercontent.com/u/69487763/Filling S
  
 ## Requirements
 It's WPF .Net program, which uses xna framework. 
-So that you had to install xna on your PC (https://msxna.codeplex.com).
+So you have to install xna on your PC for application to work (https://msxna.codeplex.com).
 
 ## C# Solution
 There is one more project in C# solution. It is simulation kernel, which is fully xna project.
@@ -25,8 +25,7 @@ WPF doesn't support xna. That's why it's a big hack. If you make changes in kern
 Otherwise kernel project won't compile.
 
 ## Developers
-This work was made under software engineering course at [SSAU] in 2014-2015.
-The program was developed by students of IT degree
+This project was made under software engineering course at [SSAU] in 2014-2015 and was developed by students of IT degree.
 
  * [Sergei Ermakov] 
  * [Efim Poberezkin]
