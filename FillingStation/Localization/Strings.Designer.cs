@@ -115,7 +115,7 @@ namespace FillingStation.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на AVG filling tank: {0} liters.
+        ///   Ищет локализованную строку, похожую на AVG filling volume: {0} liters.
         /// </summary>
         public static string AVG_CarFillingTankFormat {
             get {

@@ -545,7 +545,7 @@ Field's height must be from {2} to {3}.</value>
     <value>AVG filling check: {0} $</value>
   </data>
   <data name="AVG_CarFillingTankFormat" xml:space="preserve">
-    <value>AVG filling tank: {0} liters</value>
+    <value>AVG filling volume: {0} liters</value>
   </data>
   <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
     <value>AVG inter-arrival time of:</value>
