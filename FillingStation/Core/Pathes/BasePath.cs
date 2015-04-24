@@ -35,6 +35,8 @@ namespace FillingStation.Core.Pathes
         public Vector2 RotationPoint { get; private set; }
         public Rotation Rotation { get; private set; }
 
+        public float Length { get { return GetRoad(Enter, Exit); } }
+
         #endregion
 
         #region Abstract methods

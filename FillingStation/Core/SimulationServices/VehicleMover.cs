@@ -257,11 +257,30 @@ namespace FillingStation.Core.SimulationServices
             return resultPath;
         }
 
+        public IEnumerable<BasePath> GetLinkPathes(IGameRoadPattern pattern, IGameRoadPattern nextPattern)
+        {
+            var result = new List<BasePath>();
+            foreach (var path in pattern.Paths)
+            {
+                var exitPoint = GetModelPoint(pattern, path.Exit);
+                foreach (var nextPath in nextPattern.Paths)
+                {
+                    var enterNextPoint = GetModelPoint(nextPattern, nextPath.Enter);
+                    if (enterNextPoint.IsNearBy(exitPoint, 1e-3))
+                    {
+                        result.Add(path);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Point methods
 
-        private Vector2 GetPatternPoint(BaseVehicle vehicle, IGameRoadPattern pattern)
+        public Vector2 GetPatternPoint(BaseVehicle vehicle, IGameRoadPattern pattern)
         {
             var modelPosition = GetPosition(vehicle);
             var patternPosition = _modelGraph[pattern];
@@ -276,14 +295,14 @@ namespace FillingStation.Core.SimulationServices
             SetPosition(vehicle, patternPosition.ToVector2() + point);
         }
 
-        private Vector2 GetModelPoint(IGameRoadPattern pattern, Vector2 patternPoint)
+        public Vector2 GetModelPoint(IGameRoadPattern pattern, Vector2 patternPoint)
         {
             var patternPosition = _modelGraph[pattern];
 
             return patternPosition.ToVector2() + patternPoint;
         }
 
-        private bool IsOnPoint(BaseVehicle vehicle, PointType pointType)
+        public bool IsOnPoint(BaseVehicle vehicle, PointType pointType)
         {
             var point = GetPath(vehicle).GetPoint(pointType);
             var currentPoint = GetPatternPoint(vehicle, GetPattern(vehicle));
@@ -291,7 +310,7 @@ namespace FillingStation.Core.SimulationServices
             return point.IsNearBy(currentPoint, 1e-3);
         }
 
-        private bool IsOverPoint(BaseVehicle vehicle, PointType pointType)
+        public bool IsOverPoint(BaseVehicle vehicle, PointType pointType)
         {
             var path = GetPath(vehicle);
 
@@ -311,7 +330,7 @@ namespace FillingStation.Core.SimulationServices
             vehicle.Rotation = rotation;
         }
 
-        private float GetRotation(BaseVehicle vehicle)
+        public float GetRotation(BaseVehicle vehicle)
         {
             return vehicle.Rotation;
         }
@@ -447,6 +466,11 @@ namespace FillingStation.Core.SimulationServices
         private void SetPosition(BaseVehicle vehicle, Vector2 position)
         {
             vehicle.Position = position;
+        }
+
+        public BaseVehicle GetVechicle(IGameRoadPattern pattern)
+        {
+            return Vehicles.FirstOrDefault(baseVehicle => GetPattern(baseVehicle) == pattern);
         }
 
         #endregion
