@@ -27,7 +27,7 @@ Otherwise kernel project won't compile.
 ## Developers
 This project was made under software engineering course at [SSAU] in 2014-2015 and was developed by students of IT degree.
 
- * Sergei Ermakov ([sbutterfly@hotmail.com])
+ * Sergei Ermakov ([sbutterfly@outlook.com])
  * Efim Poberezkin ([efimpoberezkin@gmail.com])
  * Michael Savachaev
 
@@ -37,5 +37,5 @@ This project was made under software engineering course at [SSAU] in 2014-2015 a
  - Change file reading/writing from binary to json format - done
 
 [SSAU]:http://www.ssau.ru/english/
-[sbutterfly@hotmail.com]:mailto:sbutterfly@hotmail.com?subject=Filling%20Station
+[sbutterfly@outlook.com]:mailto:sbutterfly@hotmail.com?subject=Filling%20Station
 [efimpoberezkin@gmail.com]:mailto:efimpoberezkin@gmail.com?subject=Filling%20Station
