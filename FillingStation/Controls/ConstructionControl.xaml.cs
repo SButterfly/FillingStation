@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using FillingStation.Core.Models;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
+using FillingStation.Core.Vehicles;
 using FillingStation.Extensions;
 using FillingStation.Helpers;
 using FillingStation.Localization;
@@ -607,6 +608,18 @@ namespace FillingStation.Controls
                         : Rotation.Rotate270;
 
                     turnProperty.Angle = turnProperty.Angle.Sum(sumAngle);
+                    return;
+                }
+
+                var tankProperty = SelectedBinding.Pattern.Property as TankProperty;
+                if (tankProperty != null)
+                {
+                    var delta = e.Delta > 0
+                        ? +1
+                        : -1;
+                    var enumCount = Enum.GetNames(typeof(Fuel)).Length;
+                    tankProperty.Fuel = (Fuel)(((int)tankProperty.Fuel + delta + enumCount - 1) % enumCount + 1); // -1 and +1 cause Fuel enum starts with 1
+                    return;
                 }
             }
         }
