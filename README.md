@@ -1,5 +1,7 @@
 # Filling Station simulation program #
 
+It's a simple program to simulate working process of filling station.
+
 Main features:
 
  * Create custom filling station field
