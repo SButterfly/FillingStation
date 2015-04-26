@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exception_positive_int" xml:space="preserve">
-    <value>must be positive integer</value>
-  </data>
   <data name="Exception_pattern_place" xml:space="preserve">
     <value>Невозможно поместить паттерн на координату </value>
   </data>
@@ -202,7 +199,7 @@
     <value>Дизельное топливо</value>
   </data>
   <data name="Exception_fuel" xml:space="preserve">
-    <value>Argumet is not fuel type</value>
+    <value>Argument is not fuel type</value>
   </data>
   <data name="Casher" xml:space="preserve">
     <value>Инкассатор</value>
@@ -212,9 +209,6 @@
   </data>
   <data name="Tanker" xml:space="preserve">
     <value>Дозаправщик</value>
-  </data>
-  <data name="Tanker_path" xml:space="preserve">
-    <value>Vehicles/vh_tanker.png</value>
   </data>
   <data name="Exception_missingClass" xml:space="preserve">
     <value>Невоможно сгенерировать тип заданного объекта</value>
@@ -298,7 +292,7 @@
     <value>Модельное время: </value>
   </data>
   <data name="Cash_state" xml:space="preserve">
-    <value>Касса: {0} р</value>
+    <value>Касса: {0} руб</value>
   </data>
   <data name="Tank_a92_state" xml:space="preserve">
     <value>Резервуар (А92): {0} л</value>
@@ -310,7 +304,7 @@
     <value>Резервуар (А98): {0} л</value>
   </data>
   <data name="Tank_diesel_state" xml:space="preserve">
-    <value>Резервуар (Diesel): {0} л</value>
+    <value>Резервуар (ДТ): {0} л</value>
   </data>
   <data name="Exception_SimulationSpeed" xml:space="preserve">
     <value>Скорость моделирования задана неверно. </value>
@@ -321,7 +315,7 @@
   <data name="ProgramName" xml:space="preserve">
     <value>Система моделирования работы АЗС</value>
   </data>
-  <data name="Filename_notSaved" xml:space="preserve">
+  <data name="Filename_noname" xml:space="preserve">
     <value>Безымянный</value>
   </data>
   <data name="Help" xml:space="preserve">
@@ -505,8 +499,8 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>Свойства</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Название: </value>
+  <data name="Exception_FSModelCorrectness_PatternsNotUsed" xml:space="preserve">
+    <value>Не все дороги доступны для заезда автомобилей. Возможно, существуют круги.</value>
   </data>
   <data name="Turn" xml:space="preserve">
     <value>Повернуть:</value>
@@ -542,30 +536,60 @@
     <value>Среднее время машины на АЗС: {0} сек</value>
   </data>
   <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
-    <value>Среднее время заправки: {0} $</value>
+    <value>Среднее время заправки: {0} сек</value>
   </data>
   <data name="AVG_CarFillingCashFormat" xml:space="preserve">
-    <value>Средний размер чека: {0} $</value>
+    <value>Средний размер чека: {0} руб</value>
   </data>
   <data name="AVG_CarFillingTankFormat" xml:space="preserve">
-    <value>Средний объем заправляемого топлива: {0} l</value>
+    <value>Средний объем заправляемого топлива: {0} л</value>
   </data>
   <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
     <value>Среднее время между прибытиями:</value>
   </data>
   <data name="AVG_CarTank92Format" xml:space="preserve">
-    <value>- дозаправщика (A92): {0} sec</value>
+    <value>- дозаправщиков (A92): {0} сек</value>
   </data>
   <data name="AVG_CarTank95Format" xml:space="preserve">
-    <value>- дозаправщика (A95): {0} sec</value>
+    <value>- дозаправщиков (A95): {0} сек</value>
   </data>
   <data name="AVG_CarTank98Format" xml:space="preserve">
-    <value>- дозаправщика (A98: {0} sec</value>
+    <value>- дозаправщиков (A98): {0} сек</value>
   </data>
   <data name="AVG_CarTankDieselFormat" xml:space="preserve">
-    <value>- дозаправщика (Diesel): {0} sec</value>
+    <value>- дозаправщиков (ДТ): {0} сек</value>
   </data>
   <data name="AVG_CarCasherFormat" xml:space="preserve">
-    <value>- инкассация: {0} sec</value>
+    <value>- инкассаторов: {0} cек</value>
+  </data>
+  <data name="Exception_writeFS" xml:space="preserve">
+    <value>Произошла ошибка во время записи файла: \n</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="FuelConsumptionSettingsTitle" xml:space="preserve">
+    <value>Настройка расхода топлива</value>
+  </data>
+  <data name="CarPercentage" xml:space="preserve">
+    <value>Доля автомобилей, %</value>
+  </data>
+  <data name="FillingVolume" xml:space="preserve">
+    <value>Объем заправки, л</value>
+  </data>
+  <data name="PricePerLitter" xml:space="preserve">
+    <value>Цена за литр, руб</value>
+  </data>
+  <data name="Exception_SumPercentage" xml:space="preserve">
+    <value>Доли автомобилей должны в сумме давать 100%.</value>
+  </data>
+  <data name="Exception_FuelPriceFormat" xml:space="preserve">
+    <value>Цена должна находиться в интервале ({0}; {1}].</value>
+  </data>
+  <data name="Exception_FillingVolumeFormat" xml:space="preserve">
+    <value>Объем заправляемого топлива должен находиться в интервале ({0}; {1}].</value>
+  </data>
+  <data name="Exception_PercentageMustBeNonNegativeValue" xml:space="preserve">
+    <value>Процент должен быть неотрицательным.</value>
   </data>
 </root>

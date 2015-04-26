@@ -9,6 +9,7 @@ using FillingStation.Annotations;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 using FillingStation.Extensions;
 
 namespace FillingStation.Helpers

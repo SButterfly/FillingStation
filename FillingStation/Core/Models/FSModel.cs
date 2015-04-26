@@ -8,6 +8,7 @@ using FillingStation.Core.Graph;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
+using FillingStation.DAL.Models;
 using FillingStation.Extensions;
 using FillingStation.Helpers;
 using FillingStation.Localization;
@@ -244,14 +245,20 @@ namespace FillingStation.Core.Models
                             IsTankPropertyCorrect(a95.Property) &&
                             IsTankPropertyCorrect(a98.Property) &&
                             IsTankPropertyCorrect(diesel.Property);
-
+            FSGraph graph;
             try
             {
-                var graph = GenerateGraph();
+                graph = GenerateGraph();
             }
             catch (Exception e)
             {
                 throw new Exception(Strings.Exception_FSIsIncorrect);
+            }
+
+            var areAllRoadPatternsUsed = Patterns.OfType<IGameRoadPattern>().All(pattern => graph.Contains(pattern));
+            if (!areAllRoadPatternsUsed)
+            {
+                throw new Exception(Strings.Exception_FSModelCorrectness_PatternsNotUsed);
             }
 
             return true;

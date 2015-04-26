@@ -166,7 +166,7 @@
     <value>Column</value>
   </data>
   <data name="InfoTable" xml:space="preserve">
-    <value>Info table</value>
+    <value>Information board</value>
   </data>
   <data name="RoadIn" xml:space="preserve">
     <value>Enter</value>
@@ -178,7 +178,7 @@
     <value>Road</value>
   </data>
   <data name="RoadT" xml:space="preserve">
-    <value>Intersection</value>
+    <value>Сrossroad</value>
   </data>
   <data name="RoadTurn" xml:space="preserve">
     <value>Turn</value>
@@ -205,16 +205,13 @@
     <value>Argumet is not fuel type</value>
   </data>
   <data name="Casher" xml:space="preserve">
-    <value>Casher</value>
+    <value>Collector</value>
   </data>
   <data name="Casher_path" xml:space="preserve">
     <value>Vehicles/vh_casher.png</value>
   </data>
   <data name="Tanker" xml:space="preserve">
     <value>Tanker</value>
-  </data>
-  <data name="Tanker_path" xml:space="preserve">
-    <value>Vehicles/vh_tanker.png</value>
   </data>
   <data name="Exception_missingClass" xml:space="preserve">
     <value>Could't create class of type.</value>
@@ -295,27 +292,27 @@ Field's height must be from {2} to {3}.</value>
     <value>Cash box: {0} $</value>
   </data>
   <data name="Tank_a92_state" xml:space="preserve">
-    <value>Tank (A92): {0} l</value>
+    <value>Tank (A92): {0} liters</value>
   </data>
   <data name="Tank_a95_state" xml:space="preserve">
-    <value>Tank (A95): {0} l</value>
+    <value>Tank (A95): {0} liters</value>
   </data>
   <data name="Tank_a98_state" xml:space="preserve">
-    <value>Tank (A98): {0} l</value>
+    <value>Tank (A98): {0} liters</value>
   </data>
   <data name="Tank_diesel_state" xml:space="preserve">
-    <value>Tank (Diesel): {0} l</value>
+    <value>Tank (Diesel): {0} liters</value>
   </data>
   <data name="Exception_SimulationSpeed" xml:space="preserve">
-    <value>Simulation speed isn't write correctly.</value>
+    <value>Simulation speed wasn't write correctly.</value>
   </data>
   <data name="Exception_SimulationSpeedRange" xml:space="preserve">
     <value>Simulation speed must be more than {0} and no more than {1}.</value>
   </data>
   <data name="ProgramName" xml:space="preserve">
-    <value>Filling station simulation</value>
+    <value>Filling Station simulation program</value>
   </data>
-  <data name="Filename_notSaved" xml:space="preserve">
+  <data name="Filename_noname" xml:space="preserve">
     <value>Noname</value>
   </data>
   <data name="Help" xml:space="preserve">
@@ -334,7 +331,10 @@ Field's height must be from {2} to {3}.</value>
     <value>Error</value>
   </data>
   <data name="Exception_readFS" xml:space="preserve">
-    <value>An error at loadin filling station</value>
+    <value>An error occurred while loading filling station.\n</value>
+  </data>
+  <data name="Exception_writeFS" xml:space="preserve">
+    <value>An error occurred while saving filling station.\n</value>
   </data>
   <data name="Construction_placeOnCell" xml:space="preserve">
     <value>Choose cell. &lt;ESC&gt; to cancel</value>
@@ -434,7 +434,7 @@ Field's height must be from {2} to {3}.</value>
     <value>Manually</value>
   </data>
   <data name="FSState" xml:space="preserve">
-    <value>Filling station's state</value>
+    <value>State</value>
   </data>
   <data name="FSStatistics" xml:space="preserve">
     <value>Statistics</value>
@@ -473,7 +473,7 @@ Field's height must be from {2} to {3}.</value>
     <value>Car stream</value>
   </data>
   <data name="Determin" xml:space="preserve">
-    <value>Determin</value>
+    <value>Deterministic</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
@@ -505,8 +505,8 @@ Field's height must be from {2} to {3}.</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Properties</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name: </value>
+  <data name="Exception_FSModelCorrectness_PatternsNotUsed" xml:space="preserve">
+    <value>Some roads are not available for vehicles. Probably, there are some loops on FS.</value>
   </data>
   <data name="Turn" xml:space="preserve">
     <value>Turn: </value>
@@ -533,22 +533,22 @@ Field's height must be from {2} to {3}.</value>
     <value>AVG count of cars: {0}</value>
   </data>
   <data name="AVG_CarToFSFormat" xml:space="preserve">
-    <value>Amount of cars, goint to FS: {0} %</value>
+    <value>Percentage of cars which entered FS: {0} %</value>
   </data>
   <data name="AVG_CarTimeFormat" xml:space="preserve">
-    <value>AVG car's time: {0} sec</value>
+    <value>AVG service time: {0} sec</value>
   </data>
   <data name="AVG_CarFillingTimeFormat" xml:space="preserve">
-    <value>AVG car's filling time: {0} sec</value>
+    <value>AVG filling time: {0} sec</value>
   </data>
   <data name="AVG_CarFillingCashFormat" xml:space="preserve">
-    <value>AVG car's filling cash: {0} $</value>
+    <value>AVG filling check: {0} $</value>
   </data>
   <data name="AVG_CarFillingTankFormat" xml:space="preserve">
-    <value>AVG car's filling tank: {0} l</value>
+    <value>AVG filling volume: {0} liters</value>
   </data>
   <data name="AVG_CarServiceCarWaiting" xml:space="preserve">
-    <value>AVG arriving time of:</value>
+    <value>AVG inter-arrival time of:</value>
   </data>
   <data name="AVG_CarTank92Format" xml:space="preserve">
     <value>- tanker (A92): {0} sec</value>
@@ -563,6 +563,33 @@ Field's height must be from {2} to {3}.</value>
     <value>- tanker (Diesel): {0} sec</value>
   </data>
   <data name="AVG_CarCasherFormat" xml:space="preserve">
-    <value>- casher: {0} sec</value>
+    <value>- collector: {0} sec</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="FuelConsumptionSettingsTitle" xml:space="preserve">
+    <value>Fuel consumption settings</value>
+  </data>
+  <data name="CarPercentage" xml:space="preserve">
+    <value>Car percentage, %</value>
+  </data>
+  <data name="FillingVolume" xml:space="preserve">
+    <value>Filling volume, liters</value>
+  </data>
+  <data name="PricePerLitter" xml:space="preserve">
+    <value>Price per liter, $</value>
+  </data>
+  <data name="Exception_SumPercentage" xml:space="preserve">
+    <value>Sum of all percentages must equals 100%</value>
+  </data>
+  <data name="Exception_FuelPriceFormat" xml:space="preserve">
+    <value>Price must be from {0} to {1}.</value>
+  </data>
+  <data name="Exception_FillingVolumeFormat" xml:space="preserve">
+    <value>Filling tank volume must be from {0} to {1}.</value>
+  </data>
+  <data name="Exception_PercentageMustBeNonNegativeValue" xml:space="preserve">
+    <value>Percent couldn't be less than 0.</value>
   </data>
 </root>

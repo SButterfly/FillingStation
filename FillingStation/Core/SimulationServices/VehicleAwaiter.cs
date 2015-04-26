@@ -5,6 +5,7 @@ using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
+using FillingStation.DAL.Models;
 using Microsoft.Xna.Framework;
 
 namespace FillingStation.Core.SimulationServices
@@ -30,24 +31,24 @@ namespace FillingStation.Core.SimulationServices
             FSModel = model;
             _stateModel = stateModel;
 
-            var allFuelTypes = new FuelTypeAccessor().All();
+            var allFuelTypes = new FuelModelAccessor().All();
             foreach (var fuelType in allFuelTypes)
             {
                 if (fuelType.Fuel == Fuel.A92)
                 {
-                    Fuel92Price = fuelType.PricePerLiter;
+                    Fuel92Price = fuelType.Price;
                 }
                 if (fuelType.Fuel == Fuel.A95)
                 {
-                    Fuel95Price = fuelType.PricePerLiter;
+                    Fuel95Price = fuelType.Price;
                 }
                 if (fuelType.Fuel == Fuel.A98)
                 {
-                    Fuel98Price = fuelType.PricePerLiter;
+                    Fuel98Price = fuelType.Price;
                 }
                 if (fuelType.Fuel == Fuel.Diesel)
                 {
-                    FuelDieselPrice = fuelType.PricePerLiter;
+                    FuelDieselPrice = fuelType.Price;
                 }
             }
             _canFill92 = true;

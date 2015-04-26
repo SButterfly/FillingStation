@@ -13,6 +13,21 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <PublishUrl>опубликовать\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,6 +77,9 @@
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -114,11 +132,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FuelDBView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CarsDBView.xaml">
+    <Page Include="Views\FuelConsumptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +183,11 @@
     <Compile Include="Core\Graph\FSGraph.cs" />
     <Compile Include="Core\Models\FSStatisticsModel.cs" />
     <Compile Include="Core\Patterns\IGameRoadPattern.cs" />
+    <Compile Include="DAL\Models\FillingStationModel.cs" />
+    <Compile Include="DAL\Models\FuelConsumptionModel.cs" />
+    <Compile Include="Helpers\JsonCreationConverter.cs" />
+    <Compile Include="DAL\Models\PatternJsonConverter.cs" />
+    <Compile Include="DAL\Models\PatternModel.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\FuelExtensions.cs" />
     <Compile Include="Helpers\Average.cs" />
@@ -228,17 +247,12 @@
     <Compile Include="Core\Vehicles\VehicleFactory.cs" />
     <Compile Include="DAL\FSModelLoader.cs" />
     <Compile Include="DAL\CarTypeAccessor.cs" />
-    <Compile Include="DAL\FuelTypeAccessor.cs" />
+    <Compile Include="DAL\FuelModelAccessor.cs" />
     <Compile Include="DAL\FSModelAccessor.cs" />
     <Compile Include="Core\Models\FileModel.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\RotationExtensions.cs" />
     <Compile Include="Extensions\Vector2Extensions.cs" />
-    <Compile Include="Assets\FillingStation_DBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
@@ -253,11 +267,13 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Helpers\PatternToImageBinding.cs" />
-    <Compile Include="Views\FuelDBView.xaml.cs">
-      <DependentUpon>FuelDBView.xaml</DependentUpon>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Views\CarsDBView.xaml.cs">
-      <DependentUpon>CarsDBView.xaml</DependentUpon>
+    <Compile Include="Views\FuelConsumptionView.xaml.cs">
+      <DependentUpon>FuelConsumptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FSModelSettings.xaml.cs">
       <DependentUpon>FSModelSettings.xaml</DependentUpon>
@@ -282,11 +298,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Resource Include="Assets\Icons\ic_save.png" />
+    <Resource Include="Assets\Icons\ic_saveas.png" />
+    <Content Include="Assets\Vehicles\vh_tanker_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Vehicles\vh_tanker_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Vehicles\vh_tanker_4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Localization\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
@@ -298,24 +320,18 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Assets\FillingStation_DBDataSet.xsc">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FillingStation_DBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Assets\FillingStation_DBDataSet.xss">
-      <DependentUpon>FillingStation_DBDataSet.xsd</DependentUpon>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Content Include="Assets\about.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Images\larisasergeevna.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -324,111 +340,48 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icons\ic_rotate_left.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_rotate_right.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Icons\ic_rotate_left.png" />
+    <Resource Include="Assets\Icons\ic_rotate_right.png" />
     <Resource Include="Assets\logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icons\ic_create.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_database.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_launch.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_open.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_save.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_saveas.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Icons\ic_create.png" />
+    <Resource Include="Assets\Icons\ic_launch.png" />
+    <Resource Include="Assets\Icons\ic_open.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Images\db_fuel_view.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\db_view.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_rez_a92.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_rez_a95.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_rez_a98.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_rez_d.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_road.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_road_in.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_road_out.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Patterns\pt_road_turn.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_rez_a92.png" />
+    <Resource Include="Assets\Patterns\pt_rez_a95.png" />
+    <Resource Include="Assets\Patterns\pt_rez_a98.png" />
+    <Resource Include="Assets\Patterns\pt_rez_d.png" />
+    <Resource Include="Assets\Patterns\pt_road.png" />
+    <Resource Include="Assets\Patterns\pt_road_in.png" />
+    <Resource Include="Assets\Patterns\pt_road_out.png" />
+    <Resource Include="Assets\Patterns\pt_road_turn.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Patterns\pt_rez.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_rez.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\main_road.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Patterns\pt_table.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_table.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Patterns\pt_kol.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_kol.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\cancel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Patterns\pt_road_t.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_road_t.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\credits.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Patterns\pt_cash_box.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\help.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\creation1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\creation2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\creation3.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Patterns\pt_cash_box.png" />
     <Content Include="Assets\Images\dasha.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -436,21 +389,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\misha.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\mod1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\mod2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\mod3.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\open1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\save1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\sergey.jpg">
@@ -469,15 +407,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Vehicles\Cars\vh_car_12.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_13.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_14.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Vehicles\Cars\vh_car_15.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Vehicles\Cars\vh_car_2.png">
@@ -507,28 +436,36 @@
     <Content Include="Assets\Vehicles\vh_casher.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Vehicles\vh_tanker.png">
+    <Content Include="Assets\Vehicles\vh_tanker_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icons\ic_pause.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Icons\ic_stop.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\FillingStation_DB.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\Icons\ic_pause.png" />
+    <Resource Include="Assets\Icons\ic_stop.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimulationKernel\SimulationKernel.csproj">
       <Project>{f727fd29-6ce8-4082-ae26-2980420b90da}</Project>
       <Name>SimulationKernel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,7 +21,6 @@ namespace FillingStation.Views
 {
     public partial class SimulationView : Window, INotifyPropertyChanged
     {
-        private readonly FSStateModel _stateModel;
         private readonly Visualization _game;
         private readonly FSModel _model;
 
@@ -32,12 +31,12 @@ namespace FillingStation.Views
             DataContext = this;
 
             _model = model;
-            _stateModel = new FSStateModel(_model);
-            stateControl.FSStateModel = _stateModel;
 
             _game = new Visualization(xnaRenderPanel, "Assets");
             _game.LoadBackgroundField(fieldStream);
             _game.UpdateEvent += (sender, args) => OnPropertyChanged("AdditionalText");
+
+            stateControl.FSStateModel = new FSStateModel(_model);
 
             fieldStream.Close();
 
@@ -47,7 +46,7 @@ namespace FillingStation.Views
                 {
                     StopSimulation.Execute();
                 }
-                FSVehicleFactory.ClearResources();
+                VehicleFactory.ClearResources();
             };
         }
 
@@ -107,10 +106,13 @@ namespace FillingStation.Views
                 return new Command(() =>
                 {
                     _game.Exit();
+                    statisticsControl.FSStatisticsModel = FSStatisticsModel.Empty;
+                    stateControl.FSStateModel = new FSStateModel(_model);
                     generatorControl.IsEnabled = true;
                     OnPropertyChanged("StartSimulationEnabled");
                     OnPropertyChanged("PauseSimulationEnabled");
                     OnPropertyChanged("StopSimulationEnabled");
+                    OnPropertyChanged("AdditionalText");
                 });
             }
         }
@@ -139,13 +141,11 @@ namespace FillingStation.Views
 
         private FieldModel CreateModel()
         {
-            _stateModel.Clear();
-
             IGenerator generator = generatorControl.Generator;
-            VehicleStream vehicleStream = new VehicleStream(generator, _stateModel);
-            VehicleAwaiter vehicleAwaiter = new VehicleAwaiter(_model, _stateModel);
+            VehicleStream vehicleStream = new VehicleStream(generator, stateControl.FSStateModel);
+            VehicleAwaiter vehicleAwaiter = new VehicleAwaiter(_model, stateControl.FSStateModel);
 
-            FSVehicleFactory.Init(_game, new CarTypeAccessor().All().Select(carType => carType.ImagePath));
+            VehicleFactory.Init(_game, new CarTypeAccessor().All().Select(carType => carType.ImagePath));
 
             var cellWidth = Settings.Default.cellWidth;
             var cellHeight = Settings.Default.cellHeight;

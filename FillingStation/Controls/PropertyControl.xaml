@@ -15,7 +15,7 @@
     <StackPanel Orientation="Vertical" Margin="10">
         <TextBlock Text="{x:Static Localization:Strings.SettingsTitle}" TextAlignment="Center" FontSize="20"/>
         <StackPanel x:Name="namePanel" Margin="0,5">
-            <TextBlock x:Name="nameTextBlock" Text="{x:Static Localization:Strings.Name}"/>
+            <TextBlock x:Name="nameTextBlock" TextWrapping="Wrap"/>
         </StackPanel>
         <StackPanel x:Name="turnPanel" Margin="0,5" Orientation="Vertical">
             <TextBlock x:Name="turnTextBlock" Text="{x:Static Localization:Strings.Turn}"/>

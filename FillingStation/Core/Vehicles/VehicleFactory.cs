@@ -9,13 +9,17 @@ using SimulationClassLibrary.Kernel;
 
 namespace FillingStation.Core.Vehicles
 {
-    public static class FSVehicleFactory
+    public static class VehicleFactory
     {
         private static readonly Dictionary<string, Texture2D> _dictionary = new Dictionary<string, Texture2D>();
 
         public static void Init(GraphicsManager graphicsManager, IEnumerable<string> imagePathes)
         {
-            foreach (var str in imagePathes.Concat(new string[] { "Vehicles/vh_tanker.png", "Vehicles/vh_casher.png" }))
+            foreach (var str in imagePathes.Concat(new string[] { "Vehicles/vh_tanker_1.png", 
+                "Vehicles/vh_tanker_2.png", 
+                "Vehicles/vh_tanker_3.png", 
+                "Vehicles/vh_tanker_4.png", 
+                "Vehicles/vh_casher.png" }))
             {
                 if (!_dictionary.ContainsKey(str))
                 {

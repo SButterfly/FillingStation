@@ -8,6 +8,7 @@ using FillingStation.Core.Patterns;
 using FillingStation.Core.SimulationServices;
 using FillingStation.Core.Vehicles;
 using FillingStation.DAL;
+using FillingStation.DAL.Models;
 using FillingStation.Helpers;
 
 namespace FillingStation.Core.Models
@@ -29,8 +30,13 @@ namespace FillingStation.Core.Models
         private readonly AverageTimeSpan _tank95Visits = new AverageTimeSpan();
         private readonly AverageTimeSpan _tank98Visits = new AverageTimeSpan();
         private readonly AverageTimeSpan _tankdieselVisits = new AverageTimeSpan();
-
         private readonly AverageTimeSpan _casherVisits = new AverageTimeSpan();
+
+        private TimeSpan _lastTank92Visit = new TimeSpan();
+        private TimeSpan _lastTank95Visit = new TimeSpan();
+        private TimeSpan _lastTank98Visit = new TimeSpan();
+        private TimeSpan _lastTankdieselVisit = new TimeSpan();
+        private TimeSpan _lastCasherVisit = new TimeSpan();
 
         private FSStatisticsModel()
         {   
@@ -69,39 +75,52 @@ namespace FillingStation.Core.Models
                 }
                 else
                 {
-                    var time = ModelTime;
                     AverageTimeSpan averageTimeSpan = null;
+                    TimeSpan lastVisit = new TimeSpan();
+                    Action<TimeSpan> lastTimeSetter = null;
                     string propertyToUpdate = null;
 
                     if (vehicle is TankerVehicle && ((TankerVehicle) vehicle).VehicleType.FuelType == Fuel.A92)
                     {
                         averageTimeSpan = _tank92Visits;
+                        lastVisit = _lastTank92Visit;
+                        lastTimeSetter = span => { _lastTank92Visit = span; };
                         propertyToUpdate = "AVGTank92VisitTime";
                     }
                     if (vehicle is TankerVehicle && ((TankerVehicle)vehicle).VehicleType.FuelType == Fuel.A95)
                     {
                         averageTimeSpan = _tank95Visits;
+                        lastVisit = _lastTank95Visit;
+                        lastTimeSetter = span => { _lastTank95Visit = span; };
                         propertyToUpdate = "AVGTank95VisitTime";
                     }
                     if (vehicle is TankerVehicle && ((TankerVehicle)vehicle).VehicleType.FuelType == Fuel.A98)
                     {
                         averageTimeSpan = _tank98Visits;
+                        lastVisit = _lastTank98Visit;
+                        lastTimeSetter = span => { _lastTank98Visit = span; };
                         propertyToUpdate = "AVGTank98VisitTime";
                     }
                     if (vehicle is TankerVehicle && ((TankerVehicle)vehicle).VehicleType.FuelType == Fuel.Diesel)
                     {
                         averageTimeSpan = _tankdieselVisits;
+                        lastVisit = _lastTankdieselVisit;
+                        lastTimeSetter = span => { _lastTankdieselVisit = span; };
                         propertyToUpdate = "AVGTankDieselVisitTime";
                     }
                     if (vehicle is CashVehicle)
                     {
                         averageTimeSpan = _casherVisits;
+                        lastVisit = _lastCasherVisit;
+                        lastTimeSetter = span => { _lastCasherVisit = span; };
                         propertyToUpdate = "AVGCasherVisitTime";
                     }
 
-                    if (averageTimeSpan != null && propertyToUpdate != null)
+                    if (averageTimeSpan != null && propertyToUpdate != null && lastTimeSetter != null)
                     {
-                        averageTimeSpan.Add(time - averageTimeSpan.LastNumerator, 1);
+                        var time = ModelTime;
+                        averageTimeSpan.Add(time - lastVisit, 1);
+                        lastTimeSetter(time);
                         OnPropertyChanged(propertyToUpdate);
                     }
                 }
@@ -267,10 +286,10 @@ namespace FillingStation.Core.Models
             {
                 _fuelToPrice = new Dictionary<Fuel, double>(4);
 
-                var allFuelTypes = new FuelTypeAccessor().All();
+                var allFuelTypes = new FuelModelAccessor().All();
                 foreach (var fuelType in allFuelTypes)
                 {
-                    _fuelToPrice.Add(fuelType.Fuel, fuelType.PricePerLiter);
+                    _fuelToPrice.Add(fuelType.Fuel, fuelType.Price);
                 }
             }
 

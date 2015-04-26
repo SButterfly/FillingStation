@@ -17,8 +17,9 @@ namespace FillingStation.Views
     {
         public СonstructorView()
         {
-            //TODO remove
+#if DEBUG
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
+#endif
 
             InitializeComponent();
             DataContext = this;
@@ -95,7 +96,7 @@ namespace FillingStation.Views
                     return Strings.ProgramName;
                 }
 
-                return "[" + (FSFileModel.Path ?? Strings.Filename_notSaved) + (!IsProjectSaved ? "*" : "") + "]";
+                return "[" + (FSFileModel.Path ?? Strings.Filename_noname) + (!IsProjectSaved ? "*" : "") + "]";
             }
         }
 
@@ -120,37 +121,11 @@ namespace FillingStation.Views
             }
         }
 
-        private void OpenCarsDBView(object sender, EventArgs args)
+        private void OpenFuelConsumptionView(object sender, EventArgs args)
         {
             try
             {
-                var view = new CarsDBView();
-                OpenView(view);
-            }
-            catch (Exception e)
-            {
-                MessageDialog.ShowException(e);
-            }
-        }
-
-        private void OpenFuelDBView(object sender, EventArgs args)
-        {
-            try
-            {
-                var view = new FuelDBView();
-                OpenView(view);
-            }
-            catch (Exception e)
-            {
-                MessageDialog.ShowException(e);
-            }
-        }
-
-        private void OpenHelpView(object sender, EventArgs args)
-        {
-            try
-            {
-                var view = new HtmlView(Strings.Help, "Assets\\help.html");
+                var view = new FuelConsumptionView();
                 OpenView(view);
             }
             catch (Exception e)
@@ -163,7 +138,20 @@ namespace FillingStation.Views
         {
             try
             {
-                var view = new HtmlView(Strings.Help, "Assets\\credits.html");
+                var view = new HtmlView(Strings.Credits, "Assets\\credits.html");
+                OpenView(view);
+            }
+            catch (Exception e)
+            {
+                MessageDialog.ShowException(e);
+            }
+        }
+
+        private void OpenAboutView(object sender, EventArgs args)
+        {
+            try
+            {
+                var view = new HtmlView(Strings.About, "Assets\\about.html");
                 OpenView(view);
             }
             catch (Exception e)

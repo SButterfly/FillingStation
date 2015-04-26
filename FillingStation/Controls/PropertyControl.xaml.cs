@@ -18,6 +18,7 @@ namespace FillingStation.Controls
         public PropertyControl()
         {
             InitializeComponent();
+            Property = null;
         }
 
         #region Properties
@@ -105,10 +106,11 @@ namespace FillingStation.Controls
 
                 if (args.PropertyName == intProperty.Name)
                 {
-                    var text = intProperty.GetValue(property).ToString();
-                    if (textBox.Text != text)
+                    int propertyValue = (int) intProperty.GetValue(property);
+                    int textBoxValue;
+                    if (!int.TryParse(textBox.Text, out textBoxValue) || textBoxValue != propertyValue)
                     {
-                        textBox.Text = text;
+                        textBox.Text = propertyValue.ToString();
                     }
                 }
             };
@@ -177,6 +179,7 @@ namespace FillingStation.Controls
             stackPanel.Orientation = Orientation.Vertical;
 
             textBlock = new TextBlock();
+            textBlock.TextWrapping = TextWrapping.Wrap;
             textBox = new TextBox();
 
             stackPanel.Children.Add(textBlock);
@@ -192,6 +195,7 @@ namespace FillingStation.Controls
             stackPanel.Orientation = Orientation.Vertical;
 
             textBlock = new TextBlock();
+            textBlock.TextWrapping = TextWrapping.Wrap;
             comboBox = new ComboBox();
 
             stackPanel.Children.Add(textBlock);

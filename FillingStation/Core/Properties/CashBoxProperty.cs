@@ -1,4 +1,5 @@
 ﻿using FillingStation.Localization;
+using Newtonsoft.Json;
 
 namespace FillingStation.Core.Properties
 {
@@ -10,6 +11,7 @@ namespace FillingStation.Core.Properties
         }
 
         private int _cashBoxLimit = 500000;
+        [JsonProperty("cash")]
         public int CashBoxLimit
         {
             get { return _cashBoxLimit; }
@@ -21,9 +23,16 @@ namespace FillingStation.Core.Properties
             }
         }
 
+        [JsonIgnore]
         public string CashBoxLimitName
         {
             get { return Strings.CashBox_limit; }
+        }
+
+        public override void Clone(IProperty property)
+        {
+            base.Clone(property);
+            CashBoxLimit = (property as CashBoxProperty).CashBoxLimit;
         }
     }
 }

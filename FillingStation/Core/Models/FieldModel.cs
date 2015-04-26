@@ -115,7 +115,7 @@ namespace FillingStation.Core.Models
             {
                 foreach (var carType in newCars)
                 {
-                    var vehicle = FSVehicleFactory.CreateVehicle(this, carType);
+                    var vehicle = VehicleFactory.CreateVehicle(this, carType);
                     vehicle.Scale = Math.Min((CellWidth - 5f) / vehicle.Size.Width, 1f);
 
                     if (carType is CarType)
