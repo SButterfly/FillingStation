@@ -59,7 +59,31 @@ namespace FillingStation.Core.Pathes
             double x2 = toPoint.X;
             double y2 = toPoint.Y;
 
-            return (float)Math.Sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
+            int sign = GetSign(fromPoint, toPoint);
+
+            return sign*(float)Math.Sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
+        }
+
+        private int GetSign(Vector2 fromPoint, Vector2 toPoint)
+        {
+            var baseVector = NormalExit - NormalEnter;
+            var findVector = toPoint - fromPoint;
+
+            double bx = baseVector.X;
+            double by = baseVector.Y;
+
+            double fx = findVector.X;
+            double fy = findVector.Y;
+
+            bool isOnOneLine = Math.Abs(fx*by - fy*bx) < 1e-5;
+
+            if (!isOnOneLine)
+                return 0;
+
+            bool isFxBetween = bx > 0 ? 0 <= fx && fx <= bx : bx <= fx && fx <= 0;
+            bool isFyBetween = by > 0 ? 0 <= fy && fy <= by : by <= fy && fy <= 0;
+
+            return isFxBetween && isFyBetween ? 1 : -1;
         }
 
         protected override float GetNormalTurn(Vector2 rotationPoint)
