@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FillingStation.Core.Graph;
 using FillingStation.Core.Models;
-using FillingStation.Core.Pathes;
 using FillingStation.Core.Patterns;
-using FillingStation.Core.Properties;
 using FillingStation.Core.Vehicles;
 using FillingStation.Extensions;
 
@@ -52,8 +50,8 @@ namespace FillingStation.Core.SimulationServices
         {
             var nextPatterns = FieldGraph.Next(VehicleMover.GetPattern(vehicle));
 
-            if (!nextPatterns.Any()) return null;
-            if (nextPatterns.Count() == 1) return nextPatterns.First();
+            var count = nextPatterns.Count();
+            if (count <= 1) return nextPatterns.FirstOrDefault();
 
             var currentPattern = VehicleMover.GetPattern(vehicle);
 
@@ -67,11 +65,11 @@ namespace FillingStation.Core.SimulationServices
                 }
             }
 
-            if (vehicle.VehicleType is TankerType)
+            var tankerType = vehicle.VehicleType as TankerType;
+            if (tankerType != null)
             {
-                var tankerType = (TankerType)vehicle.VehicleType;
                 var tankPattern = FSModel.Patterns.OfType<TankPattern>().
-                    First(pattern => ((TankProperty) pattern.Property).Fuel == tankerType.FuelType);
+                    First(pattern => pattern.Property.Fuel == tankerType.FuelType);
                 var nextPattern = GetRoad(vehicle, currentPattern, VehicleMover, gamePattern => gamePattern == tankPattern);
                 if (nextPattern != null)
                 {
