@@ -25,7 +25,7 @@ namespace FillingStation.Core.Vehicles
             MaxSpeed = 1.5f + (float)rand.Random.NextDouble();
             Speed = MaxSpeed;
 
-            Acceleration = 0.1f;
+            Acceleration = 0.05f + (float)rand.Random.NextDouble()/10f;
             Origin = Vector2.Zero;
 
             _waitProgressSize = new Rectangle(0, 0, 40, 13);
