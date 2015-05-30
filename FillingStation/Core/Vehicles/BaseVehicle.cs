@@ -25,7 +25,7 @@ namespace FillingStation.Core.Vehicles
             MaxSpeed = 1.5f + (float)rand.Random.NextDouble();
             Speed = MaxSpeed;
 
-            Acceleration = 0.05f + (float)rand.Random.NextDouble()/10f;
+            Acceleration = (0.7f + (float)rand.Random.NextDouble())*70f;
             Origin = Vector2.Zero;
 
             _waitProgressSize = new Rectangle(0, 0, 40, 13);
@@ -75,14 +75,16 @@ namespace FillingStation.Core.Vehicles
             }
         }
 
-        public virtual void SetSpeed(float newSpeed, bool useAcceleration = true)
+        public virtual void SetSpeed(float newSpeed, GameTime gameTime, bool useAcceleration = true)
         {
             if (Math.Sign(Speed - newSpeed) == 0)
                 return;
             
             if (useAcceleration)
             {
-                var ds = Math.Min(Math.Abs(Speed - newSpeed), Acceleration);
+                var seconds = gameTime.ElapsedGameTime.TotalSeconds;
+                var a = seconds*seconds*Acceleration;
+                var ds = Math.Min(Math.Abs(Speed - newSpeed), (float)a);
                 int sign = Math.Sign(Speed - newSpeed);
                 Speed -= sign*ds;
             }

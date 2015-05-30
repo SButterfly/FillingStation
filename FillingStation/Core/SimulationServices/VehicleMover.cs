@@ -153,7 +153,7 @@ namespace FillingStation.Core.SimulationServices
             {
                 if (GetNextVehicle(vehicle) != null)
                 {
-                    vehicle.SetSpeed(GetNextVehicle(vehicle).Speed/2f);
+                    vehicle.SetSpeed(GetNextVehicle(vehicle).Speed/2f, gameTime);
                     UpdateToPoint(vehicle, PointType.Exit, ref gameTime);
                     return;
                 }
@@ -255,14 +255,14 @@ namespace FillingStation.Core.SimulationServices
 
                     var newSpeed = (float) (vehicleSpeed - time * vehicleSpeed * vehicleSpeed / (2 * stopLength));
 
-                    vehicle.SetSpeed(Math.Max(0.002f, newSpeed), false);
+                    vehicle.SetSpeed(Math.Max(0.002f, newSpeed), gameTime, false);
                 }
                 return;
             }
 
             if (needToSpeedUp)
             {
-                vehicle.SetSpeed(vehicle.MaxSpeed);
+                vehicle.SetSpeed(vehicle.MaxSpeed, gameTime);
             }
         }
 
