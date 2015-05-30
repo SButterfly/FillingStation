@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Documents;
+using System.Windows.Media.Animation;
 using FillingStation.Helpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,6 +14,7 @@ namespace FillingStation.Core.Vehicles
         private Texture2D _waitProgressStatus;
         private Rectangle _waitProgressSize;
         private Vector2 _waitProgressOrigin;
+        private float _speed;
 
         protected BaseVehicle(GraphicsManager graphicsManager, BaseVehicleType vehicleType)
             : base(graphicsManager, vehicleType.ImagePath)
@@ -19,7 +22,10 @@ namespace FillingStation.Core.Vehicles
             VehicleType = vehicleType;
             var rand = Randomizer.GetInstance();
 
-            Speed = 1.5f + (float)rand.Random.NextDouble();
+            MaxSpeed = 1.5f + (float)rand.Random.NextDouble();
+            Speed = MaxSpeed;
+
+            Acceleration = 0.1f;
             Origin = Vector2.Zero;
 
             _waitProgressSize = new Rectangle(0, 0, 40, 13);
@@ -40,7 +46,24 @@ namespace FillingStation.Core.Vehicles
 
         public virtual BaseVehicleType VehicleType { get; private set; }
 
-        public virtual float Speed { get; set; }
+        public virtual float Speed
+        {
+            get { return _speed; }
+            private set
+            {
+                if (Double.IsNaN(value))
+                    throw new ArgumentException("Value is NaN");
+
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("value", "Speed must be not negative");
+
+                _speed = value;
+            }
+        }
+
+        public virtual float MaxSpeed { get; set; }
+
+        public virtual float Acceleration { get; set; }
 
         public override Rectangle Size
         {
@@ -49,6 +72,23 @@ namespace FillingStation.Core.Vehicles
             {
                 base.Size = value;
                 Origin = new Vector2(value.Width / 2f, value.Height / 2f);
+            }
+        }
+
+        public virtual void SetSpeed(float newSpeed, bool useAcceleration = true)
+        {
+            if (Math.Sign(Speed - newSpeed) == 0)
+                return;
+            
+            if (useAcceleration)
+            {
+                var ds = Math.Min(Math.Abs(Speed - newSpeed), Acceleration);
+                int sign = Math.Sign(Speed - newSpeed);
+                Speed -= sign*ds;
+            }
+            else
+            {
+                Speed = newSpeed;
             }
         }
 

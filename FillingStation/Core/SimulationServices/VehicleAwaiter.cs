@@ -324,7 +324,19 @@ namespace FillingStation.Core.SimulationServices
                 //max with zero just in case to avois negative value
                 result = Math.Max(0, carType.TankVolume - car.CurrentFuel) / _fillingSpeed;
             }
+            //TODO add more for casher and filler
             return result;
+        }
+
+        public static bool WillWait(BaseVehicle vehicle, IGameRoadPattern roadPattern)
+        {
+            var result = GetWaitingTime(vehicle);
+            if (vehicle is CarVehicle && roadPattern is ColumnPattern)
+            {
+                return result > 0d;
+            }
+            //TODO add more for casher and filler
+            return false;
         }
     }
 }
