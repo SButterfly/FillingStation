@@ -16,13 +16,12 @@ Direct link to try program: [https://dl.dropboxusercontent.com/u/69487763/Fillin
 
 ## How to use
 
-[![Patterns placement](http://share.gifyoutube.com/mLj9xq.gif)](http://www.youtube.com/watch?v=wOzE6Ihfvvc)
-[![Setup field](http://share.gifyoutube.com/yxGqYP.gif)](http://www.youtube.com/watch?v=pixa8_0EZfg)
-[![Moving patterns](http://share.gifyoutube.com/mGMwJ1.gif)](http://www.youtube.com/watch?v=U5F7oigGeI4)
-[![Process simulation](http://share.gifyoutube.com/ya6rM5.gif)](http://www.youtube.com/watch?v=HHO79XUu5_Q)
-[![Fillers arriving](http://share.gifyoutube.com/vW1VgN.gif)](http://www.youtube.com/watch?v=prnUkOdPebc)
-
 View full version by clicking on gif.
+
+| [![Patterns placement](http://share.gifyoutube.com/mLj9xq.gif)](http://www.youtube.com/watch?v=wOzE6Ihfvvc) | [![Setup field](http://share.gifyoutube.com/yxGqYP.gif)](http://www.youtube.com/watch?v=pixa8_0EZfg)        |
+|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [![Moving patterns](http://share.gifyoutube.com/mGMwJ1.gif)](http://www.youtube.com/watch?v=U5F7oigGeI4)    | [![Process simulation](http://share.gifyoutube.com/ya6rM5.gif)](http://www.youtube.com/watch?v=HHO79XUu5_Q) |
+| [![Fillers arriving](http://share.gifyoutube.com/vW1VgN.gif)](http://www.youtube.com/watch?v=prnUkOdPebc)   | [![Collector arriving](http://share.gifyoutube.com/vM0a1b.gif)](http://www.youtube.com/watch?v=UTTcqnGOoV4) |
  
 ## Requirements
 It's WPF .Net program, which uses xna framework. 
