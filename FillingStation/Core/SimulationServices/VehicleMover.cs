@@ -35,6 +35,8 @@ namespace FillingStation.Core.SimulationServices
         private readonly Dictionary<BaseVehicle, CurrentState> _vehiclesOnField =
             new Dictionary<BaseVehicle, CurrentState>();
 
+        private readonly Dictionary<IGameRoadPattern, BaseVehicle> _patternsOnFields = new Dictionary<IGameRoadPattern, BaseVehicle>();
+
         #endregion
 
         #region Initialization
@@ -304,7 +306,7 @@ namespace FillingStation.Core.SimulationServices
             return resultPath;
         }
 
-        public IEnumerable<BasePath> GetLinkPathes(IGameRoadPattern pattern, IGameRoadPattern nextPattern)
+        public List<BasePath> GetLinkPathes(IGameRoadPattern pattern, IGameRoadPattern nextPattern)
         {
             var result = new List<BasePath>();
             foreach (var path in pattern.Paths)
@@ -444,7 +446,9 @@ namespace FillingStation.Core.SimulationServices
 
         public void RemoveVehicle(BaseVehicle vehicle)
         {
+            var pattern = GetPattern(vehicle);
             _vehiclesOnField.Remove(vehicle);
+            _patternsOnFields.Remove(pattern);
         }
 
         public bool ContainsVehicle(BaseVehicle vehicle)
@@ -456,9 +460,9 @@ namespace FillingStation.Core.SimulationServices
         {
             var list = Vehicles.Where(vehicle => IsOnPoint(vehicle, PointType.Exit) && EndPatterns.Any(pattern => pattern == GetPattern(vehicle))).ToList();
 
-            foreach (var vehicle in list)
+            for (int i = 0; i < list.Count; i++)
             {
-                RemoveVehicle(vehicle);
+                RemoveVehicle(list[i]);
             }
         }
 
@@ -469,6 +473,7 @@ namespace FillingStation.Core.SimulationServices
         private void ClearStates(BaseVehicle vehicle)
         {
             var value = _vehiclesOnField[vehicle];
+            _patternsOnFields[value.Pattern] = null;
             value.Pattern = null;
             value.Path = null;
             value.NextPattern = null;
@@ -482,7 +487,12 @@ namespace FillingStation.Core.SimulationServices
         private void SetPattern(BaseVehicle vehicle, IGameRoadPattern pattern)
         {
             var node = _vehiclesOnField[vehicle];
+            if (node.Pattern != null)
+            {
+                _patternsOnFields.Remove(node.Pattern);
+            }
             node.Pattern = pattern;
+            _patternsOnFields[pattern] = vehicle;
         }
 
         public IGameRoadPattern GetNextPattern(BaseVehicle vehicle)
@@ -529,7 +539,9 @@ namespace FillingStation.Core.SimulationServices
 
         public BaseVehicle GetVechicle(IGameRoadPattern pattern)
         {
-            return Vehicles.FirstOrDefault(baseVehicle => GetPattern(baseVehicle) == pattern);
+            BaseVehicle value;
+            _patternsOnFields.TryGetValue(pattern, out value);
+            return value;
         }
 
         public BaseVehicle GetNextVehicle(BaseVehicle vehicle)
@@ -542,25 +554,34 @@ namespace FillingStation.Core.SimulationServices
 
         #region Pattern methods
 
-        public bool IsPatternFree(IGameRoadPattern pattern, BaseVehicle vehicle = null)
+        public bool IsPatternFree(IGameRoadPattern pattern)
         {
-            bool isFree = Vehicles.Select(GetPattern).All(vehiclePattern => pattern != vehiclePattern);
-            if (isFree && vehicle != null)
+            return GetVechicle(pattern) == null;
+        }
+
+        public bool IsPatternFree(IGameRoadPattern pattern, BaseVehicle vehicle)
+        {
+            var nextPattern = GetNextPattern(vehicle);
+            foreach (var baseVehicle in Vehicles)
             {
-                isFree &= Vehicles.Where(v => v != vehicle).Select(GetNextMovingPattern).All(pat => pat != GetNextPattern(vehicle));
+                if (baseVehicle != vehicle)
+                {
+                    var movingPattern = GetNextMovingPattern(baseVehicle);
+                    if (movingPattern == nextPattern) return false;
+                }
             }
-            return isFree;
+            return true;
         }
 
         #endregion
 
         #region Subscribe Methods
 
-        private readonly Dictionary<IGameRoadPattern, IList<Action<IGameRoadPattern, BaseVehicle>>> _subscribeActions = new Dictionary<IGameRoadPattern, IList<Action<IGameRoadPattern, BaseVehicle>>>();
+        private readonly Dictionary<IGameRoadPattern, List<Action<IGameRoadPattern, BaseVehicle>>> _subscribeActions = new Dictionary<IGameRoadPattern, List<Action<IGameRoadPattern, BaseVehicle>>>();
         
         public void SubscribeEnterPattern(IGameRoadPattern pattern, Action<IGameRoadPattern, BaseVehicle> callback)
         {
-            IList<Action<IGameRoadPattern, BaseVehicle>> list;
+            List<Action<IGameRoadPattern, BaseVehicle>> list;
             if (_subscribeActions.ContainsKey(pattern))
             {
                 list = _subscribeActions[pattern];
@@ -599,8 +620,8 @@ namespace FillingStation.Core.SimulationServices
             Finish
         }
 
-        private readonly Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingStartActions = new Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>>();
-        private readonly Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingFinishActions = new Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>>();
+        private readonly Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingStartActions = new Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>>();
+        private readonly Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingFinishActions = new Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>>();
 
         public void SubscribeFilling(ColumnPattern pattern, FillingState state, Action<ColumnPattern, BaseVehicle> callback)
         {
@@ -608,7 +629,7 @@ namespace FillingStation.Core.SimulationServices
                 ? _subscribeFillingStartActions
                 : _subscribeFillingFinishActions;
 
-            IList<Action<ColumnPattern, BaseVehicle>> list;
+            List<Action<ColumnPattern, BaseVehicle>> list;
             if (dictionary.ContainsKey(pattern))
             {
                 list = dictionary[pattern];
