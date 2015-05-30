@@ -12,10 +12,17 @@ Main features:
  * Get statistics of simulation process
 
 ## Download
-Direct link to zip file: [https://dl.dropboxusercontent.com/u/69487763/Filling Station v1.0.zip](https://dl.dropboxusercontent.com/u/69487763/Filling%20Station%20v1.0.zip)
+Direct link to try program: [https://dl.dropboxusercontent.com/u/69487763/Filling Station v1.0.zip](https://dl.dropboxusercontent.com/u/69487763/Filling%20Station%20v1.0.zip)
 
 ## How to use
- TODO
+
+[![Patterns placement](http://share.gifyoutube.com/mLj9xq.gif)](http://www.youtube.com/watch?v=wOzE6Ihfvvc)
+[![Setup field](http://share.gifyoutube.com/yxGqYP.gif)](http://www.youtube.com/watch?v=pixa8_0EZfg)
+[![Moving patterns](http://share.gifyoutube.com/mGMwJ1.gif)](http://www.youtube.com/watch?v=U5F7oigGeI4)
+[![Process simulation](http://share.gifyoutube.com/ya6rM5.gif)](http://www.youtube.com/watch?v=HHO79XUu5_Q)
+[![Fillers arriving](http://share.gifyoutube.com/vW1VgN.gif)](http://www.youtube.com/watch?v=prnUkOdPebc)
+
+View full version by clicking on gif.
  
 ## Requirements
 It's WPF .Net program, which uses xna framework. 
