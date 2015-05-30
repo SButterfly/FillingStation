@@ -21,6 +21,7 @@ namespace FillingStation.Core.Models
         #region Fields
 
         private readonly LinkedList<BaseVehicle> _queueVehicles = new LinkedList<BaseVehicle>();
+        private readonly TimeSpan _maxUpdateTimeSecond = TimeSpan.FromSeconds(1);
 
         #endregion
 
@@ -106,6 +107,21 @@ namespace FillingStation.Core.Models
         #region Game methods
 
         public override void Update(GameTime gameTime)
+        {
+            var totalTime = gameTime.TotalGameTime;
+            var updateTime = gameTime.ElapsedGameTime;
+
+            while (updateTime > _maxUpdateTimeSecond)
+            {
+                totalTime += _maxUpdateTimeSecond;
+                updateTime -= _maxUpdateTimeSecond;
+                UpdateVehicles(new GameTime(totalTime, _maxUpdateTimeSecond));
+            }
+
+            UpdateVehicles(new GameTime(totalTime, updateTime));
+        }
+
+        private void UpdateVehicles(GameTime gameTime)
         {
             VehicleMover.RemoveLeftVehicles();
             VehicleMover.UpdateVehicles(gameTime);
