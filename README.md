@@ -22,7 +22,11 @@ What's new:
 * Added more bugs (as usual :D)
 
 Comparer: v1 vs v1.1 <br>
-//TODO add link
+
+
+
+| <a href="https://youtu.be/pSsmTtR9NhU"><img src="http://share.gifyoutube.com/m2JJO7.gif" width="300" alt="version v1"/></a>  | <a href="https://youtu.be/5Dj55invvNo"><img src="http://share.gifyoutube.com/y3NNzG.gif" width="300" alt="version v1.1"></img></a>  |
+|---------------------|-----------------|
  
 ## How to use
 
