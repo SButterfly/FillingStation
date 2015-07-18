@@ -35,9 +35,10 @@ Simulation proccess: <br>
  //TODO add text guide
 
 ##How to try?
-Direct link to download (don't worry no viruses):<br>
-//TODO add link to v1.1<br><br>
+Direct link ton the last release version (don't worry no viruses):<br>
+[Filling Station v1.1.zip](https://dl.dropboxusercontent.com/u/69487763/Filling%20Station%20v1.1.zip)<br> <br>
 Previous versions:<br>
+[Filling Station v1.1.zip](https://dl.dropboxusercontent.com/u/69487763/Filling%20Station%20v1.1.zip)<br>
 [Filling Station v1.0.zip](https://dl.dropboxusercontent.com/u/69487763/Filling%20Station%20v1.0.zip)
 
 ## Requirements
