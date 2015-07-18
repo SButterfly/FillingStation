@@ -31,10 +31,11 @@ Comparer: v1 vs v1.1 <br>
 ## How to use
 
 ######View full video by clicking on gif. <br>
+
 <div style="text-align:center">Pattern placement: <br>
-[![Patterns placement](http://share.gifyoutube.com/mLj9xq.gif)](http://www.youtube.com/watch?v=wOzE6Ihfvvc)<br>
+<a href="https://youtu.be/wOzE6Ihfvvc"><img src="http://share.gifyoutube.com/mLj9xq.gif" alt="Patterns placement"></img></a><br>
 Simulation proccess: <br>
-[![Fillers arriving](http://share.gifyoutube.com/vW1VgN.gif)](http://www.youtube.com/watch?v=prnUkOdPebc) </div>
+<a href="https://youtu.be/prnUkOdPebc"><img src="http://share.gifyoutube.com/vW1VgN.gif" alt="Fillers arriving"></img></a></div>
  
  //TODO add text guide
 
