@@ -313,5 +313,40 @@ namespace FillingStation.Core.SimulationServices
             var handler = FinishWaiting;
             if (handler != null) handler(this, e);
         }
+
+        public static double GetWaitingTime(BaseVehicle vehicle)
+        {
+            double result = 0d;
+            if (vehicle is CarVehicle)
+            {
+                var car = (CarVehicle)vehicle;
+                var carType = car.VehicleType;
+                //max with zero just in case to avois negative value
+                result = Math.Max(0, carType.TankVolume - car.CurrentFuel) / _fillingSpeed;
+            }
+            //TODO add more for casher and filler
+            return result;
+        }
+
+        public bool WillWait(BaseVehicle vehicle, IGameRoadPattern roadPattern)
+        {
+            if (vehicle is CarVehicle && roadPattern is ColumnPattern)
+            {
+                return GetWaitingTime(vehicle) > 0d;
+            }
+            var tanker = vehicle as TankerVehicle;
+            var tankPattern = roadPattern as TankPattern;
+            if (tanker != null && tankPattern != null && tanker.VehicleType.FuelType == tankPattern.Property.Fuel)
+            {
+                return true;
+            }
+
+            if (vehicle is CashVehicle && roadPattern == FSModel.GetNearestGameRoadPattern<CashBoxPattern>())
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

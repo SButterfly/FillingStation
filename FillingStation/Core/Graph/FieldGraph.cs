@@ -9,21 +9,21 @@ namespace FillingStation.Core.Graph
     {
         public override IGameRoadPattern StartPattern
         {
-            get { return Objects.First(pattern => (pattern is EnterPattern)); }
+            get { return StartPatterns.First(); }
         }
         public override IGameRoadPattern EndPattern
         {
-            get { return Objects.First(pattern => (pattern is ExitPattern)); }
+            get { return EndPatterns.First(); }
         }
 
         public IEnumerable<IGameRoadPattern> StartPatterns
         {
-            get { return Objects.Where(pattern => (pattern is EnterPattern)); }
+            get { return Objects.OfType<EnterPattern>(); }
         }
 
         public IEnumerable<IGameRoadPattern> EndPatterns
         {
-            get { return Objects.Where(pattern => (pattern is ExitPattern)); }
+            get { return Objects.OfType<ExitPattern>(); }
         }
 
         public void Merge(Graph<IGameRoadPattern> graph)

@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using FillingStation.Core.Models;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Properties;
+using FillingStation.Core.Vehicles;
 using FillingStation.Extensions;
 using FillingStation.Helpers;
 using FillingStation.Localization;
@@ -382,110 +383,6 @@ namespace FillingStation.Controls
             }
         }
 
-        private void field_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            var position = e.GetPosition(sender as UIElement);
-            var point = GetPosition(position, _cellWidth, _cellHeight);
-
-            if (Mode == ConstructionMode.Placing)
-            {
-                Logger.WriteLine(LTAG, "MouseUp Placing " + point);
-
-                point.X = Math.Min(point.X - SelectedBinding.DX, FSModel.Width - SelectedBinding.Pattern.Width);
-                point.Y = Math.Min(point.Y - SelectedBinding.DY, FSModel.Height - SelectedBinding.Pattern.Height);
-
-                if (FSModel.CanPlace(SelectedBinding.Pattern, point) || FSModel.Get(point) == SelectedBinding.Pattern)
-                {
-                    if (!FSModel.Contains(SelectedBinding.Pattern))
-                        FSModel.Add(SelectedBinding.Pattern, point);
-
-                    Place(point, SelectedBinding);
-                    SelectedBinding.CurrentState = UpdateState.Placed;
-                }
-                else
-                {
-                    field.Children.Remove(SelectedBinding.Image);
-                    SelectedBinding = null;
-                }
-
-                Mode = ConstructionMode.None;
-            }
-            if (Mode == ConstructionMode.MultiPlacing)
-            {
-                Logger.WriteLine(LTAG, "MouseUp MultiPlacing " + point);
-
-                point.X = Math.Min(point.X - SelectedBinding.DX, FSModel.Width - SelectedBinding.Pattern.Width);
-                point.Y = Math.Min(point.Y - SelectedBinding.DY, FSModel.Height - SelectedBinding.Pattern.Height);
-
-                if (FSModel.CanPlace(SelectedBinding.Pattern, point))
-                {
-                    FSModel.Add(SelectedBinding.Pattern, point);
-                    Place(point, SelectedBinding);
-                    SelectedBinding.CurrentState = UpdateState.Placed;
-
-                    var image = CreateImage();
-                    var pattern = CreatePattern(SelectedMenuButton.Tag);
-                    SelectedBinding = PatternToImageBinding.Load(pattern, image, SelectedBinding);
-                    SelectedBinding.CurrentState = UpdateState.CanPlace;
-                }
-            }
-        }
-
-        private void field_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var position = e.GetPosition(sender as UIElement);
-            var point = GetPosition(position, _cellWidth, _cellHeight);
-
-            if (Mode == ConstructionMode.None)
-            {
-                Logger.WriteLine(LTAG, "MouseDown None " + point);
-
-                var binding = Remove(point);
-                if (binding != null)
-                {
-                    SelectedBinding = binding;
-
-                    var patternPoint = FSModel.Get(binding.Pattern);
-                    SelectedBinding.DX = point.X - patternPoint.X;
-                    SelectedBinding.DY = point.Y - patternPoint.Y;
-
-                    Mode = ConstructionMode.Placing;
-                    field_OnMouseMove(sender, e);
-                }
-            }
-        }
-
-        private void field_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var position = e.GetPosition(sender as UIElement);
-            var point = GetPosition(position, _cellWidth, _cellHeight);
-
-            if (Mode == ConstructionMode.None)
-            {
-                Logger.WriteLine(LTAG, "MouseRightDown None " + point);
-
-                SelectedBinding = Remove(point);
-                if (SelectedBinding != null)
-                {
-                    FSModel.Remove(SelectedBinding.Pattern);
-                    SelectedBinding.CurrentState = UpdateState.Leaved;
-                    SelectedBinding = null;
-                }
-            }
-            if (Mode == ConstructionMode.MultiPlacing)
-            {
-                SelectedBinding.CurrentState = UpdateState.Leaved;
-                SelectedBinding = null;
-                Mode = ConstructionMode.None; 
-
-                if (SelectedMenuButton != null)
-                {
-                    SelectedMenuButton.IsChecked = false;
-                    SelectedMenuButton = null;
-                }
-            }
-        }
-
         private void field_MouseLeave(object sender, MouseEventArgs e)
         {
             if (Mode == ConstructionMode.MultiPlacing)
@@ -540,6 +437,164 @@ namespace FillingStation.Controls
             }
         }
 
+        private void field_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var position = e.GetPosition(sender as UIElement);
+            var point = GetPosition(position, _cellWidth, _cellHeight);
+
+            if (e.ChangedButton == MouseButton.Middle)
+            {
+                if (Mode == ConstructionMode.None)
+                {
+                    Logger.WriteLine(LTAG, "MouseDown Placing Wheel " + point);
+
+                    var binding = Get(point);
+                    if (binding != null)
+                    {
+                        var image = CreateImage();
+                        var pattern = CopyPattern(binding.Pattern);
+                        SelectedBinding = PatternToImageBinding.Load(pattern, image, SelectedBinding);
+                        SelectedBinding.CurrentState = UpdateState.CannotPlace;
+
+                        var patternPoint = FSModel.Get(binding.Pattern);
+                        SelectedBinding.DX = point.X - patternPoint.X;
+                        SelectedBinding.DY = point.Y - patternPoint.Y;
+
+                        Mode = ConstructionMode.Placing;
+                        field_OnMouseMove(sender, e);
+                    }
+                }
+            }
+
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                if (Mode == ConstructionMode.None)
+                {
+                    Logger.WriteLine(LTAG, "MouseDown None " + point);
+
+                    var binding = Remove(point);
+                    if (binding != null)
+                    {
+                        SelectedBinding = binding;
+
+                        var patternPoint = FSModel.Get(binding.Pattern);
+                        SelectedBinding.DX = point.X - patternPoint.X;
+                        SelectedBinding.DY = point.Y - patternPoint.Y;
+
+                        Mode = ConstructionMode.Placing;
+                        field_OnMouseMove(sender, e);
+                    }
+                }
+            }
+
+            if (e.ChangedButton == MouseButton.Right)
+            {
+                if (Mode == ConstructionMode.None)
+                {
+                    Logger.WriteLine(LTAG, "MouseRightDown None " + point);
+
+                    SelectedBinding = Remove(point);
+                    if (SelectedBinding != null)
+                    {
+                        FSModel.Remove(SelectedBinding.Pattern);
+                        SelectedBinding.CurrentState = UpdateState.Leaved;
+                        SelectedBinding = null;
+                    }
+                }
+                if (Mode == ConstructionMode.MultiPlacing)
+                {
+                    SelectedBinding.CurrentState = UpdateState.Leaved;
+                    SelectedBinding = null;
+                    Mode = ConstructionMode.None;
+
+                    if (SelectedMenuButton != null)
+                    {
+                        SelectedMenuButton.IsChecked = false;
+                        SelectedMenuButton = null;
+                    }
+                }
+            }
+        }
+
+        private void field_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var position = e.GetPosition(sender as UIElement);
+            var point = GetPosition(position, _cellWidth, _cellHeight);
+
+            if (e.ChangedButton == MouseButton.Middle)
+            {
+                if (Mode == ConstructionMode.Placing)
+                {
+                    Logger.WriteLine(LTAG, "MouseUp Placing Wheel " + point);
+
+                    point.X = Math.Min(point.X - SelectedBinding.DX, FSModel.Width - SelectedBinding.Pattern.Width);
+                    point.Y = Math.Min(point.Y - SelectedBinding.DY, FSModel.Height - SelectedBinding.Pattern.Height);
+
+                    if (FSModel.CanPlace(SelectedBinding.Pattern, point) || FSModel.Get(point) == SelectedBinding.Pattern)
+                    {
+                        if (!FSModel.Contains(SelectedBinding.Pattern))
+                            FSModel.Add(SelectedBinding.Pattern, point);
+
+                        Place(point, SelectedBinding);
+                        SelectedBinding.CurrentState = UpdateState.Placed;
+                    }
+                    else
+                    {
+                        field.Children.Remove(SelectedBinding.Image);
+                        SelectedBinding = null;
+                    }
+
+                    Mode = ConstructionMode.None;
+                }
+            }
+
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                if (Mode == ConstructionMode.Placing)
+                {
+                    Logger.WriteLine(LTAG, "MouseUp Placing " + point);
+
+                    point.X = Math.Min(point.X - SelectedBinding.DX, FSModel.Width - SelectedBinding.Pattern.Width);
+                    point.Y = Math.Min(point.Y - SelectedBinding.DY, FSModel.Height - SelectedBinding.Pattern.Height);
+
+                    if (FSModel.CanPlace(SelectedBinding.Pattern, point) || FSModel.Get(point) == SelectedBinding.Pattern)
+                    {
+                        if (!FSModel.Contains(SelectedBinding.Pattern))
+                            FSModel.Add(SelectedBinding.Pattern, point);
+
+                        Place(point, SelectedBinding);
+                        SelectedBinding.CurrentState = UpdateState.Placed;
+                    }
+                    else
+                    {
+                        field.Children.Remove(SelectedBinding.Image);
+                        SelectedBinding = null;
+                    }
+
+                    Mode = ConstructionMode.None;
+                }
+                if (Mode == ConstructionMode.MultiPlacing)
+                {
+                    Logger.WriteLine(LTAG, "MouseUp MultiPlacing " + point);
+
+                    point.X = Math.Min(point.X - SelectedBinding.DX, FSModel.Width - SelectedBinding.Pattern.Width);
+                    point.Y = Math.Min(point.Y - SelectedBinding.DY, FSModel.Height - SelectedBinding.Pattern.Height);
+
+                    if (FSModel.CanPlace(SelectedBinding.Pattern, point))
+                    {
+                        FSModel.Add(SelectedBinding.Pattern, point);
+                        Place(point, SelectedBinding);
+                        SelectedBinding.CurrentState = UpdateState.Placed;
+
+                        var image = CreateImage();
+                        var pattern = CreatePattern(SelectedMenuButton.Tag);
+                        SelectedBinding = PatternToImageBinding.Load(pattern, image, SelectedBinding);
+                        SelectedBinding.CurrentState = UpdateState.CanPlace;
+                    }
+                }
+            }
+        }
+
         private void field_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (SelectedBinding != null)
@@ -553,6 +608,18 @@ namespace FillingStation.Controls
                         : Rotation.Rotate270;
 
                     turnProperty.Angle = turnProperty.Angle.Sum(sumAngle);
+                    return;
+                }
+
+                var tankProperty = SelectedBinding.Pattern.Property as TankProperty;
+                if (tankProperty != null)
+                {
+                    var delta = e.Delta > 0
+                        ? +1
+                        : -1;
+                    var enumCount = Enum.GetNames(typeof(Fuel)).Length;
+                    tankProperty.Fuel = (Fuel)(((int)tankProperty.Fuel + delta + enumCount - 1) % enumCount + 1); // -1 and +1 cause Fuel enum starts with 1
+                    return;
                 }
             }
         }
@@ -574,6 +641,17 @@ namespace FillingStation.Controls
                 binding.CurrentState = UpdateState.Placed;
                 binding.Image.Margin = new Thickness(point.X * _cellWidth, point.Y * _cellHeight, 0, 0);
             }
+        }
+
+        private PatternToImageBinding Get(Point point)
+        {
+            if (0 <= point.X && point.X < FSModel.Width && 0 <= point.Y && point.Y < FSModel.Height)
+            {
+                var binding = _bindings[point.X, point.Y];
+                return binding;
+            }
+
+            return null;
         }
 
         private PatternToImageBinding Remove(Point point)
@@ -633,6 +711,11 @@ namespace FillingStation.Controls
             if (result == null) throw new ArgumentException();
 
             return result;
+        }
+
+        private IPattern CopyPattern(IPattern pattern)
+        {
+            return (IPattern)Activator.CreateInstance(pattern.GetType());
         }
 
         private Image CreateImage()

@@ -78,7 +78,7 @@ namespace FillingStation.Core.SimulationServices
 
             rand = Randomizer.GetInstance().Random;
 
-            _dt = new TimeSpan((long)generator.Next());
+            _dt = new TimeSpan(0);
             _lastCarSend = new TimeSpan(0);
         }
 
@@ -117,30 +117,28 @@ namespace FillingStation.Core.SimulationServices
             }
 
             var deltaTime = gameTime.TotalGameTime - _lastCarSend;
-            if (_dt <= deltaTime)
+            while (_dt <= deltaTime)
             {
-                long count = deltaTime.Ticks / _dt.Ticks;
-                for (long i = 0; i < count; i++)
+                int temp = rand.Next(1, 101);
+                if (temp > 0 && temp <= _carProbabilityDensity[0])
                 {
-                    int temp = rand.Next(1, 101);
-                    if (temp > 0 && temp <= _carProbabilityDensity[0])
-                    {
-                        resultList.Add(_car92Types.Random());
-                    }
-                    if (temp > _carProbabilityDensity[0] && temp <= _carProbabilityDensity[1])
-                    {
-                        resultList.Add(_car95Types.Random());
-                    }
-                    if (temp > _carProbabilityDensity[1] && temp <= _carProbabilityDensity[2])
-                    {
-                        resultList.Add(_car98Types.Random());
-                    }
-                    if (temp > _carProbabilityDensity[2] && temp <= 100)
-                    {
-                        resultList.Add(_carDieselTypes.Random());
-                    }
+                    resultList.Add(_car92Types.Random());
                 }
-                _lastCarSend = gameTime.TotalGameTime;
+                if (temp > _carProbabilityDensity[0] && temp <= _carProbabilityDensity[1])
+                {
+                    resultList.Add(_car95Types.Random());
+                }
+                if (temp > _carProbabilityDensity[1] && temp <= _carProbabilityDensity[2])
+                {
+                    resultList.Add(_car98Types.Random());
+                }
+                if (temp > _carProbabilityDensity[2] && temp <= 100)
+                {
+                    resultList.Add(_carDieselTypes.Random());
+                }
+
+                _lastCarSend += _dt;
+                deltaTime -= _dt;
                 _dt = new TimeSpan((long)_generator.Next());
             }
 

@@ -76,11 +76,10 @@
                       Height="200" Width="400"
                       Background="Green"
                       MouseMove="field_OnMouseMove"
-                      MouseLeftButtonUp="field_MouseLeftButtonUp"
                       MouseLeave="field_MouseLeave"
-                      MouseLeftButtonDown="field_MouseLeftButtonDown"
-                      MouseRightButtonDown="field_MouseRightButtonDown" MouseWheel="field_MouseWheel"
-                      />
+                      MouseUp="field_OnMouseUp"
+                      MouseDown="field_OnMouseDown"
+                      MouseWheel="field_MouseWheel"/>
             </Border>
         </Grid>
         <TextBlock x:Name="additionTextBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Background="#FFF0F0F0" />

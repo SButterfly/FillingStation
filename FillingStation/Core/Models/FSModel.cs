@@ -155,21 +155,28 @@ namespace FillingStation.Core.Models
                 throw new ArgumentException("Model doesn't contain this pattern.");
 
             var point = Get(pattern);
-            var nearPoints = new List<Point>();
 
-            for (int i = 0; i < pattern.Width; i++)
+            IGameRoadPattern nearestPattern = null;
+
+            for (int i = 0; i < pattern.Width && nearestPattern == null; i++)
             {
-                nearPoints.Add(new Point(point.X + i, point.Y - 1));
-                nearPoints.Add(new Point(point.X + i, point.Y + pattern.Height));
+                nearestPattern = Get(new Point(point.X + i, point.Y - 1)) as IGameRoadPattern;
+            }
+            for (int i = 0; i < pattern.Width && nearestPattern == null; i++)
+            {
+                nearestPattern = Get(new Point(point.X + i, point.Y + pattern.Height)) as IGameRoadPattern;
             }
 
-            for (int i = 0; i < pattern.Height; i++)
+            for (int i = 0; i < pattern.Height && nearestPattern == null; i++)
             {
-                nearPoints.Add(new Point(point.X - 1, point.Y + i));
-                nearPoints.Add(new Point(point.X + pattern.Width, point.Y + i));
+                nearestPattern = Get(new Point(point.X - 1, point.Y + i)) as IGameRoadPattern;
+            }
+            for (int i = 0; i < pattern.Height && nearestPattern == null; i++)
+            {
+                nearestPattern = Get(new Point(point.X + pattern.Width, point.Y + i)) as IGameRoadPattern;
             }
 
-            return nearPoints.Select(nearPoint => _dictionary.FirstOrDefault(kv => kv.Value == nearPoint).Key).OfType<IGameRoadPattern>().FirstOrDefault();
+            return nearestPattern;
         }
 
         public bool IsCorrect()

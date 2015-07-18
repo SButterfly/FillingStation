@@ -6,6 +6,7 @@ using FillingStation.Core.Pathes;
 using FillingStation.Core.Patterns;
 using FillingStation.Core.Vehicles;
 using FillingStation.Extensions;
+using FillingStation.Helpers;
 using Microsoft.Xna.Framework;
 
 namespace FillingStation.Core.SimulationServices
@@ -33,6 +34,8 @@ namespace FillingStation.Core.SimulationServices
 
         private readonly Dictionary<BaseVehicle, CurrentState> _vehiclesOnField =
             new Dictionary<BaseVehicle, CurrentState>();
+
+        private readonly Dictionary<IGameRoadPattern, BaseVehicle> _patternsOnFields = new Dictionary<IGameRoadPattern, BaseVehicle>();
 
         #endregion
 
@@ -139,16 +142,6 @@ namespace FillingStation.Core.SimulationServices
 
             if (IsOnPoint(vehicle, PointType.Enter))
             {
-                var nextPattern = GetNextPattern(vehicle);
-                if (nextPattern != null && !IsPatternFree(nextPattern, vehicle))
-                {
-                    var nextVehicle = Vehicles.FirstOrDefault(vcl => GetPattern(vcl) == nextPattern);
-                    if (nextVehicle != null && nextVehicle.WaitIndicator < 1e-5)
-                    {
-                        vehicle.Speed = Math.Min(vehicle.Speed, (nextVehicle.Speed + vehicle.Speed)/2f);
-                    }
-                }
-
                 MessageSubscribes(GetPattern(vehicle), vehicle);
             }
 
@@ -156,17 +149,14 @@ namespace FillingStation.Core.SimulationServices
             {
                 var waitPercent = _vehicleAwaiter.Wait(vehicle, GetPattern(vehicle), ref gameTime);
                 vehicle.WaitIndicator = waitPercent;
+            }
 
-                if (gameTime.ElapsedGameTime.Ticks <= 3) return;
-
-                var nextPattern = GetNextPattern(vehicle);
-                if (nextPattern != null && !IsPatternFree(nextPattern, vehicle))
+            if (IsOverPoint(vehicle, PointType.Wait))
+            {
+                if (GetNextVehicle(vehicle) != null)
                 {
-                    var nextVehicle = Vehicles.FirstOrDefault(vcl => GetPattern(vcl) == nextPattern);
-                    if (nextVehicle != null && nextVehicle.WaitIndicator < 1e-5)
-                    {
-                        vehicle.Speed = Math.Min(vehicle.Speed, nextVehicle.Speed - 0.001f);
-                    }
+                    vehicle.SetSpeed(GetNextVehicle(vehicle).Speed/2f, gameTime);
+                    UpdateToPoint(vehicle, PointType.Exit, ref gameTime);
                     return;
                 }
             }
@@ -180,7 +170,7 @@ namespace FillingStation.Core.SimulationServices
                     return;
 
                 SetPattern(vehicle, currentPattern);
-                var nextPattern = SelectNextPattern(vehicle, currentPattern);
+                var nextPattern = SelectNextPattern(vehicle);
 
                 BasePath path = null;
 
@@ -215,6 +205,8 @@ namespace FillingStation.Core.SimulationServices
                 return;
             }
 
+            SetVehicleSpeed(vehicle, gameTime);
+
             var nextPointType = IsOverPoint(vehicle, PointType.Wait) || IsOnPoint(vehicle, PointType.Wait)
                 ? PointType.Exit
                 : PointType.Wait;
@@ -222,10 +214,67 @@ namespace FillingStation.Core.SimulationServices
             SetNextMovingPattern(vehicle, nextPointType == PointType.Wait ? null : GetNextPattern(vehicle));
 
             UpdateToPoint(vehicle, nextPointType, ref gameTime);
+
             UpdateVehicle(vehicle, gameTime);
         }
 
-        private IGameRoadPattern SelectNextPattern(BaseVehicle vehicle, IGameRoadPattern pattern)
+        private void SetVehicleSpeed(BaseVehicle vehicle, GameTime gameTime)
+        {
+            var nextVehicle = GetNextVehicle(vehicle);
+
+            bool needToSlowDown = false;
+            bool needToSpeedUp = true;
+
+            if (!IsOverPoint(vehicle, PointType.Wait))
+            {
+                needToSlowDown |= WillVehicleCrashedIntoNextVehicle(vehicle);
+                needToSlowDown |= VehicleAwaiter.WillWait(vehicle, GetPattern(vehicle));
+            }
+
+            if (IsOnPoint(vehicle, PointType.Wait))
+            {
+                if (nextVehicle != null && nextVehicle.WaitIndicator < 1e-5)
+                {
+                    vehicle.MaxSpeed = Math.Min(vehicle.MaxSpeed, nextVehicle.MaxSpeed - 0.00002f);
+                }
+            }
+
+            if (!needToSpeedUp && !needToSlowDown && vehicle.Speed <= 0.02f)
+            {
+                throw new Exception("Smth went wrong speed is low; And no flag sets");
+            }
+
+            if (needToSlowDown) //means to slow down exactly to wait point
+            {
+                var point = GetPatternPoint(vehicle, GetPattern(vehicle));
+                var path = GetPath(vehicle);
+                var stopLength = path.GetRoad(point, path.Wait);
+
+                if (stopLength >= 1e-8) //just skip when road is to small
+                {
+                    var vehicleSpeed = vehicle.Speed;
+                    var time = gameTime.ElapsedGameTime.TotalSeconds;
+
+                    var newSpeed = (float) (vehicleSpeed - time * vehicleSpeed * vehicleSpeed / (2 * stopLength));
+
+                    vehicle.SetSpeed(Math.Max(0.002f, newSpeed), gameTime, false);
+                }
+                return;
+            }
+
+            if (needToSpeedUp)
+            {
+                vehicle.SetSpeed(vehicle.MaxSpeed, gameTime);
+            }
+        }
+
+        private bool WillVehicleCrashedIntoNextVehicle(BaseVehicle vehicle)
+        {
+            var nextVehicle = GetNextVehicle(vehicle);
+            return nextVehicle != null && vehicle.Speed > nextVehicle.Speed;
+        }
+
+        private IGameRoadPattern SelectNextPattern(BaseVehicle vehicle)
         {
             return _patternChooser.ChooseNextPattern(vehicle);
         }
@@ -257,11 +306,30 @@ namespace FillingStation.Core.SimulationServices
             return resultPath;
         }
 
+        public List<BasePath> GetLinkPathes(IGameRoadPattern pattern, IGameRoadPattern nextPattern)
+        {
+            var result = new List<BasePath>();
+            foreach (var path in pattern.Paths)
+            {
+                var exitPoint = GetModelPoint(pattern, path.Exit);
+                foreach (var nextPath in nextPattern.Paths)
+                {
+                    var enterNextPoint = GetModelPoint(nextPattern, nextPath.Enter);
+                    if (enterNextPoint.IsNearBy(exitPoint, 1e-3))
+                    {
+                        result.Add(path);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Point methods
 
-        private Vector2 GetPatternPoint(BaseVehicle vehicle, IGameRoadPattern pattern)
+        public Vector2 GetPatternPoint(BaseVehicle vehicle, IGameRoadPattern pattern)
         {
             var modelPosition = GetPosition(vehicle);
             var patternPosition = _modelGraph[pattern];
@@ -276,14 +344,14 @@ namespace FillingStation.Core.SimulationServices
             SetPosition(vehicle, patternPosition.ToVector2() + point);
         }
 
-        private Vector2 GetModelPoint(IGameRoadPattern pattern, Vector2 patternPoint)
+        public Vector2 GetModelPoint(IGameRoadPattern pattern, Vector2 patternPoint)
         {
             var patternPosition = _modelGraph[pattern];
 
             return patternPosition.ToVector2() + patternPoint;
         }
 
-        private bool IsOnPoint(BaseVehicle vehicle, PointType pointType)
+        public bool IsOnPoint(BaseVehicle vehicle, PointType pointType)
         {
             var point = GetPath(vehicle).GetPoint(pointType);
             var currentPoint = GetPatternPoint(vehicle, GetPattern(vehicle));
@@ -291,7 +359,7 @@ namespace FillingStation.Core.SimulationServices
             return point.IsNearBy(currentPoint, 1e-3);
         }
 
-        private bool IsOverPoint(BaseVehicle vehicle, PointType pointType)
+        public bool IsOverPoint(BaseVehicle vehicle, PointType pointType)
         {
             var path = GetPath(vehicle);
 
@@ -311,7 +379,7 @@ namespace FillingStation.Core.SimulationServices
             vehicle.Rotation = rotation;
         }
 
-        private float GetRotation(BaseVehicle vehicle)
+        public float GetRotation(BaseVehicle vehicle)
         {
             return vehicle.Rotation;
         }
@@ -330,6 +398,15 @@ namespace FillingStation.Core.SimulationServices
             //Находим путь, который он может проехать не превышая нашу точку
             float resultRoad = Math.Min(road, pointRoad);
 
+            if (resultRoad < 0)
+                throw new ArgumentException();
+
+            if (resultRoad < 1e-7) //road is to small to continue update
+            {
+                gameTime = new GameTime(gameTime.TotalGameTime + gameTime.ElapsedGameTime, new TimeSpan());
+                return;
+            }
+
             var resultPoint = path.GetPoint(fromPoint, resultRoad);
             var rotation = path.GetTurn(resultPoint);
 
@@ -337,6 +414,9 @@ namespace FillingStation.Core.SimulationServices
             SetPatternPoint(vehicle, GetPattern(vehicle), resultPoint);
             SetRotation(vehicle, rotation);
             var elapsedTime = new TimeSpan((long)(vehicle.GetElapsedTime(resultRoad) * TimeSpan.TicksPerSecond));
+
+            if (gameTime.ElapsedGameTime - elapsedTime < new TimeSpan())
+                throw new ArgumentException();
 
             gameTime = new GameTime(gameTime.TotalGameTime + elapsedTime, gameTime.ElapsedGameTime - elapsedTime);
         }
@@ -357,7 +437,7 @@ namespace FillingStation.Core.SimulationServices
             var position = _modelGraph[pattern];
             SetPosition(vehicle, position.ToVector2() + pattern.Paths.First().Enter);
 
-            var nextPattern = SelectNextPattern(vehicle, pattern);
+            var nextPattern = SelectNextPattern(vehicle);
             SetNextPattern(vehicle, nextPattern);
 
             var path = SelectCurrentPath(vehicle, pattern, nextPattern);
@@ -366,7 +446,9 @@ namespace FillingStation.Core.SimulationServices
 
         public void RemoveVehicle(BaseVehicle vehicle)
         {
+            var pattern = GetPattern(vehicle);
             _vehiclesOnField.Remove(vehicle);
+            _patternsOnFields.Remove(pattern);
         }
 
         public bool ContainsVehicle(BaseVehicle vehicle)
@@ -378,9 +460,9 @@ namespace FillingStation.Core.SimulationServices
         {
             var list = Vehicles.Where(vehicle => IsOnPoint(vehicle, PointType.Exit) && EndPatterns.Any(pattern => pattern == GetPattern(vehicle))).ToList();
 
-            foreach (var vehicle in list)
+            for (int i = 0; i < list.Count; i++)
             {
-                RemoveVehicle(vehicle);
+                RemoveVehicle(list[i]);
             }
         }
 
@@ -391,6 +473,7 @@ namespace FillingStation.Core.SimulationServices
         private void ClearStates(BaseVehicle vehicle)
         {
             var value = _vehiclesOnField[vehicle];
+            _patternsOnFields[value.Pattern] = null;
             value.Pattern = null;
             value.Path = null;
             value.NextPattern = null;
@@ -404,7 +487,12 @@ namespace FillingStation.Core.SimulationServices
         private void SetPattern(BaseVehicle vehicle, IGameRoadPattern pattern)
         {
             var node = _vehiclesOnField[vehicle];
+            if (node.Pattern != null)
+            {
+                _patternsOnFields.Remove(node.Pattern);
+            }
             node.Pattern = pattern;
+            _patternsOnFields[pattern] = vehicle;
         }
 
         public IGameRoadPattern GetNextPattern(BaseVehicle vehicle)
@@ -449,29 +537,51 @@ namespace FillingStation.Core.SimulationServices
             vehicle.Position = position;
         }
 
+        public BaseVehicle GetVechicle(IGameRoadPattern pattern)
+        {
+            BaseVehicle value;
+            _patternsOnFields.TryGetValue(pattern, out value);
+            return value;
+        }
+
+        public BaseVehicle GetNextVehicle(BaseVehicle vehicle)
+        {
+            var nextPattern = GetNextPattern(vehicle);
+            return nextPattern == null ? null : GetVechicle(nextPattern);
+        }
+
         #endregion
 
         #region Pattern methods
 
-        public bool IsPatternFree(IGameRoadPattern pattern, BaseVehicle vehicle = null)
+        public bool IsPatternFree(IGameRoadPattern pattern)
         {
-            bool isFree = Vehicles.Select(GetPattern).All(vehiclePattern => pattern != vehiclePattern);
-            if (isFree && vehicle != null)
+            return GetVechicle(pattern) == null;
+        }
+
+        public bool IsPatternFree(IGameRoadPattern pattern, BaseVehicle vehicle)
+        {
+            var nextPattern = GetNextPattern(vehicle);
+            foreach (var baseVehicle in Vehicles)
             {
-                isFree &= Vehicles.Where(v => v != vehicle).Select(GetNextMovingPattern).All(pat => pat != GetNextPattern(vehicle));
+                if (baseVehicle != vehicle)
+                {
+                    var movingPattern = GetNextMovingPattern(baseVehicle);
+                    if (movingPattern == nextPattern) return false;
+                }
             }
-            return isFree;
+            return true;
         }
 
         #endregion
 
         #region Subscribe Methods
 
-        private readonly Dictionary<IGameRoadPattern, IList<Action<IGameRoadPattern, BaseVehicle>>> _subscribeActions = new Dictionary<IGameRoadPattern, IList<Action<IGameRoadPattern, BaseVehicle>>>();
+        private readonly Dictionary<IGameRoadPattern, List<Action<IGameRoadPattern, BaseVehicle>>> _subscribeActions = new Dictionary<IGameRoadPattern, List<Action<IGameRoadPattern, BaseVehicle>>>();
         
         public void SubscribeEnterPattern(IGameRoadPattern pattern, Action<IGameRoadPattern, BaseVehicle> callback)
         {
-            IList<Action<IGameRoadPattern, BaseVehicle>> list;
+            List<Action<IGameRoadPattern, BaseVehicle>> list;
             if (_subscribeActions.ContainsKey(pattern))
             {
                 list = _subscribeActions[pattern];
@@ -510,8 +620,8 @@ namespace FillingStation.Core.SimulationServices
             Finish
         }
 
-        private readonly Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingStartActions = new Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>>();
-        private readonly Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingFinishActions = new Dictionary<ColumnPattern, IList<Action<ColumnPattern, BaseVehicle>>>();
+        private readonly Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingStartActions = new Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>>();
+        private readonly Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>> _subscribeFillingFinishActions = new Dictionary<ColumnPattern, List<Action<ColumnPattern, BaseVehicle>>>();
 
         public void SubscribeFilling(ColumnPattern pattern, FillingState state, Action<ColumnPattern, BaseVehicle> callback)
         {
@@ -519,7 +629,7 @@ namespace FillingStation.Core.SimulationServices
                 ? _subscribeFillingStartActions
                 : _subscribeFillingFinishActions;
 
-            IList<Action<ColumnPattern, BaseVehicle>> list;
+            List<Action<ColumnPattern, BaseVehicle>> list;
             if (dictionary.ContainsKey(pattern))
             {
                 list = dictionary[pattern];
