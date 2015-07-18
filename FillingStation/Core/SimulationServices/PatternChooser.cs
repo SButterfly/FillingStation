@@ -98,7 +98,7 @@ namespace FillingStation.Core.SimulationServices
 
                 if (timeToPattern != null)
                     dictionary.Add(nextPattern, timeToPattern.Value);
-            }
+                }
 
             double minimum = Double.MaxValue;
             IGameRoadPattern resultPattern = null;
@@ -133,8 +133,8 @@ namespace FillingStation.Core.SimulationServices
 
                 foreach (var gamePattern in synchronizer.Graph.Next(pattern))
                 {
-                    double? timeToPattern = GetTimeToPattern(vehicle, gamePattern, synchronizer, exitFunc);
-                    if (timeToPattern.HasValue && (minTime == null || timeToPattern.Value < minTime.Value))
+                    var timeToPattern = GetTimeToPattern(vehicle, gamePattern, synchronizer, exitFunc);
+                    if (timeToPattern != null && (minTime == null || timeToPattern < minTime))
                     {
                         minTime = timeToPattern;
                         nextPattern = gamePattern;
@@ -148,7 +148,11 @@ namespace FillingStation.Core.SimulationServices
             {
                 var path = synchronizer.GetLinkPathes(pattern, nextPattern).First();
                 var vehicleOnPattern = synchronizer.GetVechicle(pattern);
-                minTime += path.Length/vehicle.Speed + (vehicleOnPattern != null ? VehicleAwaiter.GetWaitingTime(synchronizer.GetVechicle(pattern)) : 0);
+                
+                var timeWithStableSpeed = path.Length / vehicle.Speed;
+                var timeWithChanginSpeed = vehicle.Speed*2/path.Length;
+
+                minTime += (vehicleOnPattern != null ? VehicleAwaiter.GetWaitingTime(synchronizer.GetVechicle(pattern)) + timeWithChanginSpeed : timeWithStableSpeed);
             }
 
             return minTime;
