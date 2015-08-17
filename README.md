@@ -4,7 +4,7 @@ It's a simple program to simulate working process of filling station. Was made b
 
 #####Main features:
 
- * Create custom filling station field
+ * Create custom filling station fields
  * Move, turn, delete patterns
  * Adjust fuel consumption
  * Simulate operation of filling station with different streams of vehicles
@@ -14,16 +14,14 @@ It's a simple program to simulate working process of filling station. Was made b
 #Version v1.1 is here!!
 What's new:
 * Vehicles have learned how to speed up and slow down!
-* Event more their road choose became more logical
+* Even more their road choose became more logical
 * You can use middle mouse click to copy already placed pattern
-* Also fuel type would change if you scroll it
+* Also fuel type would change if you scroll it's pattern
 * Fixed some issues with random generators
 * Fixed simulation on a high speed
 * Added more bugs (as usual :D)
 
 Comparer: v1 vs v1.1 <br>
-
-
 
 | <a href="https://youtu.be/pSsmTtR9NhU"><img src="http://share.gifyoutube.com/m2JJO7.gif" width="300" alt="version v1"/></a>  | <a href="https://youtu.be/5Dj55invvNo"><img src="http://share.gifyoutube.com/y3NNzG.gif" width="300" alt="version v1.1"></img></a>  |
 |---------------------|-----------------|
